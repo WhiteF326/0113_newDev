@@ -1,0 +1,5110 @@
+{
+  "_version": "1.0",
+  "project": {
+    "_id": "615f966c1efb77001b00463d",
+    "name": "None Leave",
+    "teamID": "rxERdZGjRN",
+    "devVersion": "615f966c5783560006f6a18a",
+    "platform": "alexa",
+    "platformData": {
+      "products": []
+    },
+    "members": [],
+    "image": "",
+    "linkType": "CURVED",
+    "creatorID": 74320,
+    "prototype": {
+      "data": {}
+    },
+    "createdAt": "2021-10-08T00:53:00.000Z"
+  },
+  "version": {
+    "_id": "615f966c5783560006f6a18a",
+    "name": "Initial Version",
+    "projectID": "615f966c1efb77001b00463d",
+    "variables": [
+      "items",
+      "flag",
+      "personId",
+      "duplicate",
+      "number"
+    ],
+    "platformData": {
+      "slots": [
+        {
+          "key": "1g2y3b21",
+          "name": "id",
+          "type": {
+            "value": "AMAZON.NUMBER"
+          },
+          "color": "#5C6BC0",
+          "inputs": []
+        }
+      ],
+      "intents": [
+        {
+          "key": "AMAZON.YesIntent",
+          "name": "AMAZON.YesIntent",
+          "inputs": [],
+          "slots": []
+        },
+        {
+          "key": "AMAZON.NoIntent",
+          "name": "AMAZON.NoIntent",
+          "inputs": [],
+          "slots": []
+        },
+        {
+          "key": "AMAZON.HelpIntent",
+          "name": "AMAZON.HelpIntent",
+          "inputs": [],
+          "slots": []
+        },
+        {
+          "key": "AMAZON.StopIntent",
+          "name": "AMAZON.StopIntent",
+          "inputs": [],
+          "slots": []
+        },
+        {
+          "key": "AMAZON.CancelIntent",
+          "name": "AMAZON.CancelIntent",
+          "inputs": [],
+          "slots": []
+        },
+        {
+          "key": "67623fv6",
+          "name": "leave_check",
+          "inputs": [
+            {
+              "text": "ちょっと出かける",
+              "slots": []
+            },
+            {
+              "text": "外に行ってくる",
+              "slots": []
+            },
+            {
+              "text": "ちょっと出かけてくる",
+              "slots": []
+            },
+            {
+              "text": "そうだよ",
+              "slots": []
+            },
+            {
+              "text": "学校に行く",
+              "slots": []
+            },
+            {
+              "text": "遊びに行く",
+              "slots": []
+            },
+            {
+              "text": "出かけてくる",
+              "slots": []
+            },
+            {
+              "text": "出かける",
+              "slots": []
+            }
+          ],
+          "slots": []
+        },
+        {
+          "key": "5cm83f0v",
+          "name": "user_res",
+          "inputs": [
+            {
+              "text": "持ってるよ",
+              "slots": []
+            },
+            {
+              "text": "持ってる",
+              "slots": []
+            },
+            {
+              "text": "ちゃんと持ったよ",
+              "slots": []
+            },
+            {
+              "text": "ちゃんと持った",
+              "slots": []
+            },
+            {
+              "text": "問題ないよ",
+              "slots": []
+            },
+            {
+              "text": "全部持ったよ",
+              "slots": []
+            },
+            {
+              "text": "全部持った",
+              "slots": []
+            },
+            {
+              "text": "全部ある",
+              "slots": []
+            },
+            {
+              "text": "問題ない",
+              "slots": []
+            },
+            {
+              "text": "持ったよ",
+              "slots": []
+            },
+            {
+              "text": "持った",
+              "slots": []
+            }
+          ],
+          "slots": []
+        },
+        {
+          "key": "ulrn3f7x",
+          "name": "user_forget",
+          "inputs": [
+            {
+              "text": "忘れちゃった",
+              "slots": []
+            },
+            {
+              "text": "忘れてきた",
+              "slots": []
+            },
+            {
+              "text": "忘れてしまった",
+              "slots": []
+            },
+            {
+              "text": "持ってなかった",
+              "slots": []
+            },
+            {
+              "text": "持ってない",
+              "slots": []
+            },
+            {
+              "text": "忘れてた",
+              "slots": []
+            },
+            {
+              "text": "忘れた",
+              "slots": []
+            }
+          ],
+          "slots": []
+        },
+        {
+          "key": "f1sr3fll",
+          "name": "user_back",
+          "inputs": [
+            {
+              "text": "ちょっと取りに行ってくる",
+              "slots": []
+            },
+            {
+              "text": "取りに戻るよ",
+              "slots": []
+            },
+            {
+              "text": "取りに行くよ",
+              "slots": []
+            },
+            {
+              "text": "取りに戻る",
+              "slots": []
+            },
+            {
+              "text": "取りに戻ります",
+              "slots": []
+            },
+            {
+              "text": "取りに行きます",
+              "slots": []
+            },
+            {
+              "text": "取りに行ってきます",
+              "slots": []
+            },
+            {
+              "text": "すぐ取ってくる",
+              "slots": []
+            },
+            {
+              "text": "取りに行く",
+              "slots": []
+            },
+            {
+              "text": "取ってくる",
+              "slots": []
+            }
+          ],
+          "slots": []
+        },
+        {
+          "key": "jqx33f0w",
+          "name": "not_leave",
+          "inputs": [
+            {
+              "text": "出かけんよ",
+              "slots": []
+            },
+            {
+              "text": "出かけん",
+              "slots": []
+            },
+            {
+              "text": "ううん",
+              "slots": []
+            },
+            {
+              "text": "違うよ",
+              "slots": []
+            },
+            {
+              "text": "違う",
+              "slots": []
+            },
+            {
+              "text": "出かけないよ",
+              "slots": []
+            },
+            {
+              "text": "出かけない",
+              "slots": []
+            }
+          ],
+          "slots": []
+        },
+        {
+          "key": "er1d03fav",
+          "name": "replay",
+          "inputs": [
+            {
+              "text": "もう一回リストを読み上げて",
+              "slots": []
+            },
+            {
+              "text": "もう一度登録物を教えてほしい",
+              "slots": []
+            },
+            {
+              "text": "もう一度言ってほしい",
+              "slots": []
+            },
+            {
+              "text": "もっかい教えて",
+              "slots": []
+            },
+            {
+              "text": "もっかい言って",
+              "slots": []
+            },
+            {
+              "text": "もう一回",
+              "slots": []
+            },
+            {
+              "text": "ワンモア",
+              "slots": []
+            },
+            {
+              "text": "もう一回言って",
+              "slots": []
+            },
+            {
+              "text": "もう一度教えて",
+              "slots": []
+            }
+          ],
+          "slots": []
+        },
+        {
+          "key": "AMAZON.RepeatIntent",
+          "name": "AMAZON.RepeatIntent",
+          "inputs": [],
+          "slots": []
+        },
+        {
+          "key": "gt313aml",
+          "name": "wait",
+          "inputs": [
+            {
+              "text": "ちょっと待ってて",
+              "slots": []
+            },
+            {
+              "text": "待ってて",
+              "slots": []
+            }
+          ],
+          "slots": []
+        },
+        {
+          "key": "7dcj3am3",
+          "name": "cansel",
+          "inputs": [
+            {
+              "text": "終了して",
+              "slots": []
+            },
+            {
+              "text": "終了",
+              "slots": []
+            }
+          ],
+          "slots": []
+        },
+        {
+          "key": "4tmp3akb",
+          "name": "re",
+          "inputs": [
+            {
+              "text": "今日の持ち物もっかい教えて",
+              "slots": []
+            },
+            {
+              "text": "なんて言った",
+              "slots": []
+            },
+            {
+              "text": "聞こえなかった",
+              "slots": []
+            },
+            {
+              "text": "聞き取れなかった",
+              "slots": []
+            },
+            {
+              "text": "持ち物教えて",
+              "slots": []
+            }
+          ],
+          "slots": []
+        },
+        {
+          "key": "2s2x3bto",
+          "name": "user_id",
+          "inputs": [
+            {
+              "text": "{{[id].1g2y3b21}} 番に登録して",
+              "slots": [
+                "1g2y3b21"
+              ]
+            },
+            {
+              "text": "{{[id].1g2y3b21}} 番に登録",
+              "slots": [
+                "1g2y3b21"
+              ]
+            },
+            {
+              "text": "{{[id].1g2y3b21}} 番",
+              "slots": [
+                "1g2y3b21"
+              ]
+            },
+            {
+              "text": "{{[id].1g2y3b21}}",
+              "slots": [
+                "1g2y3b21"
+              ]
+            }
+          ],
+          "slots": [
+            {
+              "id": "1g2y3b21",
+              "dialog": {
+                "prompt": [],
+                "confirm": [],
+                "utterances": [],
+                "confirmEnabled": false
+              },
+              "required": false
+            }
+          ]
+        },
+        {
+          "key": "sx2p3bel",
+          "name": "re_item",
+          "inputs": [
+            {
+              "text": "持ち物なんだっけ",
+              "slots": []
+            },
+            {
+              "text": "持ち物",
+              "slots": []
+            }
+          ],
+          "slots": []
+        },
+        {
+          "key": "dj3u3bxh",
+          "name": "input",
+          "inputs": [
+            {
+              "text": "ユーザー登録したい",
+              "slots": []
+            },
+            {
+              "text": "ユーザー登録する",
+              "slots": []
+            },
+            {
+              "text": "する",
+              "slots": []
+            },
+            {
+              "text": "登録したい",
+              "slots": []
+            },
+            {
+              "text": "登録する",
+              "slots": []
+            },
+            {
+              "text": "登録",
+              "slots": []
+            }
+          ],
+          "slots": []
+        },
+        {
+          "key": "5f6q3ban",
+          "name": "none_create",
+          "inputs": [
+            {
+              "text": "まだ作ってない",
+              "slots": []
+            },
+            {
+              "text": "作ってない",
+              "slots": []
+            }
+          ],
+          "slots": []
+        },
+        {
+          "key": "tt9c3bo8",
+          "name": "what_id",
+          "inputs": [
+            {
+              "text": "六桁のidについて教えて",
+              "slots": []
+            },
+            {
+              "text": "六桁のidについて",
+              "slots": []
+            },
+            {
+              "text": "六桁のidってなに",
+              "slots": []
+            },
+            {
+              "text": "六桁のidとは",
+              "slots": []
+            },
+            {
+              "text": "idってなに",
+              "slots": []
+            },
+            {
+              "text": "なんのid",
+              "slots": []
+            },
+            {
+              "text": "idとは",
+              "slots": []
+            }
+          ],
+          "slots": []
+        }
+      ],
+      "settings": {
+        "events": null,
+        "customInterface": false,
+        "session": {
+          "type": "restart"
+        },
+        "repeat": "ALL",
+        "accountLinking": null,
+        "error": null,
+        "defaultVoice": "Alexa"
+      },
+      "publishing": {
+        "summary": "",
+        "invocations": [
+          "持ち物open ",
+          "持ち物start ",
+          "持ち物launch "
+        ],
+        "smallIcon": "",
+        "largeIcon": "",
+        "hasAds": false,
+        "personal": false,
+        "forExport": true,
+        "invocationName": "持ち物",
+        "hasPurchase": false,
+        "forChildren": false,
+        "description": "",
+        "instructions": "",
+        "privacyPolicy": "",
+        "termsAndConditions": "",
+        "keywords": "",
+        "category": "",
+        "locales": [
+          "ja-JP"
+        ],
+        "updatesDescription": null
+      },
+      "status": {
+        "stage": "DEV"
+      }
+    },
+    "rootDiagramID": "615f966c5783560006f6a18b",
+    "creatorID": 74320,
+    "prototype": {
+      "data": {
+        "name": "None Leave",
+        "locales": [
+          "ja-JP"
+        ]
+      },
+      "model": {
+        "intents": [
+          {
+            "key": "VF.YES",
+            "name": "VF.YES",
+            "inputs": [
+              {
+                "text": "yes"
+              },
+              {
+                "text": "はい"
+              },
+              {
+                "text": "ええ"
+              },
+              {
+                "text": "そうです"
+              },
+              {
+                "text": "Yes"
+              }
+            ],
+            "slots": []
+          },
+          {
+            "key": "VF.NO",
+            "name": "VF.NO",
+            "inputs": [
+              {
+                "text": "no"
+              },
+              {
+                "text": "いいえ"
+              },
+              {
+                "text": "そうだはない"
+              },
+              {
+                "text": "いやそれどころか"
+              },
+              {
+                "text": "ノン"
+              },
+              {
+                "text": "否"
+              },
+              {
+                "text": "否や"
+              },
+              {
+                "text": "No"
+              }
+            ],
+            "slots": []
+          },
+          {
+            "key": "VF.HELP",
+            "name": "VF.HELP",
+            "inputs": [
+              {
+                "text": "助けて"
+              },
+              {
+                "text": "手助け"
+              },
+              {
+                "text": "アシスト"
+              },
+              {
+                "text": "Help"
+              }
+            ],
+            "slots": []
+          },
+          {
+            "key": "VF.STOP",
+            "name": "VF.STOP",
+            "inputs": [
+              {
+                "text": "止める"
+              },
+              {
+                "text": "立ち止まる"
+              },
+              {
+                "text": "止む"
+              },
+              {
+                "text": "打ち切る"
+              },
+              {
+                "text": "停める"
+              },
+              {
+                "text": "留める"
+              },
+              {
+                "text": "阻む"
+              },
+              {
+                "text": "途絶える"
+              },
+              {
+                "text": "句切る"
+              },
+              {
+                "text": "停まる"
+              },
+              {
+                "text": "ストップ"
+              },
+              {
+                "text": "終止"
+              },
+              {
+                "text": "停留"
+              },
+              {
+                "text": "止まること"
+              },
+              {
+                "text": "Stop"
+              }
+            ],
+            "slots": []
+          },
+          {
+            "key": "VF.CANCEL",
+            "name": "VF.CANCEL",
+            "inputs": [
+              {
+                "text": "取り消す"
+              },
+              {
+                "text": "キャンセル"
+              },
+              {
+                "text": "取り消し"
+              },
+              {
+                "text": "取消"
+              },
+              {
+                "text": "Cancel"
+              }
+            ],
+            "slots": []
+          },
+          {
+            "key": "67623fv6",
+            "name": "leave_check",
+            "inputs": [
+              {
+                "text": "ちょっと出かける",
+                "slots": []
+              },
+              {
+                "text": "外に行ってくる",
+                "slots": []
+              },
+              {
+                "text": "ちょっと出かけてくる",
+                "slots": []
+              },
+              {
+                "text": "そうだよ",
+                "slots": []
+              },
+              {
+                "text": "学校に行く",
+                "slots": []
+              },
+              {
+                "text": "遊びに行く",
+                "slots": []
+              },
+              {
+                "text": "出かけてくる",
+                "slots": []
+              },
+              {
+                "text": "出かける",
+                "slots": []
+              }
+            ],
+            "slots": []
+          },
+          {
+            "key": "5cm83f0v",
+            "name": "user_res",
+            "inputs": [
+              {
+                "text": "持ってるよ",
+                "slots": []
+              },
+              {
+                "text": "持ってる",
+                "slots": []
+              },
+              {
+                "text": "ちゃんと持ったよ",
+                "slots": []
+              },
+              {
+                "text": "ちゃんと持った",
+                "slots": []
+              },
+              {
+                "text": "問題ないよ",
+                "slots": []
+              },
+              {
+                "text": "全部持ったよ",
+                "slots": []
+              },
+              {
+                "text": "全部持った",
+                "slots": []
+              },
+              {
+                "text": "全部ある",
+                "slots": []
+              },
+              {
+                "text": "問題ない",
+                "slots": []
+              },
+              {
+                "text": "持ったよ",
+                "slots": []
+              },
+              {
+                "text": "持った",
+                "slots": []
+              }
+            ],
+            "slots": []
+          },
+          {
+            "key": "ulrn3f7x",
+            "name": "user_forget",
+            "inputs": [
+              {
+                "text": "忘れちゃった",
+                "slots": []
+              },
+              {
+                "text": "忘れてきた",
+                "slots": []
+              },
+              {
+                "text": "忘れてしまった",
+                "slots": []
+              },
+              {
+                "text": "持ってなかった",
+                "slots": []
+              },
+              {
+                "text": "持ってない",
+                "slots": []
+              },
+              {
+                "text": "忘れてた",
+                "slots": []
+              },
+              {
+                "text": "忘れた",
+                "slots": []
+              }
+            ],
+            "slots": []
+          },
+          {
+            "key": "f1sr3fll",
+            "name": "user_back",
+            "inputs": [
+              {
+                "text": "ちょっと取りに行ってくる",
+                "slots": []
+              },
+              {
+                "text": "取りに戻るよ",
+                "slots": []
+              },
+              {
+                "text": "取りに行くよ",
+                "slots": []
+              },
+              {
+                "text": "取りに戻る",
+                "slots": []
+              },
+              {
+                "text": "取りに戻ります",
+                "slots": []
+              },
+              {
+                "text": "取りに行きます",
+                "slots": []
+              },
+              {
+                "text": "取りに行ってきます",
+                "slots": []
+              },
+              {
+                "text": "すぐ取ってくる",
+                "slots": []
+              },
+              {
+                "text": "取りに行く",
+                "slots": []
+              },
+              {
+                "text": "取ってくる",
+                "slots": []
+              }
+            ],
+            "slots": []
+          },
+          {
+            "key": "jqx33f0w",
+            "name": "not_leave",
+            "inputs": [
+              {
+                "text": "出かけんよ",
+                "slots": []
+              },
+              {
+                "text": "出かけん",
+                "slots": []
+              },
+              {
+                "text": "ううん",
+                "slots": []
+              },
+              {
+                "text": "違うよ",
+                "slots": []
+              },
+              {
+                "text": "違う",
+                "slots": []
+              },
+              {
+                "text": "出かけないよ",
+                "slots": []
+              },
+              {
+                "text": "出かけない",
+                "slots": []
+              }
+            ],
+            "slots": []
+          },
+          {
+            "key": "VF.REPEAT",
+            "name": "VF.REPEAT",
+            "inputs": [
+              {
+                "text": "repeat"
+              },
+              {
+                "text": "繰り返す"
+              },
+              {
+                "text": "引き返す"
+              },
+              {
+                "text": "折れ返る"
+              },
+              {
+                "text": "返す"
+              },
+              {
+                "text": "Repeat"
+              }
+            ],
+            "slots": []
+          },
+          {
+            "key": "gt313aml",
+            "name": "wait",
+            "inputs": [
+              {
+                "text": "ちょっと待ってて",
+                "slots": []
+              },
+              {
+                "text": "待ってて",
+                "slots": []
+              }
+            ],
+            "slots": []
+          },
+          {
+            "key": "4tmp3akb",
+            "name": "re",
+            "inputs": [
+              {
+                "text": "今日の持ち物もっかい教えて",
+                "slots": []
+              },
+              {
+                "text": "なんて言った",
+                "slots": []
+              },
+              {
+                "text": "聞こえなかった",
+                "slots": []
+              },
+              {
+                "text": "聞き取れなかった",
+                "slots": []
+              },
+              {
+                "text": "持ち物教えて",
+                "slots": []
+              }
+            ],
+            "slots": []
+          },
+          {
+            "key": "2s2x3bto",
+            "name": "user_id",
+            "inputs": [
+              {
+                "text": "{{[id].1g2y3b21}} 番に登録して",
+                "slots": [
+                  "1g2y3b21"
+                ]
+              },
+              {
+                "text": "{{[id].1g2y3b21}} 番に登録",
+                "slots": [
+                  "1g2y3b21"
+                ]
+              },
+              {
+                "text": "{{[id].1g2y3b21}} 番",
+                "slots": [
+                  "1g2y3b21"
+                ]
+              },
+              {
+                "text": "{{[id].1g2y3b21}}",
+                "slots": [
+                  "1g2y3b21"
+                ]
+              }
+            ],
+            "slots": [
+              {
+                "id": "1g2y3b21",
+                "dialog": {
+                  "prompt": [],
+                  "confirm": [],
+                  "utterances": [],
+                  "confirmEnabled": false
+                },
+                "required": false
+              }
+            ]
+          },
+          {
+            "key": "sx2p3bel",
+            "name": "re_item",
+            "inputs": [
+              {
+                "text": "持ち物なんだっけ",
+                "slots": []
+              },
+              {
+                "text": "持ち物",
+                "slots": []
+              }
+            ],
+            "slots": []
+          },
+          {
+            "key": "dj3u3bxh",
+            "name": "input",
+            "inputs": [
+              {
+                "text": "ユーザー登録したい",
+                "slots": []
+              },
+              {
+                "text": "ユーザー登録する",
+                "slots": []
+              },
+              {
+                "text": "する",
+                "slots": []
+              },
+              {
+                "text": "登録したい",
+                "slots": []
+              },
+              {
+                "text": "登録する",
+                "slots": []
+              },
+              {
+                "text": "登録",
+                "slots": []
+              }
+            ],
+            "slots": []
+          },
+          {
+            "key": "5f6q3ban",
+            "name": "none_create",
+            "inputs": [
+              {
+                "text": "まだ作ってない",
+                "slots": []
+              },
+              {
+                "text": "作ってない",
+                "slots": []
+              }
+            ],
+            "slots": []
+          },
+          {
+            "key": "tt9c3bo8",
+            "name": "what_id",
+            "inputs": [
+              {
+                "text": "六桁のidについて教えて",
+                "slots": []
+              },
+              {
+                "text": "六桁のidについて",
+                "slots": []
+              },
+              {
+                "text": "六桁のidってなに",
+                "slots": []
+              },
+              {
+                "text": "六桁のidとは",
+                "slots": []
+              },
+              {
+                "text": "idってなに",
+                "slots": []
+              },
+              {
+                "text": "なんのid",
+                "slots": []
+              },
+              {
+                "text": "idとは",
+                "slots": []
+              }
+            ],
+            "slots": []
+          }
+        ],
+        "slots": [
+          {
+            "key": "1g2y3b21",
+            "name": "id",
+            "type": {
+              "value": "VF.NUMBER"
+            },
+            "color": "#5C6BC0",
+            "inputs": []
+          }
+        ]
+      },
+      "context": {
+        "stack": [
+          {
+            "storage": {},
+            "variables": {},
+            "programID": "615f966c5783560006f6a18b"
+          }
+        ]
+      },
+      "settings": {},
+      "platform": "alexa"
+    }
+  },
+  "diagrams": {
+    "615f966c5783560006f6a18d": {
+      "_id": "615f966c5783560006f6a18d",
+      "name": "End Session",
+      "offsetX": 272,
+      "offsetY": 104,
+      "zoom": 65.1314968611385,
+      "variables": [],
+      "nodes": {
+        "5f9f562f11b31520c2a2a6e7": {
+          "nodeID": "5f9f562f11b31520c2a2a6e7",
+          "type": "start",
+          "coords": [
+            360,
+            120
+          ],
+          "data": {
+            "name": "Start",
+            "color": "standard",
+            "ports": [
+              {
+                "type": "",
+                "target": "5f9f562f11b31520c2a2a6e9",
+                "id": "5fde6fe15bc1c56319fad3b2",
+                "data": {}
+              }
+            ],
+            "steps": []
+          }
+        },
+        "5f9f562f11b31520c2a2a6e9": {
+          "nodeID": "5f9f562f11b31520c2a2a6e9",
+          "type": "block",
+          "coords": [
+            805.9688890631405,
+            120.94792332948695
+          ],
+          "data": {
+            "name": "Exit",
+            "color": "red",
+            "steps": [
+              "60b7e6e1d4b17f0ce7bdde9c",
+              "5f9f562f11b31520c2a2a6ea"
+            ]
+          }
+        },
+        "5f9f562f11b31520c2a2a6ea": {
+          "nodeID": "5f9f562f11b31520c2a2a6ea",
+          "type": "exit",
+          "data": {
+            "ports": [
+              {
+                "type": "",
+                "target": null,
+                "id": "5fde6fe15bc1c56319fad3b4",
+                "data": {}
+              }
+            ]
+          }
+        },
+        "60b7e6e1d4b17f0ce7bdde9c": {
+          "nodeID": "60b7e6e1d4b17f0ce7bdde9c",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "スキルを終了します"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "5f9f562f11b31520c2a2a6ea",
+                "id": "60b7e6e1d4b17f0ce7bdde9f",
+                "data": {}
+              }
+            ]
+          }
+        }
+      },
+      "children": [],
+      "versionID": "615f966c5783560006f6a18a",
+      "creatorID": 74320,
+      "modified": 1635833374
+    },
+    "615f966c5783560006f6a18b": {
+      "_id": "615f966c5783560006f6a18b",
+      "name": "ROOT",
+      "offsetX": 957.5142088207044,
+      "offsetY": 762.0723920751901,
+      "zoom": 53.33333333333332,
+      "variables": [],
+      "nodes": {
+        "5f9f562f11b31520c2a2a6de": {
+          "nodeID": "5f9f562f11b31520c2a2a6de",
+          "type": "start",
+          "coords": [
+            -496.8927610258804,
+            -702.5904900939876
+          ],
+          "data": {
+            "name": "Start",
+            "color": "standard",
+            "ports": [
+              {
+                "type": "",
+                "target": "615f9ec0299a74ec519a8ec1",
+                "id": "5fde6fac5bc1c56319fad39b",
+                "data": {}
+              }
+            ],
+            "steps": [
+              "5f9f562f11b31520c2a2a6df",
+              "5f9f562f11b31520c2a2a6e0",
+              "5fde6fb05bc1c56319fad3a0"
+            ]
+          }
+        },
+        "5f9f562f11b31520c2a2a6df": {
+          "nodeID": "5f9f562f11b31520c2a2a6df",
+          "type": "command",
+          "data": {
+            "name": "Help",
+            "next": null,
+            "ports": [],
+            "intent": "AMAZON.HelpIntent",
+            "mappings": [],
+            "diagramID": "615f966c5783560006f6a18c"
+          }
+        },
+        "5f9f562f11b31520c2a2a6e0": {
+          "nodeID": "5f9f562f11b31520c2a2a6e0",
+          "type": "command",
+          "data": {
+            "name": "Stop",
+            "next": null,
+            "ports": [],
+            "intent": "AMAZON.StopIntent",
+            "mappings": [],
+            "diagramID": "615f966c5783560006f6a18d"
+          }
+        },
+        "5fde6fb05bc1c56319fad3a0": {
+          "nodeID": "5fde6fb05bc1c56319fad3a0",
+          "type": "command",
+          "data": {
+            "name": "Cancel",
+            "next": null,
+            "ports": [],
+            "intent": "AMAZON.CancelIntent",
+            "mappings": [],
+            "diagramID": "615f966c5783560006f6a18d"
+          }
+        },
+        "615f9683299a74ec519a8e57": {
+          "nodeID": "615f9683299a74ec519a8e57",
+          "type": "api",
+          "data": {
+            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/list.php",
+            "body": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "params": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "method": "POST",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "val": "application/json"
+              }
+            ],
+            "content": "{\n  \"name\":\"{personId}\"\n}",
+            "mappings": [
+              {
+                "path": "response.item1",
+                "var": "items"
+              }
+            ],
+            "bodyType": "rawInput",
+            "selectedAction": "Make a POST Request",
+            "selectedIntegration": "Custom API",
+            "ports": [
+              {
+                "type": "",
+                "target": "61638c430682303bd1039597",
+                "id": "615f9683299a74ec519a8e59",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2453.009558819291,
+                        -257.02805010650786
+                      ]
+                    },
+                    {
+                      "point": [
+                        2364.0915258217583,
+                        -577.3360720534653
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "fail",
+                "target": null,
+                "id": "615f9683299a74ec519a8e5a",
+                "data": {}
+              }
+            ]
+          }
+        },
+        "615f9683299a74ec519a8e5b": {
+          "nodeID": "615f9683299a74ec519a8e5b",
+          "type": "block",
+          "coords": [
+            2288.0094779084434,
+            -392.02800632755145
+          ],
+          "data": {
+            "name": "get_ItemList",
+            "color": "standard",
+            "steps": [
+              "615f9683299a74ec519a8e57"
+            ]
+          }
+        },
+        "615f9688299a74ec519a8e63": {
+          "nodeID": "615f9688299a74ec519a8e63",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "<alexa:name type = \"first\" personId = \"{{[personId].personId}}\" ></alexa:name> さんの今日の持ち物は{{[items].items}} です。"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "615fb7ea299a74ec519a9035",
+                "id": "615f9688299a74ec519a8e65",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2800.2845057787463,
+                        -0.8234736403939866
+                      ]
+                    },
+                    {
+                      "point": [
+                        2171.8371735699398,
+                        136.02298410108355
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "615f9688299a74ec519a8e66": {
+          "nodeID": "615f9688299a74ec519a8e66",
+          "type": "block",
+          "coords": [
+            2635.284600159076,
+            -91.82347012501337
+          ],
+          "data": {
+            "name": "speakout_items",
+            "color": "standard",
+            "steps": [
+              "615f9688299a74ec519a8e63"
+            ]
+          }
+        },
+        "615f9976299a74ec519a8e81": {
+          "nodeID": "615f9976299a74ec519a8e81",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "-お出かけですか"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "615f999d299a74ec519a8e90",
+                "id": "615f9976299a74ec519a8e83",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1509.8105400472114,
+                        -800.7317267032502
+                      ]
+                    },
+                    {
+                      "point": [
+                        1606.2399168227796,
+                        -752.8563272004095
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "615f9976299a74ec519a8e84": {
+          "nodeID": "615f9976299a74ec519a8e84",
+          "type": "block",
+          "coords": [
+            1344.8105848705266,
+            -880.731726147295
+          ],
+          "data": {
+            "name": "New Block 3",
+            "color": "standard",
+            "steps": [
+              "615f9976299a74ec519a8e81"
+            ]
+          }
+        },
+        "615f999d299a74ec519a8e8c": {
+          "nodeID": "615f999d299a74ec519a8e8c",
+          "type": "interaction",
+          "data": {
+            "name": "Choice",
+            "choices": [
+              {
+                "intent": "jqx33f0w",
+                "action": "PATH",
+                "mappings": []
+              },
+              {
+                "intent": "AMAZON.NoIntent",
+                "action": "PATH",
+                "mappings": []
+              },
+              {
+                "intent": "67623fv6",
+                "action": "PATH",
+                "mappings": []
+              },
+              {
+                "intent": "AMAZON.YesIntent",
+                "action": "PATH",
+                "mappings": []
+              }
+            ],
+            "else": {
+              "type": "both",
+              "pathName": "No Match",
+              "randomize": false,
+              "reprompts": [
+                {
+                  "voice": "Alexa",
+                  "content": ""
+                }
+              ]
+            },
+            "reprompt": null,
+            "chips": null,
+            "buttons": null,
+            "ports": [
+              {
+                "type": "else",
+                "target": "615fc229299a74ec519a9081",
+                "id": "615f999d299a74ec519a8e8e",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1936.2397614605643,
+                        -486.8563272004088
+                      ]
+                    },
+                    {
+                      "point": [
+                        1631.8170874548819,
+                        -345.8035484362039
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": 2,
+                "target": "615fb352299a74ec519a9019",
+                "id": "615fc16a299a74ec519a907b",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1936.2397614605643,
+                        -703.8563105544574
+                      ]
+                    },
+                    {
+                      "point": [
+                        2156.2633321281787,
+                        -849.5829285409635
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": 4,
+                "target": "615fb352299a74ec519a9019",
+                "id": "6163910a0682303bd10395c2",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1936.2397614605643,
+                        -649.8563161031079
+                      ]
+                    },
+                    {
+                      "point": [
+                        2156.2633321281787,
+                        -849.5829562842163
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "",
+                "target": "615f9683299a74ec519a8e5b",
+                "id": "615f999d299a74ec519a8e8f",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1936.2398605257056,
+                        -595.8563598181651
+                      ]
+                    },
+                    {
+                      "point": [
+                        2123.009468872745,
+                        -361.02806456220276
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": 3,
+                "target": "615f9683299a74ec519a8e5b",
+                "id": "615fef0f299a74ec519a91e1",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1936.2398605257056,
+                        -541.8563646367301
+                      ]
+                    },
+                    {
+                      "point": [
+                        2123.009468872745,
+                        -361.0280886550276
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "615f999d299a74ec519a8e90": {
+          "nodeID": "615f999d299a74ec519a8e90",
+          "type": "block",
+          "coords": [
+            1771.239860753686,
+            -783.8563498713285
+          ],
+          "data": {
+            "name": "LeaveHome",
+            "color": "standard",
+            "steps": [
+              "615f999d299a74ec519a8e8c"
+            ]
+          }
+        },
+        "615f9ec0299a74ec519a8ebd": {
+          "nodeID": "615f9ec0299a74ec519a8ebd",
+          "type": "user_info",
+          "data": {
+            "infos": [
+              {
+                "type": "alexa::person_id:read",
+                "mapTo": "personId",
+                "product": null
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "61838e63f163b84db09cae10",
+                "id": "615f9ec0299a74ec519a8ebf",
+                "data": {}
+              },
+              {
+                "type": "fail",
+                "target": "61638dcf0682303bd10395af",
+                "id": "615f9ec0299a74ec519a8ec0",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        105.8849667141984,
+                        -435.9180218779767
+                      ]
+                    },
+                    {
+                      "point": [
+                        -168.86785200029058,
+                        -211.01059556405585
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "615f9ec0299a74ec519a8ec1": {
+          "nodeID": "615f9ec0299a74ec519a8ec1",
+          "type": "block",
+          "coords": [
+            -59.1150516301581,
+            -624.9180319466789
+          ],
+          "data": {
+            "name": "get_personId",
+            "color": "standard",
+            "steps": [
+              "615f9ec0299a74ec519a8ebd"
+            ]
+          }
+        },
+        "615f9f2a299a74ec519a8ec9": {
+          "nodeID": "615f9f2a299a74ec519a8ec9",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "あなたの音声を認識できませんでした。音声プロフィールの登録を行っていない場合は、Alexaアプリより音声プロフィールの登録を行ってください"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": null,
+                "id": "615f9f2a299a74ec519a8ecb",
+                "data": {}
+              }
+            ]
+          }
+        },
+        "615f9f2a299a74ec519a8ecc": {
+          "nodeID": "615f9f2a299a74ec519a8ecc",
+          "type": "block",
+          "coords": [
+            -6.711706222725358,
+            -40.616562740898765
+          ],
+          "data": {
+            "name": "person_error",
+            "color": "standard",
+            "steps": [
+              "615f9f2a299a74ec519a8ec9"
+            ]
+          }
+        },
+        "615fb20d299a74ec519a8ff2": {
+          "nodeID": "615fb20d299a74ec519a8ff2",
+          "type": "api",
+          "data": {
+            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/alexa_check.php",
+            "body": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "params": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "method": "POST",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "val": "application/json"
+              }
+            ],
+            "content": "{\n  \"name\":\"{personId}\"\n}",
+            "mappings": [
+              {
+                "path": "response.flag",
+                "var": "flag"
+              }
+            ],
+            "bodyType": "rawInput",
+            "selectedAction": "Make a POST Request",
+            "selectedIntegration": "Custom API",
+            "ports": [
+              {
+                "type": "",
+                "target": "615fb275299a74ec519a900a",
+                "id": "615fb20d299a74ec519a8ff4",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1062.269565102329,
+                        -645.5578397643382
+                      ]
+                    },
+                    {
+                      "point": [
+                        1044.4729213557655,
+                        -432.65032073425664
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "fail",
+                "target": null,
+                "id": "615fb20d299a74ec519a8ff5",
+                "data": {}
+              }
+            ]
+          }
+        },
+        "615fb20d299a74ec519a8ff6": {
+          "nodeID": "615fb20d299a74ec519a8ff6",
+          "type": "block",
+          "coords": [
+            897.2695801728354,
+            -780.5577839539889
+          ],
+          "data": {
+            "name": "check_BD",
+            "color": "standard",
+            "steps": [
+              "615fb20d299a74ec519a8ff2"
+            ]
+          }
+        },
+        "615fb275299a74ec519a9006": {
+          "nodeID": "615fb275299a74ec519a9006",
+          "type": "ifV2",
+          "data": {
+            "expressions": [
+              {
+                "type": null,
+                "name": "check_flag",
+                "value": [
+                  {
+                    "logicInterface": "variable",
+                    "type": "not_equal",
+                    "value": [
+                      {
+                        "type": "variable",
+                        "value": "flag"
+                      },
+                      {
+                        "type": "value",
+                        "value": "1"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "noMatch": {
+              "type": "path",
+              "pathName": "skip_speakout_items"
+            },
+            "ports": [
+              {
+                "type": "",
+                "target": "618b46bd57a6e0364c7077df",
+                "id": "615fb275299a74ec519a9008",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1374.4728606285012,
+                        -328.6503083430416
+                      ]
+                    },
+                    {
+                      "point": [
+                        1224.5224982724153,
+                        -193.9715010342422
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "",
+                "target": "615f9976299a74ec519a8e84",
+                "id": "615fb275299a74ec519a9009",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1374.4728491736314,
+                        -383.6502891588605
+                      ]
+                    },
+                    {
+                      "point": [
+                        1179.8105844364156,
+                        -849.731743349202
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "615fb275299a74ec519a900a": {
+          "nodeID": "615fb275299a74ec519a900a",
+          "type": "block",
+          "coords": [
+            1209.4728040202056,
+            -463.65027057327745
+          ],
+          "data": {
+            "name": "CheckFlag",
+            "color": "standard",
+            "steps": [
+              "615fb275299a74ec519a9006"
+            ]
+          }
+        },
+        "615fb352299a74ec519a9016": {
+          "nodeID": "615fb352299a74ec519a9016",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "そうでしたか。ではスキルを終了します"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "6172618cbcf09f1f23dc0f20",
+                "id": "615fb352299a74ec519a9018",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2486.2632877389747,
+                        -789.5829340896139
+                      ]
+                    },
+                    {
+                      "point": [
+                        2955.4840796423837,
+                        -993.3671914582221
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "615fb352299a74ec519a9019": {
+          "nodeID": "615fb352299a74ec519a9019",
+          "type": "block",
+          "coords": [
+            2321.2632737286426,
+            -880.5829475412703
+          ],
+          "data": {
+            "name": "don`t leave home",
+            "color": "standard",
+            "steps": [
+              "615fb352299a74ec519a9016"
+            ]
+          }
+        },
+        "615fb7ea299a74ec519a9032": {
+          "nodeID": "615fb7ea299a74ec519a9032",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "-ちゃんと持ちましたか"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "615fb81e299a74ec519a9041",
+                "id": "615fb7ea299a74ec519a9034",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2501.837002270456,
+                        185.02304196502152
+                      ]
+                    },
+                    {
+                      "point": [
+                        1958.8957180907685,
+                        428.16056289136134
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "615fb7ea299a74ec519a9035": {
+          "nodeID": "615fb7ea299a74ec519a9035",
+          "type": "block",
+          "coords": [
+            2336.83706846451,
+            105.0230247687057
+          ],
+          "data": {
+            "name": "New Block 12",
+            "color": "standard",
+            "steps": [
+              "615fb7ea299a74ec519a9032"
+            ]
+          }
+        },
+        "615fb81e299a74ec519a903d": {
+          "nodeID": "615fb81e299a74ec519a903d",
+          "type": "interaction",
+          "data": {
+            "name": "Choice",
+            "choices": [
+              {
+                "intent": "5cm83f0v",
+                "action": "PATH",
+                "mappings": []
+              },
+              {
+                "intent": "AMAZON.YesIntent",
+                "action": "PATH",
+                "mappings": []
+              },
+              {
+                "intent": "ulrn3f7x",
+                "action": "PATH",
+                "mappings": []
+              },
+              {
+                "intent": "AMAZON.NoIntent",
+                "action": "PATH",
+                "mappings": []
+              },
+              {
+                "intent": "f1sr3fll",
+                "action": "PATH",
+                "mappings": []
+              },
+              {
+                "intent": "gt313aml",
+                "action": "PATH",
+                "mappings": []
+              },
+              {
+                "intent": "AMAZON.RepeatIntent",
+                "action": "PATH",
+                "mappings": []
+              },
+              {
+                "intent": "4tmp3akb",
+                "action": "PATH",
+                "mappings": []
+              },
+              {
+                "intent": "sx2p3bel",
+                "action": "PATH",
+                "mappings": []
+              }
+            ],
+            "else": {
+              "type": "both",
+              "pathName": "No Match",
+              "randomize": false,
+              "reprompts": []
+            },
+            "reprompt": null,
+            "chips": null,
+            "buttons": null,
+            "ports": [
+              {
+                "type": "else",
+                "target": "615fc401299a74ec519a9096",
+                "id": "615fb81e299a74ec519a903f",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2288.895817307472,
+                        910.1606523129072
+                      ]
+                    },
+                    {
+                      "point": [
+                        2137.886744726828,
+                        1110.82856593438
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "",
+                "target": "615fb987299a74ec519a904f",
+                "id": "615fb81e299a74ec519a9040",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2288.8958173074707,
+                        477.16057749561827
+                      ]
+                    },
+                    {
+                      "point": [
+                        2592.349556596787,
+                        228.51614075166634
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": 5,
+                "target": "615fb987299a74ec519a904f",
+                "id": "615fef2a299a74ec519a91e4",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2288.8958173074707,
+                        693.1605893088741
+                      ]
+                    },
+                    {
+                      "point": [
+                        2592.349556596787,
+                        228.51619981794659
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": 2,
+                "target": "615fe8ef299a74ec519a91c6",
+                "id": "615fbc58299a74ec519a9068",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2288.8958088931563,
+                        585.1606379834958
+                      ]
+                    },
+                    {
+                      "point": [
+                        2677.615548652447,
+                        475.15402639143497
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": 6,
+                "target": "615fe8ef299a74ec519a91c6",
+                "id": "61663e0c2cf3d24ded7ddc35",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2288.8958088931563,
+                        639.1606429322923
+                      ]
+                    },
+                    {
+                      "point": [
+                        2677.615548652447,
+                        475.1540016474527
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": 3,
+                "target": "615fbd8f299a74ec519a9070",
+                "id": "615fbd1b299a74ec519a906b",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2288.8958088931563,
+                        693.1606478810887
+                      ]
+                    },
+                    {
+                      "point": [
+                        2680.9797404809947,
+                        648.8300088924897
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": 7,
+                "target": "6172127bbcf09f1f23dc03ef",
+                "id": "6172122dbcf09f1f23dc03ea",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2288.8957282716274,
+                        747.1606771426823
+                      ]
+                    },
+                    {
+                      "point": [
+                        2679.5148841554164,
+                        841.5669424014714
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": 4,
+                "target": "6163a24e0682303bd103965c",
+                "id": "615fd600299a74ec519a91a5",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2288.8958173074707,
+                        639.1606011221301
+                      ]
+                    },
+                    {
+                      "point": [
+                        1382.712302312511,
+                        316.5759315782794
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": 8,
+                "target": "6163a24e0682303bd103965c",
+                "id": "6172601fbcf09f1f23dc0f04",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2288.8958173074707,
+                        855.1606129353864
+                      ]
+                    },
+                    {
+                      "point": [
+                        1382.712302312511,
+                        316.5759906445596
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "9",
+                "target": "6163a24e0682303bd103965c",
+                "id": "61847e50f4ace684b808dfeb",
+                "data": {}
+              }
+            ]
+          }
+        },
+        "615fb81e299a74ec519a9041": {
+          "nodeID": "615fb81e299a74ec519a9041",
+          "type": "block",
+          "coords": [
+            2123.8956839006178,
+            397.16059923877737
+          ],
+          "data": {
+            "name": "having_items_check",
+            "color": "standard",
+            "steps": [
+              "615fb81e299a74ec519a903d"
+            ]
+          }
+        },
+        "615fb987299a74ec519a904c": {
+          "nodeID": "615fb987299a74ec519a904c",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "わかりました。行ってらっしゃい"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "6165299f84bd60117cff6fd6",
+                "id": "615fb987299a74ec519a904e",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2922.3495885181796,
+                        288.51629319659816
+                      ]
+                    },
+                    {
+                      "point": [
+                        3037.0673175664756,
+                        231.94311759290483
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "615fb987299a74ec519a904f": {
+          "nodeID": "615fb987299a74ec519a904f",
+          "type": "block",
+          "coords": [
+            2757.3495111062684,
+            197.51628439619128
+          ],
+          "data": {
+            "name": "New Block 14",
+            "color": "standard",
+            "steps": [
+              "615fb987299a74ec519a904c"
+            ]
+          }
+        },
+        "615fb98b299a74ec519a9056": {
+          "nodeID": "615fb98b299a74ec519a9056",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "では取りに行ってから、また呼び掛けてください。"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "61839172f163b84db09cae32",
+                "id": "615fb98b299a74ec519a9058",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        3007.6156542267718,
+                        524.1539538090868
+                      ]
+                    },
+                    {
+                      "point": [
+                        3418.1946238213663,
+                        686.9481630573979
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "615fbd8f299a74ec519a906d": {
+          "nodeID": "615fbd8f299a74ec519a906d",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "それがいいですね。戻ったらまた呼び掛けてください。"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "61839172f163b84db09cae32",
+                "id": "615fbd8f299a74ec519a906f",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        3010.979846055319,
+                        708.8299478573334
+                      ]
+                    },
+                    {
+                      "point": [
+                        3418.1946238213663,
+                        686.9481383134156
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "615fbd8f299a74ec519a9070": {
+          "nodeID": "615fbd8f299a74ec519a9070",
+          "type": "block",
+          "coords": [
+            2845.979856517042,
+            617.8300118509432
+          ],
+          "data": {
+            "name": "New Block 16",
+            "color": "standard",
+            "steps": [
+              "615fbd8f299a74ec519a906d"
+            ]
+          }
+        },
+        "615fc229299a74ec519a907e": {
+          "nodeID": "615fc229299a74ec519a907e",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "すみません。もう一度お願いします"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "615f9976299a74ec519a8e84",
+                "id": "615fc229299a74ec519a9080",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1961.8170430656778,
+                        -285.80349849834886
+                      ]
+                    },
+                    {
+                      "point": [
+                        1179.8105844364156,
+                        -849.731743349202
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "615fc229299a74ec519a9081": {
+          "nodeID": "615fc229299a74ec519a9081",
+          "type": "block",
+          "coords": [
+            1796.8171695885683,
+            -376.8034847858678
+          ],
+          "data": {
+            "name": "error",
+            "color": "standard",
+            "steps": [
+              "615fc229299a74ec519a907e"
+            ]
+          }
+        },
+        "615fc401299a74ec519a9093": {
+          "nodeID": "615fc401299a74ec519a9093",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "すみません。もう一度お願いします"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "615fb7ea299a74ec519a9035",
+                "id": "615fc401299a74ec519a9095",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2467.8867372034924,
+                        1170.8284618868981
+                      ]
+                    },
+                    {
+                      "point": [
+                        2171.836967393224,
+                        136.02300708778944
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "615fc401299a74ec519a9096": {
+          "nodeID": "615fc401299a74ec519a9096",
+          "type": "block",
+          "coords": [
+            2302.8867103054686,
+            1079.8285396975275
+          ],
+          "data": {
+            "name": "error",
+            "color": "standard",
+            "steps": [
+              "615fc401299a74ec519a9093"
+            ]
+          }
+        },
+        "615fe8e7299a74ec519a91b9": {
+          "nodeID": "615fe8e7299a74ec519a91b9",
+          "type": "api",
+          "data": {
+            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/alexa_confilm_false.php",
+            "body": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "params": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "method": "POST",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "val": "application/json"
+              }
+            ],
+            "content": "{\n  \"name\":\"{personId}\"\n}",
+            "mappings": [
+              {
+                "path": "response",
+                "var": "flag"
+              }
+            ],
+            "bodyType": "rawInput",
+            "selectedAction": "Make a POST Request",
+            "selectedIntegration": "Custom API",
+            "ports": [
+              {
+                "type": "",
+                "target": "618359aeadd1aca0484f8322",
+                "id": "615fe8e7299a74ec519a91bc",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        3372.522040577839,
+                        332.3067706024931
+                      ]
+                    },
+                    {
+                      "point": [
+                        3476.1768271659985,
+                        233.4316138083672
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "fail",
+                "target": null,
+                "id": "615fe8e7299a74ec519a91bd",
+                "data": {}
+              }
+            ]
+          }
+        },
+        "615fe8ef299a74ec519a91c6": {
+          "nodeID": "615fe8ef299a74ec519a91c6",
+          "type": "block",
+          "coords": [
+            2842.6157089679728,
+            444.1539776922042
+          ],
+          "data": {
+            "name": "Block",
+            "color": "standard",
+            "steps": [
+              "615fb98b299a74ec519a9056"
+            ]
+          }
+        },
+        "61638c430682303bd1039593": {
+          "nodeID": "61638c430682303bd1039593",
+          "type": "ifV2",
+          "data": {
+            "expressions": [
+              {
+                "type": null,
+                "name": "",
+                "value": [
+                  {
+                    "logicInterface": "variable",
+                    "type": "not_equal",
+                    "value": [
+                      {
+                        "type": "variable",
+                        "value": "items"
+                      },
+                      {
+                        "type": "value",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "noMatch": {
+              "type": "path",
+              "pathName": "No Match"
+            },
+            "ports": [
+              {
+                "type": "",
+                "target": "61638ca40682303bd10395a4",
+                "id": "61638c430682303bd1039595",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2692.3772348270427,
+                        -471.62170251113326
+                      ]
+                    },
+                    {
+                      "point": [
+                        2704.211219202043,
+                        -725.9678717227812
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "",
+                "target": "6165299884bd60117cff6fc7",
+                "id": "61638c430682303bd1039596",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2692.377285473582,
+                        -526.6216985483724
+                      ]
+                    },
+                    {
+                      "point": [
+                        2745.4405876499227,
+                        -350.29109726488997
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "61638c430682303bd1039597": {
+          "nodeID": "61638c430682303bd1039597",
+          "type": "block",
+          "coords": [
+            2529.0915394492863,
+            -608.3359808406748
+          ],
+          "data": {
+            "name": "check_items",
+            "color": "standard",
+            "steps": [
+              "61638c430682303bd1039593"
+            ]
+          }
+        },
+        "61638ca40682303bd10395a1": {
+          "nodeID": "61638ca40682303bd10395a1",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "<alexa:name type = \"first\" personId = \"{{[personId].personId}}\" ></alexa:name> さんの持ち物リストに登録されているものはありません。行ってらっしゃい"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "6172618cbcf09f1f23dc0f20",
+                "id": "61638ca40682303bd10395a3",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        3034.2111748128386,
+                        -654.9678994660339
+                      ]
+                    },
+                    {
+                      "point": [
+                        2955.4840796423837,
+                        -993.3671914582221
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "61638ca40682303bd10395a4": {
+          "nodeID": "61638ca40682303bd10395a4",
+          "type": "block",
+          "coords": [
+            2869.2112815814153,
+            -756.9679375713188
+          ],
+          "data": {
+            "name": "New Block 19",
+            "color": "standard",
+            "steps": [
+              "61638ca40682303bd10395a1"
+            ]
+          }
+        },
+        "61638dcf0682303bd10395ac": {
+          "nodeID": "61638dcf0682303bd10395ac",
+          "type": "permission",
+          "data": {
+            "permissions": [
+              "alexa::person_id:read"
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "615f9f2a299a74ec519a8ecc",
+                "id": "61638dcf0682303bd10395ae",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        161.1320852892736,
+                        -162.0105506847356
+                      ]
+                    },
+                    {
+                      "point": [
+                        -171.71172895825958,
+                        -9.616578388271725
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "61638dcf0682303bd10395af": {
+          "nodeID": "61638dcf0682303bd10395af",
+          "type": "block",
+          "coords": [
+            -3.8679030380400916,
+            -242.01052350322746
+          ],
+          "data": {
+            "name": "New Block 19",
+            "color": "standard",
+            "steps": [
+              "61638dcf0682303bd10395ac"
+            ]
+          }
+        },
+        "6163a24e0682303bd1039659": {
+          "nodeID": "6163a24e0682303bd1039659",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "はい。今日の持ち物は{{[items].items}} です。"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "615fb7ea299a74ec519a9035",
+                "id": "6163a24e0682303bd103965b",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1712.7122812883129,
+                        376.5759507261826
+                      ]
+                    },
+                    {
+                      "point": [
+                        2171.836967393224,
+                        136.02300708778944
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "6163a24e0682303bd103965c": {
+          "nodeID": "6163a24e0682303bd103965c",
+          "type": "block",
+          "coords": [
+            1547.712264731175,
+            285.5759185618349
+          ],
+          "data": {
+            "name": "Repeat",
+            "color": "standard",
+            "steps": [
+              "6163a24e0682303bd1039659"
+            ]
+          }
+        },
+        "6163f036b62a325c671002ce": {
+          "nodeID": "6163f036b62a325c671002ce",
+          "type": "api",
+          "data": {
+            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/alexa_confilm_true.php",
+            "body": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "params": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "method": "POST",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "val": "application/json"
+              }
+            ],
+            "content": "{\n  \"name\":\"{personId}\"\n}",
+            "mappings": [
+              {
+                "path": "response",
+                "var": "flag"
+              }
+            ],
+            "bodyType": "rawInput",
+            "selectedAction": "Make a POST Request",
+            "selectedIntegration": "Custom API",
+            "ports": [
+              {
+                "type": "",
+                "target": "615f9688299a74ec519a8e66",
+                "id": "6163f036b62a325c671002d1",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        3075.4407557787476,
+                        -246.291058423775
+                      ]
+                    },
+                    {
+                      "point": [
+                        2470.2845501679503,
+                        -60.82338486198489
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "fail",
+                "target": null,
+                "id": "6163f036b62a325c671002d2",
+                "data": {}
+              }
+            ]
+          }
+        },
+        "6165299884bd60117cff6fc7": {
+          "nodeID": "6165299884bd60117cff6fc7",
+          "type": "block",
+          "coords": [
+            2910.440586047501,
+            -381.2910781321844
+          ],
+          "data": {
+            "name": "check_true",
+            "color": "standard",
+            "steps": [
+              "6163f036b62a325c671002ce"
+            ]
+          }
+        },
+        "6165299f84bd60117cff6fd6": {
+          "nodeID": "6165299f84bd60117cff6fd6",
+          "type": "block",
+          "coords": [
+            3202.067483343754,
+            200.9431231504046
+          ],
+          "data": {
+            "name": "check_false",
+            "color": "standard",
+            "steps": [
+              "615fe8e7299a74ec519a91b9"
+            ]
+          }
+        },
+        "6172127bbcf09f1f23dc03ec": {
+          "nodeID": "6172127bbcf09f1f23dc03ec",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "はい。お待ちしております。戻ったらまた呼び掛けてください。"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "61839172f163b84db09cae32",
+                "id": "6172127bbcf09f1f23dc03ee",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        3009.5148536378383,
+                        912.5669424014714
+                      ]
+                    },
+                    {
+                      "point": [
+                        3418.1946174317836,
+                        686.9482213931706
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "6172127bbcf09f1f23dc03ef": {
+          "nodeID": "6172127bbcf09f1f23dc03ef",
+          "type": "block",
+          "coords": [
+            2844.5149080432534,
+            810.5669583335076
+          ],
+          "data": {
+            "name": "New Block 23",
+            "color": "standard",
+            "steps": [
+              "6172127bbcf09f1f23dc03ec"
+            ]
+          }
+        },
+        "6172618cbcf09f1f23dc0f1e": {
+          "nodeID": "6172618cbcf09f1f23dc0f1e",
+          "type": "exit",
+          "data": {
+            "ports": []
+          }
+        },
+        "6172618cbcf09f1f23dc0f20": {
+          "nodeID": "6172618cbcf09f1f23dc0f20",
+          "type": "block",
+          "coords": [
+            3120.4842434485695,
+            -1024.3671898345772
+          ],
+          "data": {
+            "name": "New Block 26",
+            "color": "standard",
+            "steps": [
+              "6172618cbcf09f1f23dc0f1e"
+            ]
+          }
+        },
+        "6180af805707b05a14a5bcf1": {
+          "nodeID": "6180af805707b05a14a5bcf1",
+          "type": "flow",
+          "data": {
+            "diagramID": "6180af8d3be6a4001b142245",
+            "variableMap": null,
+            "ports": [
+              {
+                "type": "",
+                "target": null,
+                "id": "6180af805707b05a14a5bcf3",
+                "data": {}
+              }
+            ]
+          }
+        },
+        "6180af805707b05a14a5bcf4": {
+          "nodeID": "6180af805707b05a14a5bcf4",
+          "type": "block",
+          "coords": [
+            884.0019527937271,
+            12.929688544375741
+          ],
+          "data": {
+            "name": "InputAlexa_id",
+            "color": "standard",
+            "steps": [
+              "6180af805707b05a14a5bcf1"
+            ]
+          }
+        },
+        "618359aeadd1aca0484f831e": {
+          "nodeID": "618359aeadd1aca0484f831e",
+          "type": "api",
+          "data": {
+            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/Alexa_send.php",
+            "body": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "params": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "method": "POST",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "val": "application/json"
+              }
+            ],
+            "content": "{\n  \"name\":\"{personId}\"\n}",
+            "mappings": [
+              {
+                "path": "",
+                "var": null
+              }
+            ],
+            "bodyType": "rawInput",
+            "selectedAction": "Make a POST Request",
+            "selectedIntegration": "Custom API",
+            "ports": [
+              {
+                "type": "",
+                "target": "61839172f163b84db09cae32",
+                "id": "618359aeadd1aca0484f8320",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        3806.1768808976904,
+                        337.4316636168076
+                      ]
+                    },
+                    {
+                      "point": [
+                        3418.1944590226904,
+                        686.9482303020758
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "fail",
+                "target": null,
+                "id": "618359aeadd1aca0484f8321",
+                "data": {}
+              }
+            ]
+          }
+        },
+        "618359aeadd1aca0484f8322": {
+          "nodeID": "618359aeadd1aca0484f8322",
+          "type": "block",
+          "coords": [
+            3641.176886001172,
+            202.43164933732157
+          ],
+          "data": {
+            "name": "send_to_LINE",
+            "color": "standard",
+            "steps": [
+              "618359aeadd1aca0484f831e"
+            ]
+          }
+        },
+        "61838e63f163b84db09cae12": {
+          "nodeID": "61838e63f163b84db09cae12",
+          "type": "api",
+          "data": {
+            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/alexa_duplicate.php",
+            "body": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "params": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "method": "POST",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "val": "application/json"
+              }
+            ],
+            "content": "{\n  \"name\":\"{personId}\"\n}",
+            "mappings": [
+              {
+                "path": "response.duplicate",
+                "var": "duplicate"
+              }
+            ],
+            "bodyType": "rawInput",
+            "selectedAction": "Make a POST Request",
+            "selectedIntegration": "Custom API",
+            "ports": [
+              {
+                "type": "",
+                "target": "61838f55f163b84db09cae20",
+                "id": "61838e63f163b84db09cae13",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        599.8172792941597,
+                        -430.04444844326935
+                      ]
+                    },
+                    {
+                      "point": [
+                        517.7077267373414,
+                        -222.64956207963283
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "fail",
+                "target": null,
+                "id": "61838e63f163b84db09cae14",
+                "data": {}
+              }
+            ]
+          }
+        },
+        "61838e63f163b84db09cae10": {
+          "nodeID": "61838e63f163b84db09cae10",
+          "type": "block",
+          "coords": [
+            434.8173359344187,
+            -565.0444557258181
+          ],
+          "data": {
+            "name": "alexa_duplicate",
+            "color": "standard",
+            "steps": [
+              "61838e63f163b84db09cae12"
+            ]
+          }
+        },
+        "61838f55f163b84db09cae1c": {
+          "nodeID": "61838f55f163b84db09cae1c",
+          "type": "ifV2",
+          "data": {
+            "expressions": [
+              {
+                "type": null,
+                "name": "",
+                "value": [
+                  {
+                    "logicInterface": "variable",
+                    "type": "greater",
+                    "value": [
+                      {
+                        "type": "variable",
+                        "value": "duplicate"
+                      },
+                      {
+                        "type": "value",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "noMatch": {
+              "type": "path",
+              "pathName": "No Match"
+            },
+            "ports": [
+              {
+                "type": "",
+                "target": "6180af805707b05a14a5bcf4",
+                "id": "61838f55f163b84db09cae1e",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        847.707701840791,
+                        -118.64954762936341
+                      ]
+                    },
+                    {
+                      "point": [
+                        719.0019704746599,
+                        43.92963641307748
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "",
+                "target": "615fb20d299a74ec519a8ff6",
+                "id": "61838f55f163b84db09cae1f",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        847.7076823481372,
+                        -173.64951769042827
+                      ]
+                    },
+                    {
+                      "point": [
+                        732.2696052884779,
+                        -749.5577984965365
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "61838f55f163b84db09cae20": {
+          "nodeID": "61838f55f163b84db09cae20",
+          "type": "block",
+          "coords": [
+            682.7077191885388,
+            -253.64952196102715
+          ],
+          "data": {
+            "name": "New Block 29",
+            "color": "standard",
+            "steps": [
+              "61838f55f163b84db09cae1c"
+            ]
+          }
+        },
+        "61839172f163b84db09cae30": {
+          "nodeID": "61839172f163b84db09cae30",
+          "type": "exit",
+          "data": {
+            "ports": []
+          }
+        },
+        "61839172f163b84db09cae32": {
+          "nodeID": "61839172f163b84db09cae32",
+          "type": "block",
+          "coords": [
+            3583.194629681465,
+            655.9481745893326
+          ],
+          "data": {
+            "name": "New Block 29",
+            "color": "standard",
+            "steps": [
+              "61839172f163b84db09cae30"
+            ]
+          }
+        },
+        "618b46bd57a6e0364c7077e1": {
+          "nodeID": "618b46bd57a6e0364c7077e1",
+          "type": "api",
+          "data": {
+            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/list.php",
+            "body": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "params": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "method": "POST",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "val": "application/json"
+              }
+            ],
+            "content": "{\n  \"name\":\"{personId}\"\n}",
+            "mappings": [
+              {
+                "path": "response.item1",
+                "var": "items"
+              }
+            ],
+            "bodyType": "rawInput",
+            "selectedAction": "Make a POST Request",
+            "selectedIntegration": "Custom API",
+            "ports": [
+              {
+                "type": "",
+                "target": "618b46d157a6e0364c7077ec",
+                "id": "618b46bd57a6e0364c7077e2",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1554.5224918476626,
+                        -89.97155885702173
+                      ]
+                    },
+                    {
+                      "point": [
+                        1623.996182482942,
+                        -10.813606297400018
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "fail",
+                "target": null,
+                "id": "618b46bd57a6e0364c7077e3",
+                "data": {}
+              }
+            ]
+          }
+        },
+        "618b46bd57a6e0364c7077df": {
+          "nodeID": "618b46bd57a6e0364c7077df",
+          "type": "block",
+          "coords": [
+            1389.5224982724146,
+            -224.97151067137213
+          ],
+          "data": {
+            "name": "get_ItemList",
+            "color": "standard",
+            "steps": [
+              "618b46bd57a6e0364c7077e1"
+            ]
+          }
+        },
+        "618b46d157a6e0364c7077ee": {
+          "nodeID": "618b46d157a6e0364c7077ee",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "持ち物は{{[items].items}} です。"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "615fb7ea299a74ec519a9035",
+                "id": "618b46d157a6e0364c7077ef",
+                "data": {}
+              }
+            ]
+          }
+        },
+        "618b46d157a6e0364c7077ec": {
+          "nodeID": "618b46d157a6e0364c7077ec",
+          "type": "block",
+          "coords": [
+            1788.9961824829425,
+            -41.813615934529906
+          ],
+          "data": {
+            "name": "speakout_items",
+            "color": "standard",
+            "steps": [
+              "618b46d157a6e0364c7077ee"
+            ]
+          }
+        }
+      },
+      "children": [
+        "615f966c5783560006f6a18c",
+        "615f966c5783560006f6a18d",
+        "6180af8d3be6a4001b142245"
+      ],
+      "versionID": "615f966c5783560006f6a18a",
+      "creatorID": 74320,
+      "modified": 1636700868
+    },
+    "615f966c5783560006f6a18c": {
+      "_id": "615f966c5783560006f6a18c",
+      "name": "Help User",
+      "offsetX": 272,
+      "offsetY": 104,
+      "zoom": 76.41405779564307,
+      "variables": [],
+      "nodes": {
+        "5f9f562f11b31520c2a2a6e1": {
+          "nodeID": "5f9f562f11b31520c2a2a6e1",
+          "type": "start",
+          "coords": [
+            360,
+            120
+          ],
+          "data": {
+            "name": "Start",
+            "color": "standard",
+            "ports": [
+              {
+                "type": "",
+                "target": "5f9f562f11b31520c2a2a6e3",
+                "id": "5fde75904a001a20aa671626",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        525.0000143986965,
+                        200.00001027098503
+                      ]
+                    },
+                    {
+                      "point": [
+                        643.6506717215117,
+                        152.2456691144801
+                      ]
+                    }
+                  ]
+                }
+              }
+            ],
+            "steps": []
+          }
+        },
+        "5f9f562f11b31520c2a2a6e3": {
+          "nodeID": "5f9f562f11b31520c2a2a6e3",
+          "type": "block",
+          "coords": [
+            808.6506721313523,
+            121.24568139701532
+          ],
+          "data": {
+            "name": "Help Message",
+            "color": "standard",
+            "steps": [
+              "60b7e6f5d4b17f0ce7bddeb6"
+            ]
+          }
+        },
+        "5f9f562f11b31520c2a2a6e5": {
+          "nodeID": "5f9f562f11b31520c2a2a6e5",
+          "type": "exit",
+          "data": {
+            "ports": []
+          }
+        },
+        "5f9f562f11b31520c2a2a6e6": {
+          "nodeID": "5f9f562f11b31520c2a2a6e6",
+          "type": "block",
+          "coords": [
+            1196.8571955473124,
+            240.983890368311
+          ],
+          "data": {
+            "name": "Exit",
+            "color": "red",
+            "steps": [
+              "5f9f562f11b31520c2a2a6e5"
+            ]
+          }
+        },
+        "60b7e6f5d4b17f0ce7bddeb6": {
+          "nodeID": "60b7e6f5d4b17f0ce7bddeb6",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "動きをセンサーが検知し、出かけるのかどうかをAlexaが尋ねます。出かける場合は、データベースに登録されているものを音声で通知します。"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "5f9f562f11b31520c2a2a6e6",
+                "id": "60b7e6f5d4b17f0ce7bddeb9",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        973.6506864448522,
+                        245.2456583125978
+                      ]
+                    },
+                    {
+                      "point": [
+                        1031.857263201072,
+                        271.9838606888357
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "616e1eb79dd18b015758f870": {
+          "nodeID": "616e1eb79dd18b015758f870",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": ""
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": null,
+                "id": "616e1eb79dd18b015758f872",
+                "data": {}
+              }
+            ]
+          }
+        },
+        "616e1eb79dd18b015758f873": {
+          "nodeID": "616e1eb79dd18b015758f873",
+          "type": "block",
+          "coords": [
+            1037.018098300513,
+            463.9733668951632
+          ],
+          "data": {
+            "name": "New Block 3",
+            "color": "standard",
+            "steps": [
+              "616e1eb79dd18b015758f870"
+            ]
+          }
+        }
+      },
+      "children": [],
+      "versionID": "615f966c5783560006f6a18a",
+      "creatorID": 74320,
+      "modified": 1634881799
+    },
+    "6180af8d3be6a4001b142245": {
+      "_id": "6180af8d3be6a4001b142245",
+      "name": "InputAlexa_id",
+      "type": "COMPONENT",
+      "zoom": 48.33333333333331,
+      "offsetX": 721.4824561403514,
+      "offsetY": 373.0596491228072,
+      "modified": 1636526316,
+      "nodes": {
+        "6180af8d5707b05a14a5bcfb": {
+          "nodeID": "6180af8d5707b05a14a5bcfb",
+          "type": "start",
+          "coords": [
+            -201.8530701754392,
+            -216.3245614035089
+          ],
+          "data": {
+            "name": "Start",
+            "color": "standard",
+            "ports": [
+              {
+                "type": "",
+                "target": "61847fb3f4ace684b808e035",
+                "id": "6180af8e5707b05a14a5bcfc",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        -36.853083609067376,
+                        -136.32455913646646
+                      ]
+                    },
+                    {
+                      "point": [
+                        78.5111742034327,
+                        -92.49779374718841
+                      ]
+                    }
+                  ]
+                }
+              }
+            ],
+            "steps": []
+          }
+        },
+        "6180afd65707b05a14a5bdff": {
+          "nodeID": "6180afd65707b05a14a5bdff",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "-ユーザー登録を行います。<alexa:name type = \"first\" personId = \"{{[personId].personId}}\" ></alexa:name> さん、あなたの6桁のidを言ってください。"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "6180afec5707b05a14a5bef7",
+                "id": "6180afd65707b05a14a5be00",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1123.7672440444892,
+                        -94.34324220826062
+                      ]
+                    },
+                    {
+                      "point": [
+                        869.0753495132392,
+                        198.18482133565118
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "6180afd65707b05a14a5bdfd": {
+          "nodeID": "6180afd65707b05a14a5bdfd",
+          "type": "block",
+          "coords": [
+            958.7674148606822,
+            -196.3432662538705
+          ],
+          "data": {
+            "name": "Block",
+            "color": "standard",
+            "steps": [
+              "6180afd65707b05a14a5bdff"
+            ]
+          }
+        },
+        "6180afec5707b05a14a5bef9": {
+          "nodeID": "6180afec5707b05a14a5bef9",
+          "type": "interaction",
+          "data": {
+            "name": "Choice",
+            "else": {
+              "type": "path",
+              "pathName": "No Match",
+              "randomize": false,
+              "reprompts": [
+                {
+                  "voice": "Alexa",
+                  "content": ""
+                }
+              ]
+            },
+            "choices": [
+              {
+                "intent": "2s2x3bto",
+                "action": "PATH",
+                "mappings": []
+              },
+              {
+                "intent": "5f6q3ban",
+                "action": "PATH",
+                "mappings": []
+              },
+              {
+                "intent": "tt9c3bo8",
+                "action": "PATH",
+                "mappings": []
+              }
+            ],
+            "reprompt": null,
+            "chips": null,
+            "buttons": null,
+            "ports": [
+              {
+                "type": "",
+                "target": "6180b0685707b05a14a5c336",
+                "id": "6180afec5707b05a14a5befa",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1199.07524007089,
+                        410.1848718475047
+                      ]
+                    },
+                    {
+                      "point": [
+                        893.1713978025709,
+                        637.6472910285393
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "",
+                "target": "61848b9f8d5250d7e01bded3",
+                "id": "6180afec5707b05a14a5befb",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1199.07524007089,
+                        247.18485711488074
+                      ]
+                    },
+                    {
+                      "point": [
+                        1301.5304360568816,
+                        101.07846652355524
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "2",
+                "target": "618486148d5250d7e01bdd59",
+                "id": "6184855f8d5250d7e01bdc17",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1199.07524007089,
+                        301.18483817293566
+                      ]
+                    },
+                    {
+                      "point": [
+                        1368.589215017011,
+                        425.97004493478914
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "3",
+                "target": "618488bc8d5250d7e01bdd69",
+                "id": "618486568d5250d7e01bdd61",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1199.0753663505236,
+                        355.1848192309907
+                      ]
+                    },
+                    {
+                      "point": [
+                        1366.8245834167953,
+                        614.7934870650424
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "6180afec5707b05a14a5bef7": {
+          "nodeID": "6180afec5707b05a14a5bef7",
+          "type": "block",
+          "coords": [
+            1034.0753116068042,
+            167.18482420523935
+          ],
+          "data": {
+            "name": "New Block 27",
+            "color": "standard",
+            "steps": [
+              "6180afec5707b05a14a5bef9"
+            ]
+          }
+        },
+        "6180b0155707b05a14a5bfff": {
+          "nodeID": "6180b0155707b05a14a5bfff",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "{id}に登録します。よろしいですか"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "6180b03b5707b05a14a5c107",
+                "id": "6180b0155707b05a14a5c000",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2004.2317286033972,
+                        -286.09602394106105
+                      ]
+                    },
+                    {
+                      "point": [
+                        1206.4617234333587,
+                        -734.8293846803766
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "6180b0155707b05a14a5bffd": {
+          "nodeID": "6180b0155707b05a14a5bffd",
+          "type": "block",
+          "coords": [
+            1839.2318184926817,
+            -377.0960287893169
+          ],
+          "data": {
+            "name": "New Block 29",
+            "color": "standard",
+            "steps": [
+              "6180b0155707b05a14a5bfff"
+            ]
+          }
+        },
+        "6180b03b5707b05a14a5c109": {
+          "nodeID": "6180b03b5707b05a14a5c109",
+          "type": "interaction",
+          "data": {
+            "name": "Choice",
+            "else": {
+              "type": "path",
+              "pathName": "No Match",
+              "randomize": false,
+              "reprompts": [
+                {
+                  "voice": "Alexa",
+                  "content": ""
+                }
+              ]
+            },
+            "choices": [
+              {
+                "intent": "AMAZON.YesIntent",
+                "action": "PATH",
+                "mappings": []
+              },
+              {
+                "intent": "AMAZON.NoIntent",
+                "action": "PATH",
+                "mappings": []
+              },
+              {
+                "intent": "AMAZON.RepeatIntent",
+                "action": "PATH",
+                "mappings": []
+              }
+            ],
+            "reprompt": null,
+            "chips": null,
+            "buttons": null,
+            "ports": [
+              {
+                "type": "",
+                "target": "6180b07f5707b05a14a5c456",
+                "id": "6180b03b5707b05a14a5c10a",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1536.4616659885069,
+                        -522.8293685240117
+                      ]
+                    },
+                    {
+                      "point": [
+                        1224.4942731231574,
+                        -351.5189544902338
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "",
+                "target": "6180b04f5707b05a14a5c21c",
+                "id": "6180b03b5707b05a14a5c10b",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1536.461665988506,
+                        -685.829392309771
+                      ]
+                    },
+                    {
+                      "point": [
+                        1868.9043503864852,
+                        -635.0736128190199
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": 2,
+                "target": "6180afd65707b05a14a5bdfd",
+                "id": "6180b03b5707b05a14a5c10c",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1536.461665988506,
+                        -631.8294017343172
+                      ]
+                    },
+                    {
+                      "point": [
+                        793.7674162182856,
+                        -165.34325132933074
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "3",
+                "target": "6180b0155707b05a14a5bffd",
+                "id": "6184881b8d5250d7e01bdd63",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1536.461665988506,
+                        -577.8294044270447
+                      ]
+                    },
+                    {
+                      "point": [
+                        1674.2317860482497,
+                        -346.0960706150042
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "6180b03b5707b05a14a5c107": {
+          "nodeID": "6180b03b5707b05a14a5c107",
+          "type": "block",
+          "coords": [
+            1371.461694653672,
+            -765.8293879224434
+          ],
+          "data": {
+            "name": "New Block 30",
+            "color": "standard",
+            "steps": [
+              "6180b03b5707b05a14a5c109"
+            ]
+          }
+        },
+        "6180b04f5707b05a14a5c21e": {
+          "nodeID": "6180b04f5707b05a14a5c21e",
+          "type": "api",
+          "data": {
+            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/InputAlexa_id.php",
+            "body": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "params": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "method": "POST",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "val": "application/json"
+              }
+            ],
+            "content": "{\n  \"name\":\"{personId}\",\n  \"id\":\"{id}\"\n}",
+            "mappings": [
+              {
+                "path": "",
+                "var": null
+              }
+            ],
+            "bodyType": "rawInput",
+            "selectedAction": "Make a POST Request",
+            "selectedIntegration": "Custom API",
+            "ports": [
+              {
+                "type": "",
+                "target": "6180b0ec5707b05a14a5c582",
+                "id": "6180b04f5707b05a14a5c21f",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2198.904292941633,
+                        -531.0735576181064
+                      ]
+                    },
+                    {
+                      "point": [
+                        2182.570157773894,
+                        -336.5141345080418
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "fail",
+                "target": null,
+                "id": "6180b04f5707b05a14a5c220",
+                "data": {}
+              }
+            ]
+          }
+        },
+        "6180b04f5707b05a14a5c21c": {
+          "nodeID": "6180b04f5707b05a14a5c21c",
+          "type": "block",
+          "coords": [
+            2033.9044191118767,
+            -666.0735829688836
+          ],
+          "data": {
+            "name": "InputAlexa_id",
+            "color": "standard",
+            "steps": [
+              "6180b04f5707b05a14a5c21e"
+            ]
+          }
+        },
+        "6180b0685707b05a14a5c338": {
+          "nodeID": "6180b0685707b05a14a5c338",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "もう一度お願いします。"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "6180afd65707b05a14a5bdfd",
+                "id": "6180b0685707b05a14a5c339",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1223.1713325211354,
+                        686.6472819384206
+                      ]
+                    },
+                    {
+                      "point": [
+                        793.7673623637365,
+                        -165.3433186475179
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "6180b0685707b05a14a5c336": {
+          "nodeID": "6180b0685707b05a14a5c336",
+          "type": "block",
+          "coords": [
+            1058.1714469756525,
+            606.6472632643467
+          ],
+          "data": {
+            "name": "New Block 28",
+            "color": "standard",
+            "steps": [
+              "6180b0685707b05a14a5c338"
+            ]
+          }
+        },
+        "6180b07f5707b05a14a5c458": {
+          "nodeID": "6180b07f5707b05a14a5c458",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "もう一度お願いします。-"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "6180b0155707b05a14a5bffd",
+                "id": "6180b07f5707b05a14a5c459",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1554.494215678305,
+                        -302.5190227059966
+                      ]
+                    },
+                    {
+                      "point": [
+                        1674.2317860482497,
+                        -346.0960436877294
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "6180b07f5707b05a14a5c456": {
+          "nodeID": "6180b07f5707b05a14a5c456",
+          "type": "block",
+          "coords": [
+            1389.4942023936148,
+            -382.51901640541524
+          ],
+          "data": {
+            "name": "New Block 33",
+            "color": "standard",
+            "steps": [
+              "6180b07f5707b05a14a5c458"
+            ]
+          }
+        },
+        "6180b0ec5707b05a14a5c57f": {
+          "nodeID": "6180b0ec5707b05a14a5c57f",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "ユーザー登録が完了しました。次回から登録された持ち物の読み上げが行えます"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "61833f3eadd1aca0484f815c",
+                "id": "6180b0ec5707b05a14a5c581",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2512.569992619942,
+                        -265.5141075807669
+                      ]
+                    },
+                    {
+                      "point": [
+                        2422.6805596006416,
+                        -73.16853729698919
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "6180b0ec5707b05a14a5c582": {
+          "nodeID": "6180b0ec5707b05a14a5c582",
+          "type": "block",
+          "coords": [
+            2347.5701413684587,
+            -367.51415014768895
+          ],
+          "data": {
+            "name": "New Block 8",
+            "color": "standard",
+            "steps": [
+              "6180b0ec5707b05a14a5c57f"
+            ]
+          }
+        },
+        "6180b11a5707b05a14a5c67d": {
+          "nodeID": "6180b11a5707b05a14a5c67d",
+          "type": "exit",
+          "data": {
+            "ports": []
+          }
+        },
+        "6180b11a5707b05a14a5c67f": {
+          "nodeID": "6180b11a5707b05a14a5c67f",
+          "type": "block",
+          "coords": [
+            2936.675533525328,
+            261.8804576954485
+          ],
+          "data": {
+            "name": "New Block 9",
+            "color": "standard",
+            "steps": [
+              "6180b11a5707b05a14a5c67d"
+            ]
+          }
+        },
+        "61833f3eadd1aca0484f8158": {
+          "nodeID": "61833f3eadd1aca0484f8158",
+          "type": "api",
+          "data": {
+            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/alexa_code_d.php",
+            "body": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "params": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "method": "POST",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "val": "application/json"
+              }
+            ],
+            "content": "{\n  \"name\":\"{personId}\"\n}",
+            "mappings": [
+              {
+                "path": "",
+                "var": null
+              }
+            ],
+            "bodyType": "rawInput",
+            "selectedAction": "Make a POST Request",
+            "selectedIntegration": "Custom API",
+            "ports": [
+              {
+                "type": "",
+                "target": "6180b11a5707b05a14a5c67f",
+                "id": "61833f3eadd1aca0484f815a",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2752.6805021557875,
+                        30.831457317555977
+                      ]
+                    },
+                    {
+                      "point": [
+                        2771.6757055105677,
+                        292.88048649954146
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "fail",
+                "target": null,
+                "id": "61833f3eadd1aca0484f815b",
+                "data": {}
+              }
+            ]
+          }
+        },
+        "61833f3eadd1aca0484f815c": {
+          "nodeID": "61833f3eadd1aca0484f815c",
+          "type": "block",
+          "coords": [
+            2587.6804354861074,
+            -104.16856191239471
+          ],
+          "data": {
+            "name": "deleat_userid",
+            "color": "standard",
+            "steps": [
+              "61833f3eadd1aca0484f8158"
+            ]
+          }
+        },
+        "61847fb3f4ace684b808e032": {
+          "nodeID": "61847fb3f4ace684b808e032",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "-あなたはまだユーザー登録されていません。登録しますか"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "61847ff1f4ace684b808e043",
+                "id": "61847fb3f4ace684b808e034",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        408.51119104071734,
+                        -32.49779164252782
+                      ]
+                    },
+                    {
+                      "point": [
+                        258.93307445935955,
+                        95.94441016916407
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "61847fb3f4ace684b808e035": {
+          "nodeID": "61847fb3f4ace684b808e035",
+          "type": "block",
+          "coords": [
+            243.5111976004065,
+            -123.4978016539882
+          ],
+          "data": {
+            "name": "New Block 11",
+            "color": "standard",
+            "steps": [
+              "61847fb3f4ace684b808e032"
+            ]
+          }
+        },
+        "61847ff1f4ace684b808e03f": {
+          "nodeID": "61847ff1f4ace684b808e03f",
+          "type": "interaction",
+          "data": {
+            "name": "Choice",
+            "else": {
+              "type": "path",
+              "pathName": "No Match",
+              "randomize": false,
+              "reprompts": [
+                {
+                  "voice": "Alexa",
+                  "content": ""
+                }
+              ]
+            },
+            "choices": [
+              {
+                "intent": "AMAZON.YesIntent",
+                "action": "PATH",
+                "mappings": []
+              },
+              {
+                "intent": "dj3u3bxh",
+                "action": "PATH",
+                "mappings": []
+              },
+              {
+                "intent": "AMAZON.NoIntent",
+                "action": "PATH",
+                "mappings": []
+              }
+            ],
+            "reprompt": null,
+            "chips": null,
+            "buttons": null,
+            "ports": [
+              {
+                "type": "",
+                "target": "618480b6f4ace684b808e057",
+                "id": "61847ff1f4ace684b808e041",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        588.9331948832671,
+                        307.9444046693486
+                      ]
+                    },
+                    {
+                      "point": [
+                        -98.94918678033662,
+                        460.9640364478413
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "",
+                "target": "6180afd65707b05a14a5bdfd",
+                "id": "61847ff1f4ace684b808e042",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        588.9330871741678,
+                        144.94437415177023
+                      ]
+                    },
+                    {
+                      "point": [
+                        793.7673623637365,
+                        -165.34329172024306
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "3",
+                "target": "6180afd65707b05a14a5bdfd",
+                "id": "61848005f4ace684b808e050",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        588.9330871741678,
+                        198.94438492268023
+                      ]
+                    },
+                    {
+                      "point": [
+                        793.7673623637365,
+                        -165.34329172024306
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "2",
+                "target": "618480fcf4ace684b808e19c",
+                "id": "61848001f4ace684b808e04e",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        588.9330871741678,
+                        252.9443956935902
+                      ]
+                    },
+                    {
+                      "point": [
+                        380.6194113498339,
+                        504.8071060853645
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "61847ff1f4ace684b808e043": {
+          "nodeID": "61847ff1f4ace684b808e043",
+          "type": "block",
+          "coords": [
+            423.9331042941191,
+            64.94438901538317
+          ],
+          "data": {
+            "name": "New Block 12",
+            "color": "standard",
+            "steps": [
+              "61847ff1f4ace684b808e03f"
+            ]
+          }
+        },
+        "618480b6f4ace684b808e054": {
+          "nodeID": "618480b6f4ace684b808e054",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "もう一度お願いします。"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "61847fb3f4ace684b808e035",
+                "id": "618480b6f4ace684b808e056",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        231.05067447282931,
+                        509.9640298149078
+                      ]
+                    },
+                    {
+                      "point": [
+                        78.5111742034327,
+                        -92.49776217728001
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "618480b6f4ace684b808e057": {
+          "nodeID": "618480b6f4ace684b808e057",
+          "type": "block",
+          "coords": [
+            66.05075135294197,
+            429.9639968585206
+          ],
+          "data": {
+            "name": "New Block 13",
+            "color": "standard",
+            "steps": [
+              "618480b6f4ace684b808e054"
+            ]
+          }
+        },
+        "618480f4f4ace684b808e191": {
+          "nodeID": "618480f4f4ace684b808e191",
+          "type": "exit",
+          "data": {
+            "ports": []
+          }
+        },
+        "618480f4f4ace684b808e193": {
+          "nodeID": "618480f4f4ace684b808e193",
+          "type": "block",
+          "coords": [
+            546.5213395882363,
+            644.8267419565598
+          ],
+          "data": {
+            "name": "New Block 14",
+            "color": "standard",
+            "steps": [
+              "618480f4f4ace684b808e191"
+            ]
+          }
+        },
+        "618480fcf4ace684b808e199": {
+          "nodeID": "618480fcf4ace684b808e199",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "ではスキルを終了します"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "618480f4f4ace684b808e193",
+                "id": "618480fcf4ace684b808e19b",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        710.6193808322561,
+                        553.807118651426
+                      ]
+                    },
+                    {
+                      "point": [
+                        381.5213404198017,
+                        675.8267791523451
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "618480fcf4ace684b808e19c": {
+          "nodeID": "618480fcf4ace684b808e19c",
+          "type": "block",
+          "coords": [
+            545.6193788039229,
+            473.80713411342276
+          ],
+          "data": {
+            "name": "New Block 15",
+            "color": "standard",
+            "steps": [
+              "618480fcf4ace684b808e199"
+            ]
+          }
+        },
+        "618486148d5250d7e01bdd56": {
+          "nodeID": "618486148d5250d7e01bdd56",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "ユーザー登録を行うには6桁のidを作成していただく必要があります。"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "618489208d5250d7e01bdd74",
+                "id": "618486148d5250d7e01bdd58",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1698.5892797293159,
+                        496.97005020588387
+                      ]
+                    },
+                    {
+                      "point": [
+                        1785.0599254094632,
+                        575.9700502058837
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "618486148d5250d7e01bdd59": {
+          "nodeID": "618486148d5250d7e01bdd59",
+          "type": "block",
+          "coords": [
+            1533.5893371741677,
+            394.97007174770323
+          ],
+          "data": {
+            "name": "New Block 16",
+            "color": "standard",
+            "steps": [
+              "618486148d5250d7e01bdd56"
+            ]
+          }
+        },
+        "618488bc8d5250d7e01bdd66": {
+          "nodeID": "618488bc8d5250d7e01bdd66",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "6桁のidとは、ユーザーが6桁の任意の値で作成できる、LINEと連携するためのidです。"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "618489208d5250d7e01bdd74",
+                "id": "618488bc8d5250d7e01bdd68",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1696.824573846963,
+                        685.7935796176487
+                      ]
+                    },
+                    {
+                      "point": [
+                        1785.0599254094632,
+                        575.9700502058837
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "618488bc8d5250d7e01bdd69": {
+          "nodeID": "618488bc8d5250d7e01bdd69",
+          "type": "block",
+          "coords": [
+            1531.8246312918163,
+            583.7936011594682
+          ],
+          "data": {
+            "name": "New Block 17",
+            "color": "standard",
+            "steps": [
+              "618488bc8d5250d7e01bdd66"
+            ]
+          }
+        },
+        "618489208d5250d7e01bdd71": {
+          "nodeID": "618489208d5250d7e01bdd71",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "-idの作成は、None Leaveホームページのメニューにある、Alexaとの連携、より行えます。idを作成したのち、ユーザー登録をお願いします。"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "6180b11a5707b05a14a5c67f",
+                "id": "618489208d5250d7e01bdd73",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2115.060083382809,
+                        668.9700645670971
+                      ]
+                    },
+                    {
+                      "point": [
+                        2771.6757055105677,
+                        292.8803787904422
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "618489208d5250d7e01bdd74": {
+          "nodeID": "618489208d5250d7e01bdd74",
+          "type": "block",
+          "coords": [
+            1950.0599254094634,
+            544.9700717477033
+          ],
+          "data": {
+            "name": "New Block 18",
+            "color": "standard",
+            "steps": [
+              "618489208d5250d7e01bdd71"
+            ]
+          }
+        },
+        "61848b9f8d5250d7e01bded5": {
+          "nodeID": "61848b9f8d5250d7e01bded5",
+          "type": "api",
+          "data": {
+            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/duplicate_number.php",
+            "body": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "params": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "method": "POST",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "val": "application/json"
+              }
+            ],
+            "content": "{\n  \"id\":\"{id}\"\n}",
+            "mappings": [
+              {
+                "path": "response.number",
+                "var": "number"
+              }
+            ],
+            "bodyType": "rawInput",
+            "selectedAction": "Make a POST Request",
+            "selectedIntegration": "Custom API",
+            "ports": [
+              {
+                "type": "",
+                "target": "61848be98d5250d7e01be03c",
+                "id": "61848b9f8d5250d7e01bded6",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1631.5305146206135,
+                        205.07845018710938
+                      ]
+                    },
+                    {
+                      "point": [
+                        1732.1187393327846,
+                        41.07841163858945
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "fail",
+                "target": null,
+                "id": "61848b9f8d5250d7e01bded7",
+                "data": {}
+              }
+            ]
+          }
+        },
+        "61848b9f8d5250d7e01bded3": {
+          "nodeID": "61848b9f8d5250d7e01bded3",
+          "type": "block",
+          "coords": [
+            1466.5305136447569,
+            70.07843088082986
+          ],
+          "data": {
+            "name": "duplicate_id",
+            "color": "standard",
+            "steps": [
+              "61848b9f8d5250d7e01bded5"
+            ]
+          }
+        },
+        "61848be98d5250d7e01be03e": {
+          "nodeID": "61848be98d5250d7e01be03e",
+          "type": "ifV2",
+          "data": {
+            "expressions": [
+              {
+                "type": null,
+                "name": "",
+                "value": [
+                  {
+                    "logicInterface": "variable",
+                    "type": "greater",
+                    "value": [
+                      {
+                        "type": "variable",
+                        "value": "number"
+                      },
+                      {
+                        "type": "value",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "noMatch": {
+              "type": "path",
+              "pathName": "No Match"
+            },
+            "ports": [
+              {
+                "type": "",
+                "target": "61848c188d5250d7e01be04c",
+                "id": "61848be98d5250d7e01be03f",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2062.118665471262,
+                        145.07843398640819
+                      ]
+                    },
+                    {
+                      "point": [
+                        1222.1187993548294,
+                        -161.67699161412
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "",
+                "target": "6180b0155707b05a14a5bffd",
+                "id": "61848be98d5250d7e01be040",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        2062.118665471262,
+                        90.07842414202811
+                      ]
+                    },
+                    {
+                      "point": [
+                        1674.2318364642047,
+                        -346.0960058372805
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "61848be98d5250d7e01be03c": {
+          "nodeID": "61848be98d5250d7e01be03c",
+          "type": "block",
+          "coords": [
+            1897.1187489388742,
+            10.078430880829831
+          ],
+          "data": {
+            "name": "New Block 29",
+            "color": "standard",
+            "steps": [
+              "61848be98d5250d7e01be03e"
+            ]
+          }
+        },
+        "61848c188d5250d7e01be049": {
+          "nodeID": "61848c188d5250d7e01be049",
+          "type": "speak",
+          "data": {
+            "randomize": true,
+            "canvasVisibility": "preview",
+            "dialogs": [
+              {
+                "voice": "Alexa",
+                "content": "id{{[id].id}} はありませんでした。私の聞き間違いかもしれません。もう一度6桁のidを言ってください"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "6180afec5707b05a14a5bef7",
+                "id": "61848c188d5250d7e01be04b",
+                "data": {
+                  "points": [
+                    {
+                      "point": [
+                        1552.1187476139937,
+                        -79.67696771001168
+                      ]
+                    },
+                    {
+                      "point": [
+                        869.0753495132392,
+                        198.18485290555958
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "61848c188d5250d7e01be04c": {
+          "nodeID": "61848c188d5250d7e01be04c",
+          "type": "block",
+          "coords": [
+            1387.118748938875,
+            -192.67698707582673
+          ],
+          "data": {
+            "name": "New Block 21",
+            "color": "standard",
+            "steps": [
+              "61848c188d5250d7e01be049"
+            ]
+          }
+        }
+      },
+      "children": [],
+      "variables": [],
+      "intentStepIDs": [],
+      "versionID": "615f966c5783560006f6a18a",
+      "creatorID": 74320
+    }
+  }
+}
