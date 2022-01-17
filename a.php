@@ -28,7 +28,7 @@ if(!empty($_POST['item_id'])){
         $stm = $pdo->prepare($sql);
         //プレースホルダに値をバインドする
         $stm->bindValue(':id', $_POST['item_id'], PDO::PARAM_INT);
-        //SQL文を実行する
+        //SQL文を実行す
         $stm->execute();
         //結果を連想配列で取得
         $value = $stm->fetch(PDO::FETCH_COLUMN);
