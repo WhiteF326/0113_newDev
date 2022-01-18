@@ -44,7 +44,7 @@ try{
         //SQL文を実行する
         $stm->execute();
 
-        $sql = "INSERT INTO send_log(to_id, message, datetime,confilm_check) VALUES (:id, :message, :datetime, true)";
+        $sql = "INSERT INTO send_log(to_id, message, datetime,confrim_check) VALUES (:id, :message, :datetime, true)";
         //プリペアドステートメントを作る
         $stm = $pdo->prepare($sql);
         //プレースホルダに値をバインドする

@@ -41,7 +41,7 @@ try{
 
         //アイテムが登録されている場合
         if($item != ""){
-            confilm_button($row["LINE_id"], $item);
+            confrim_button($row["LINE_id"], $item);
             //持ち物確認のログをデータベースに登録する
             $sql = "INSERT INTO send_log(to_id, message, datetime) VALUES (:id, :item, :datetime)";
             //プリペアドステートメントを作る
@@ -83,7 +83,7 @@ try{
 
         //月曜日なら一週間の記録を送信する
         if(date('w', $time) == '1'){
-            $sql = "SELECT COUNT(*) AS num FROM send_log WHERE datetime >= :min_time AND datetime < :max_time AND confilm_check = false AND to_id = :id";
+            $sql = "SELECT COUNT(*) AS num FROM send_log WHERE datetime >= :min_time AND datetime < :max_time AND confrim_check = false AND to_id = :id";
             //プリペアドステートメントを作る
             $stm = $pdo->prepare($sql);
             //プレースホルダに値をバインドする
@@ -104,7 +104,7 @@ try{
 
         //毎月1日なら先月の記録を送信する
         if(date('j', $time) == '1'){
-            $sql = "SELECT COUNT(*) AS num FROM send_log WHERE datetime >= :min_time AND datetime < :max_time AND confilm_check = false AND to_id = :id";
+            $sql = "SELECT COUNT(*) AS num FROM send_log WHERE datetime >= :min_time AND datetime < :max_time AND confrim_check = false AND to_id = :id";
             //プリペアドステートメントを作る
             $stm = $pdo->prepare($sql);
             //プレースホルダに値をバインドする
@@ -126,7 +126,7 @@ try{
     }
 
     //持ち物を確認していない時にメッセージを送る
-    $sql = "SELECT DISTINCT a.id, a.name, a.LINE_id FROM user a, send_log b WHERE a.notice_time >= :min_time AND a.notice_time < :max_time AND b.datetime >= :min_time2 AND b.datetime < :max_time2 AND b.confilm_check = false AND a.id = b.to_id";
+    $sql = "SELECT DISTINCT a.id, a.name, a.LINE_id FROM user a, send_log b WHERE a.notice_time >= :min_time AND a.notice_time < :max_time AND b.datetime >= :min_time2 AND b.datetime < :max_time2 AND b.confrim_check = false AND a.id = b.to_id";
     //プリペアドステートメントを作る
     $stm = $pdo->prepare($sql);
     //プレースホルダに値をバインドする
@@ -199,7 +199,7 @@ try{
 
         //アイテムが登録されている場合
         if($item != ""){
-            confilm_button($row["LINE_id"], $item);
+            confrim_button($row["LINE_id"], $item);
             //持ち物確認のログをデータベースに登録する
             $sql = "INSERT INTO send_log(to_id, message, datetime) VALUES (:id, :item, :datetime)";
             //プリペアドステートメントを作る
@@ -287,7 +287,7 @@ try{
 
     //持ち物を更新していない時にメッセージを送る
     $sql = "SELECT DISTINCT a.id, a.name, a.LINE_id FROM user a, send_log b 
-        WHERE a.check_time >= :min_time AND a.check_time < :max_time AND b.datetime >= :min_time2 AND b.datetime < :max_time2 AND b.confilm_check = false AND a.id = b.to_id";
+        WHERE a.check_time >= :min_time AND a.check_time < :max_time AND b.datetime >= :min_time2 AND b.datetime < :max_time2 AND b.confrim_check = false AND a.id = b.to_id";
 
     //プリペアドステートメントを作る
     $stm = $pdo->prepare($sql);
@@ -341,7 +341,7 @@ try{
         if(is_null($row["LINE_id"])){
             continue;
         }
-        confilm_button($row["LINE_id"], $row["name"]."\n");
+        confrim_button($row["LINE_id"], $row["name"]."\n");
 
         //持ち物確認のログを送信
         $sql = "INSERT INTO send_log(to_id, message, datetime) VALUES (:id, :item, :datetime)";
@@ -389,7 +389,7 @@ try{
     //持ち物を確認していない時にメッセージを送る
     $sql = "SELECT DISTINCT a.id, a.name, a.LINE_id FROM user a, user_item b, send_log c 
     WHERE a.id = b.user_id AND b.user_id = c.to_id AND b.notice_datetime >= :min_time2 AND b.notice_datetime < :max_time2 AND c.datetime >= :min_time 
-    AND c.datetime < :max_time AND c.confilm_check = false";
+    AND c.datetime < :max_time AND c.confrim_check = false";
 
     //プリペアドステートメントを作る
     $stm = $pdo->prepare($sql);
@@ -426,7 +426,7 @@ try{
     }
 
     //グループでコメントを送った人に対してメッセージを送る（確認が取れた人を取得）
-    $sql = "SELECT a.id, a.name FROM user a, send_log b WHERE b.confilm_check = true AND b.datetime >= :min_time 
+    $sql = "SELECT a.id, a.name FROM user a, send_log b WHERE b.confrim_check = true AND b.datetime >= :min_time 
         AND b.datetime < :max_time AND a.id = b.to_id";
     //プリペアドステートメントを作る
     $stm = $pdo->prepare($sql);
@@ -478,7 +478,7 @@ try{
     $result = $stm->fetchAll(PDO::FETCH_ASSOC);
     foreach($result as $row){
         $sql = "SELECT COUNT(*) AS num FROM send_log 
-            WHERE datetime >= :min_time AND datetime < :max_time AND confilm_check = false AND to_id = :id";
+            WHERE datetime >= :min_time AND datetime < :max_time AND confrim_check = false AND to_id = :id";
         //プリペアドステートメントを作る
         $stm = $pdo->prepare($sql);
         //プレースホルダに値をバインドする
@@ -545,7 +545,7 @@ function sending_pushmessages($user_id, $return_message_text){
 
 <?php
 // 確認ボタンの送信
-function confilm_button($user_id, $item){
+function confrim_button($user_id, $item){
     $message_data = [
         "type" => "template",
         "altText" => "持ち物の確認です。忘れずにボタンを押してください。",
@@ -556,7 +556,7 @@ function confilm_button($user_id, $item){
                 array(
                     "type" => "postback",
                     "label" => "はい",
-                    "data" => "confilm_ok"
+                    "data" => "confrim_ok"
                 )
             ]
         )
@@ -606,7 +606,7 @@ function check_button($user_id, $id){
                 array(
                     "type" => "uri",
                     "label" => "更新する",
-                    "uri" => "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/confilm.php?id=$id"
+                    "uri" => "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/confrim.php?id=$id"
                 )
             ]
         )

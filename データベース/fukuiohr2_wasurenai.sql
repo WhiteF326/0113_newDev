@@ -178,14 +178,14 @@ CREATE TABLE `send_log` (
   `to_id` int(10) UNSIGNED NOT NULL,
   `message` varchar(80) NOT NULL,
   `datetime` datetime NOT NULL,
-  `confilm_check` tinyint(1) NOT NULL DEFAULT '0'
+  `confrim_check` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- テーブルのデータのダンプ `send_log`
 --
 
-INSERT INTO `send_log` (`id`, `to_id`, `message`, `datetime`, `confilm_check`) VALUES
+INSERT INTO `send_log` (`id`, `to_id`, `message`, `datetime`, `confrim_check`) VALUES
 (112, 1, '持ち物更新確認', '2021-10-22 23:00:01', 1),
 (113, 1, '弁当\n持ち物確認', '2021-10-25 08:00:01', 1),
 (114, 5, '傘\n指定時間の持ち物確認', '2021-10-25 17:20:00', 0),

@@ -31,7 +31,7 @@
             <div id="navi">
         <ul>
             <li><a href="index.php">ホーム</a></li>
-            <li><a href="confilm.php?id=<?php echo $_SESSION['user_id'];?>">登録物一覧</a></li>
+            <li><a href="confrim.php?id=<?php echo $_SESSION['user_id'];?>">登録物一覧</a></li>
             <li><a href="clock.php">時間登録</a></li>
             <li><a href="f_top.php">グループトップ</a></li>
             <li><a href="alexa_r.php">Alexaと連携</a></li>
@@ -54,7 +54,7 @@
     <div class="col span-8">
 	<div class="breadcrumb">
 		<ul>
-			<li><a href="index.php">ホーム</a> > <a href="confilm.php?id=<?php echo $_SESSION['user_id'];?>">登録物一覧</a> > 時間登録</li>
+			<li><a href="index.php">ホーム</a> > <a href="confrim.php?id=<?php echo $_SESSION['user_id'];?>">登録物一覧</a> > 時間登録</li>
 		</ul>
 		</div>
 		
@@ -99,7 +99,7 @@
 	</div>
 
 	<div class="col span-4">
-    <a href="confilm.php?id=<?php echo $_SESSION['user_id'];?>"><img src="img/2.png" alt="バナー画像"></a>
+    <a href="confrim.php?id=<?php echo $_SESSION['user_id'];?>"><img src="img/2.png" alt="バナー画像"></a>
 	</div>
     </div>    
         </div>

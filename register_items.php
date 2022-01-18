@@ -180,7 +180,7 @@ try{
             }
 
         }
-        echo "<br><a href='confilm.php?id=$user_id' title='登録物一覧ページへ'>戻る</a><br>";
+        echo "<br><a href='confrim.php?id=$user_id' title='登録物一覧ページへ'>戻る</a><br>";
     ?>
     </div>
     <div><br><hr><br><a href="time_set.php">曜日で登録した持ち物の時間設定</a></div>

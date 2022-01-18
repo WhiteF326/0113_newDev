@@ -2559,7 +2559,7 @@
           "nodeID": "615fe8e7299a74ec519a91b9",
           "type": "api",
           "data": {
-            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/alexa_confilm_false.php",
+            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/alexa_confrim_false.php",
             "body": [
               {
                 "key": "",
@@ -2881,7 +2881,7 @@
           "nodeID": "6163f036b62a325c671002ce",
           "type": "api",
           "data": {
-            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/alexa_confilm_true.php",
+            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/alexa_confrim_true.php",
             "body": [
               {
                 "key": "",
