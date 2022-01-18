@@ -342,7 +342,7 @@ else if(isset($_POST["entry_pass"])){
                             }
                             echo "</table>";
                             ?>
-                            <form action="f_quit.php" method="post">
+                            <form action="family_exit.php" method="post">
                                 <input type="hidden" name="family_id" value="<?php echo $row1['family_id'];?>">
                                 <input type="submit" title="グループから退会する" value="グループから退会する">
                                 </form>
