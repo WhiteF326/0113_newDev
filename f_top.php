@@ -355,7 +355,7 @@ else if(isset($_POST["entry_pass"])){
                 }
             
             echo '<a href="f_make.php">グループを作成する</a><br>';
-            echo '<a href="f_entry.php">グループに参加する</a><br>';
+            echo '<a href="family_entry.php">グループに参加する</a><br>';
             echo '<a href="confrim.php?id=',$_SESSION['user_id'],'">登録物一覧に戻る</a><br>';
             
             }catch(Exception $e){
