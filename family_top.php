@@ -253,7 +253,7 @@ else if(isset($_POST["entry_pass"])){
                                     }
                                     ?>
 
-                                    <form action="c_send.php" method="post">
+                                    <form action="comment_send.php" method="post">
                                     <textarea name="comment" cols="40" rows="2" maxlength="80" placeholder="入力可能なのは80文字までです。"><?php echo $value['comment'];?></textarea><br>
                                     <input type="hidden" name="from_id" value="<?php echo $_SESSION['user_id'];?>">
                                     <input type="hidden" name="to_id" value="<?php echo $row2['id'];?>">
@@ -311,7 +311,7 @@ else if(isset($_POST["entry_pass"])){
                                     }
                                     ?>
 
-                                    <form action="c_send.php" method="post">
+                                    <form action="comment_send.php" method="post">
                                     <textarea name="comment" cols="40" rows="2" maxlength="80" placeholder="入力可能なのは80文字までです。"><?php echo $value['comment'];?></textarea><br>
                                     <input type="hidden" name="from_id" value="<?php echo $_SESSION['user_id'];?>">
                                     <input type="hidden" name="to_id" value="<?php echo $row2['id'];?>">
