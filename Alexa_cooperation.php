@@ -60,41 +60,7 @@
 
         <?php 
             require 'dbconnect.php';
-            try{
-                $sql = "SELECT Alexa_id FROM user WHERE id = :id";
-                //プリペアードステートメントを作る
-                $stm = $pdo->prepare($sql);
-                //プリペアードステートメントに値をバインドする
-                $stm->bindValue(':id',$_SESSION['user_id'],PDO::PARAM_INT);
-		        $stm->execute();
-                $result = $stm->fetch(PDO::FETCH_COLUMN);
-                if($result == NULL){ ?>
-
-                <form action="alexa_password_set.php" method="post" >
-                <input type="number" name="pass_id" placeholder="6桁の数字" min="100000" max="999999" required>
-                <input type="submit" title="設定を完了します。" value="設定">
-                </form>
-
-                <?php 
-                    $sql = "SELECT pass_id FROM Alexa_coop WHERE user_id = :user_id";
-                    //プリペアードステートメントを作る
-                    $stm = $pdo->prepare($sql);
-                    //プリペアードステートメントに値をバインドする
-                    $stm->bindValue(':user_id',$_SESSION['user_id'],PDO::PARAM_INT);
-                    $stm->execute();
-                    $result = $stm->fetch(PDO::FETCH_COLUMN);
-                    if(!$result){
-                        $result = "現在設定されている番号はありません。";
-                    }
-                ?>
-                現在設定されている番号：<?php echo $result?>
-
-                <?php }else{
-                    echo "既にAlexaと連携しています。";
-                }
-            }catch(Exception $e){
-                echo "エラーが発生しました。";
-            }
+            require 'Alexa_cooperation_db.php';
         ?>
 
 		</div>
