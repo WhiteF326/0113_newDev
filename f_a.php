@@ -16,7 +16,7 @@
 
 <?php 
 if(!empty($_POST['item_id'])){
-    require_once("dbconect.php");
+    require_once("dbconnect.php");
     try{
         //現在登録されている名前を検索
         $sql = "SELECT name FROM item WHERE id = :id";
@@ -60,7 +60,7 @@ if(empty($_POST['days']) && empty($_POST['datetime'])){
 }else{
 
 date_default_timezone_set('Asia/Tokyo');
-require_once("dbconect.php");
+require_once("dbconnect.php");
 
 try{
 

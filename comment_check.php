@@ -1,25 +1,25 @@
 <?php
-require "dbconect.php";
+require "dbconnect.php";
 
 function write($a){
     define("TESTFILE", "./TEST.TEXT");
     $fh = fopen(TESTFILE, "a");
     date_default_timezone_set('Asia/Tokyo');
     $timestamp=time();
-    $day=date("y/m/d/Hi•ª ",$timestamp);
+    $day=date("y/m/d/Hæ™‚iåˆ† ",$timestamp);
     fwrite($fh,$day.$a."\n");
 }
 
-// POST‚³‚ê‚½JSON•¶š—ñ‚ğæ‚èo‚µ
+// POSTã•ã‚ŒãŸJSONæ–‡å­—åˆ—ã‚’å–ã‚Šå‡ºã—
 $json = file_get_contents("php://input");
 
-// JSON•¶š—ñ‚ğobject‚É•ÏŠ·
-//   Ë ‘æ2ˆø”‚ğtrue‚É‚µ‚È‚¢‚Æƒnƒ}‚é‚Ì‚Å’ˆÓ
+// JSONæ–‡å­—åˆ—ã‚’objectã«å¤‰æ›
+//   â‡’ ç¬¬2å¼•æ•°ã‚’trueã«ã—ãªã„ã¨ãƒãƒã‚‹ã®ã§æ³¨æ„
 $contents = json_decode($json, true);
 
-// ƒfƒoƒbƒO—p‚Éƒ_ƒ“ƒv
+// ãƒ‡ãƒãƒƒã‚°ç”¨ã«ãƒ€ãƒ³ãƒ—
 $alexa_id=$contents["name"];
-//‘‚«‚İ
+//æ›¸ãè¾¼ã¿
 //$alexa_id="amzn1.ask.person.ALVQI5F6NHYHCSPHCGSGZIMK2WY2PRSR4G6NVYYEKF7DXKPJDBVWGSUGFN4IQLUJP3TJJ6ZZVBBTYYPFWRGBX7M7MJJJFIYJDPNJXS6A";
 $str="alexa=".$alexa_id;
 write($str);
@@ -27,15 +27,15 @@ write($str);
 
 try{
     //$alexa_id=$_POST;
-    //SQL•¶‚ğì‚éiƒvƒŒ[ƒXƒzƒ‹ƒ_‚ğg‚Á‚½®j
+    //SQLæ–‡ã‚’ä½œã‚‹ï¼ˆãƒ—ãƒ¬ãƒ¼ã‚¹ãƒ›ãƒ«ãƒ€ã‚’ä½¿ã£ãŸå¼ï¼‰
     $sql='SELECT count(comment) FROM comment a,user b WHERE a.to_id=b.id AND b.Alexa_id=:Alexa_id';
-    //ƒvƒŠƒyƒA[ƒhƒXƒe[ƒgƒƒ“ƒg‚ğì‚é
+    //ãƒ—ãƒªãƒšã‚¢ãƒ¼ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã‚’ä½œã‚‹
     $stm = $pdo->prepare($sql);
-    //ƒvƒŠƒyƒA[ƒhƒXƒe[ƒgƒƒ“ƒg‚É’l‚ğƒoƒCƒ“ƒh‚·‚é
+    //ãƒ—ãƒªãƒšã‚¢ãƒ¼ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã«å€¤ã‚’ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹
     $stm->bindValue(':Alexa_id',$alexa_id,PDO::PARAM_STR);
-    //SQL•¶‚ğÀs‚·‚é
+    //SQLæ–‡ã‚’å®Ÿè¡Œã™ã‚‹
     $stm->execute();
-    //Œ‹‰Ê‚Ìæ“¾i˜A‘z”z—ñ‚Åó‚¯æ‚éj
+    //çµæœã®å–å¾—ï¼ˆé€£æƒ³é…åˆ—ã§å—ã‘å–ã‚‹ï¼‰
     $result = $stm->fetch(PDO::FETCH_COLUMN);
     // if($result){
     //     foreach($result as $row){
@@ -49,8 +49,8 @@ try{
     // }
    //require "write.php";
 }catch(Exception $e){
-     write( "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½
-    B");
+     write( "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸ
+    ã€‚");
 }
 
 

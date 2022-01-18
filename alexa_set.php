@@ -2,7 +2,7 @@
 
 <?php
 
-require 'dbconect.php';
+require 'dbconnect.php';
 try{
     //SQL文を作る（プレースホルダを使った式）
     $sql ="SELECT pass_id FROM Alexa_coop WHERE pass_id = :pass_id";

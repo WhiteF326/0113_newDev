@@ -1,5 +1,5 @@
 <?php
-require "dbconect.php";
+require "dbconnect.php";
 
 function write($a){
     define("TESTFILE", "./TEST.TEXT");

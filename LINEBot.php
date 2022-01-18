@@ -17,7 +17,7 @@ $postdata = $json_object->{"events"}[0]->{"postback"}->{"data"};//ポストバ�
 $week_name = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];//date("w")でとったときの0-6の対応配列
 
 if($type == "follow"){
-    require 'dbconect.php';
+    require 'dbconnect.php';
     //現在登録されている名前を検索
     $sql = "SELECT id FROM user WHERE LINE_id = :id";
     //プリペアドステートメントを作る
@@ -67,7 +67,7 @@ if($type == "follow"){
     }
 }
 else if($type == "unfollow"){ 
-    require 'dbconect.php';
+    require 'dbconnect.php';
     try{
         $sql = "DELETE FROM user_item WHERE user_id = (SELECT id FROM user WHERE LINE_id = :id)";
         //プリペアドステートメントを作る
@@ -127,7 +127,7 @@ else if($type == "unfollow"){
 }
 else if($message_text == "登録"|| $message_text == "とうろく"){
     //MySQLデータベースに接続する
-    require 'dbconect.php';
+    require 'dbconnect.php';
     try{
         //現在登録されている名前を検索
         $sql = "SELECT id FROM user WHERE LINE_id = :id";
@@ -155,7 +155,7 @@ else if($message_text == "登録"|| $message_text == "とうろく"){
 }
 else if($message_text == "確認" || $message_text == "かくにん"){
     //MySQLデータベースに接続する
-    require 'dbconect.php';
+    require 'dbconnect.php';
     try{
         //現在登録されている名前を検索
         $sql = "SELECT a.name, b.days, b.notice_datetime FROM item a, user_item b, user c WHERE c.LINE_id = :id AND b.user_id = c.id AND a.id = b.item_id";
@@ -231,7 +231,7 @@ else if($message_text == "天気" || $message_text == "てんき"){
 }
 //位置情報を解除する
 else if($message_text == "天気解除" || $message_text == "てんきかいじょ"){
-    require 'dbconect.php';
+    require 'dbconnect.php';
     try{
         $sql = "DELETE FROM location WHERE id = (SELECT id FROM user WHERE LINE_id = :id)";
         //プリペアドステートメントを作る
@@ -251,7 +251,7 @@ else if($message_text == "天気解除" || $message_text == "てんきかいじ�
 else if($type == "postback"){
     if($postdata == "confrim_ok"){
         //MySQLデータベースに接続する
-        require 'dbconect.php';
+        require 'dbconnect.php';
         try{
             $sql = "SELECT DISTINCT a.id, a.name FROM user a, send_log b 
                 WHERE a.LINE_id = :id AND a.id = b.to_id AND b.confrim_check = false AND b.datetime >= :min_datetime AND b.datetime <= :now_datetime";
@@ -304,7 +304,7 @@ else if($type == "postback"){
     }
     else if($postdata == "check_ok"){
         //MySQLデータベースに接続する
-        require 'dbconect.php';
+        require 'dbconnect.php';
         try{
             $sql = "SELECT DISTINCT a.id, a.name FROM user a, send_log b 
                 WHERE LINE_id = :id AND a.id = b.to_id AND b.confrim_check = false AND b.datetime >= :min_datetime AND b.datetime <= :now_datetime 
@@ -372,7 +372,7 @@ else if($type == "postback"){
 }
 //位置情報が送られてきたとき
 else if($message_type == "location"){
-    require 'dbconect.php';
+    require 'dbconnect.php';
     $latitude = $json_object->{"events"}[0]->{"message"}->{"latitude"};
     $longitude = $json_object->{"events"}[0]->{"message"}->{"longitude"};
     $latitude = (string)$latitude;
@@ -472,7 +472,7 @@ function sending_pushmessages($accessToken, $user_id, $message_type, $return_mes
 <?php
 //OpenWeatherAPIから天気情報を取得
 function get_weather($user_id){
-    require 'dbconect.php';
+    require 'dbconnect.php';
     try{
         //登録されている現在位置を取得
         $sql = "SELECT lat, lon FROM location WHERE id = (SELECT id FROM user WHERE LINE_id = :id)";

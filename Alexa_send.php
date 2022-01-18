@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('Asia/Tokyo');
 $time = strtotime("now");
-require 'dbconect.php';
+require 'dbconnect.php';
 
 function write($a){
     define("TESTFILE", "./TEST.TEXT");

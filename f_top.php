@@ -3,7 +3,7 @@
 <?php
 
 if(isset($_POST['make_pass'])){
-    require 'dbconect.php';
+    require 'dbconnect.php';
     try{
         //SQL文を作る
         $sql = "SELECT MAX(id) FROM family";
@@ -62,7 +62,7 @@ if(isset($_POST['make_pass'])){
     }
 }
 else if(isset($_POST["entry_pass"])){
-    require 'dbconect.php';
+    require 'dbconnect.php';
     try{
         //SQL文を作る（プレースホルダを使った式）
         $sql = "SELECT DISTINCT id from family WHERE name = :name AND pass = :pass";
@@ -171,7 +171,7 @@ else if(isset($_POST["entry_pass"])){
         <h2 class="underline">グループトップ</h2>
             <?php 
 
-            require 'dbconect.php';
+            require 'dbconnect.php';
             try{
                 //SQL文を作る（プレースホルダを使った式）
                 $sql = "SELECT DISTINCT a.family_id, b.name FROM family_user a, family b

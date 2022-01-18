@@ -59,7 +59,7 @@
 		<h2>Alexaと連携</h2>
 
         <?php 
-            require 'dbconect.php';
+            require 'dbconnect.php';
             try{
                 $sql = "SELECT Alexa_id FROM user WHERE id = :id";
                 //プリペアードステートメントを作る

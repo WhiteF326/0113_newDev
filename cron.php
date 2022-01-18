@@ -4,7 +4,7 @@ date_default_timezone_set('Asia/Tokyo');
 $time = strtotime("now");
 
 //MySQLデータベースに接続する
-require 'dbconect.php';
+require 'dbconnect.php';
 try{
     //持ち物確認の指定時間と一致したユーザーに持ち物を通知する
     $sql = "SELECT id, LINE_id FROM user WHERE notice_time >= :min_time AND notice_time < :max_time";

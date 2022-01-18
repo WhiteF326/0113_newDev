@@ -1,5 +1,5 @@
 <?php
-require "dbconect.php";
+require "dbconnect.php";
 $a="";
 $week_name = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];//date("w")でとったときの0-6の対応配列
 

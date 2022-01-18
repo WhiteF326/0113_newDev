@@ -17,7 +17,7 @@
 <h2><span>持ち物登録</span></h2>
 
 <?php 
-require_once("dbconect.php");
+require_once("dbconnect.php");
 
 if(!empty($_POST['item_id'])){
     try{

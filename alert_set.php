@@ -2,7 +2,7 @@
 
 <?php
 
-    require 'dbconect.php';
+    require 'dbconnect.php';
     try{
         $sql = "UPDATE comment SET alert = :alert WHERE family_id = :family_id AND from_id = :from_id AND to_id = :to_id";
         //プリペアードステートメントを作る

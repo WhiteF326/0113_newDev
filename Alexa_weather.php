@@ -1,5 +1,5 @@
 <?php
-require "dbconect.php";
+require "dbconnect.php";
 
 function write($a){
     define("TESTFILE", "./TEST.TEXT");
@@ -76,7 +76,7 @@ if($weather != false){
 
 <?php
 function get_weather($alexa_id){
-    require 'dbconect.php';
+    require 'dbconnect.php';
     try{
         //登録されている現在位置を取得
         $sql = "SELECT lat, lon FROM location WHERE id = (SELECT id FROM user WHERE Alexa_id = :id)";

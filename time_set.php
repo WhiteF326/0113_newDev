@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <?php
 
-require_once("dbconect.php");
+require_once("dbconnect.php");
 
 try{
     //登録されている時間を拾うsql
@@ -53,7 +53,7 @@ $notice_time = $_POST["m_time"];
 $check_time = $_POST["e_time"];
 $return_time = $_POST["r_time"];
 
-require_once("dbconect.php");
+require_once("dbconnect.php");
 //SQLを実行
 try{
     //入力された時間に変更するsql

@@ -1,5 +1,5 @@
 <?php
-require "dbconect.php";
+require "dbconnect.php";
 $a="";
 
 function write($a){

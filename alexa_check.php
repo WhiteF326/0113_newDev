@@ -1,20 +1,20 @@
 <?php
-require "dbconect.php";
+require "dbconnect.php";
 
 function write($a){
     define("TESTFILE", "./TEST.TEXT");
     $fh = fopen(TESTFILE, "a");
     date_default_timezone_set('Asia/Tokyo');
     $timestamp=time();
-    $day=date("y/m/d/HŽži•ª ",$timestamp);
+    $day=date("y/m/d/Hæ™‚iåˆ† ",$timestamp);
     fwrite($fh,$day.$a."\n");
 }
 
-// POST‚³‚ê‚½JSON•¶Žš—ñ‚ðŽæ‚èo‚µ
+// POSTã•ã‚ŒãŸJSONæ–‡å­—åˆ—ã‚’å–ã‚Šå‡ºã—
 $json = file_get_contents("php://input");
 
-// JSON•¶Žš—ñ‚ðobject‚É•ÏŠ·
-//   Ë ‘æ2ˆø”‚ðtrue‚É‚µ‚È‚¢‚Æƒnƒ}‚é‚Ì‚Å’ˆÓ
+// JSONæ–‡å­—åˆ—ã‚’objectã«å¤‰æ›
+//   â‡’ ç¬¬2å¼•æ•°ã‚’trueã«ã—ãªã„ã¨ãƒãƒžã‚‹ã®ã§æ³¨æ„
 $contents = json_decode($json, true);
 
 
@@ -27,18 +27,18 @@ write($alexa_id);
 
 
 try{
-    //SQL•¶‚ðì‚éiƒvƒŒ[ƒXƒzƒ‹ƒ_‚ðŽg‚Á‚½Ž®j
+    //SQLæ–‡ã‚’ä½œã‚‹ï¼ˆãƒ—ãƒ¬ãƒ¼ã‚¹ãƒ›ãƒ«ãƒ€ã‚’ä½¿ã£ãŸå¼ï¼‰
     $sql = "SELECT Alexa_check FROM user WHERE Alexa_id = :alexa_id";
     //LIKE 'amzn1.ask.person.AKJSQKKTKSR2ACJPQM4YQ7IT7GIH2VANC5HXSYKUAZ6ACLSW37WT7E34DDGD3GKJD6VNQBJHWBY4QBMKASVJN2OMIB2UG2EMQ3FY64JC%'";
 
 
-    //ƒvƒŠƒyƒA[ƒhƒXƒe[ƒgƒƒ“ƒg‚ðì‚é
+    //ãƒ—ãƒªãƒšã‚¢ãƒ¼ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã‚’ä½œã‚‹
     $stm = $pdo->prepare($sql);
-    //ƒvƒŠƒyƒA[ƒhƒXƒe[ƒgƒƒ“ƒg‚É’l‚ðƒoƒCƒ“ƒh‚·‚é
+    //ãƒ—ãƒªãƒšã‚¢ãƒ¼ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã«å€¤ã‚’ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹
     $stm->bindValue(':alexa_id',$alexa_id,PDO::PARAM_STR);
-    //SQL•¶‚ðŽÀs‚·‚é
+    //SQLæ–‡ã‚’å®Ÿè¡Œã™ã‚‹
     $stm->execute();
-    //Œ‹‰Ê‚ÌŽæ“¾i˜A‘z”z—ñ‚ÅŽó‚¯Žæ‚éj
+    //çµæžœã®å–å¾—ï¼ˆé€£æƒ³é…åˆ—ã§å—ã‘å–ã‚‹ï¼‰
     $result = $stm->fetch(PDO::FETCH_COLUMN);
     if(isset($result)){
         write($result);

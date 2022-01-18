@@ -10,7 +10,7 @@ $contents = json_decode($json, true);
 
 $alexa_id=$contents["name"];
 
-require 'dbconect.php';
+require 'dbconnect.php';
 try{
 
     //SQL文を作る（プレースホルダを使った式）

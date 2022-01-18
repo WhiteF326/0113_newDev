@@ -2,7 +2,7 @@
 <?php
 
 //MySQLデータベースに接続する
-require 'dbconect.php';
+require 'dbconnect.php';
 try{
     //SQL文を作る（プレースホルダを使った式）
     $sql = "SELECT name FROM family WHERE id = :id";

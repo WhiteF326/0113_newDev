@@ -5,7 +5,7 @@
 $user_id = $_SESSION['user_id'];
 $item_id =$_POST['item_id'];
 
-require 'dbconect.php';
+require 'dbconnect.php';
 try{
     //SQL文を作る（プレースホルダを使った式）
     $sql ="DELETE FROM user_item WHERE user_id = :user_id AND item_id = :item_id";

@@ -1,20 +1,20 @@
 <?php
-require "dbconect.php";
+require "dbconnect.php";
 
 function write($a){
     define("TESTFILE", "./TEST.TEXT");
     $fh = fopen(TESTFILE, "a");
     date_default_timezone_set('Asia/Tokyo');
     $timestamp=time();
-    $day=date("y/m/d/Héûiï™ ",$timestamp);
+    $day=date("y/m/d/HÊôÇiÂàÜ ",$timestamp);
     fwrite($fh,$day.$a."\n");
 }
 
-// POSTÇ≥ÇÍÇΩJSONï∂éöóÒÇéÊÇËèoÇµ
+// POST„Åï„Çå„ÅüJSONÊñáÂ≠óÂàó„ÇíÂèñ„ÇäÂá∫„Åó
 $json = file_get_contents("php://input");
 
-// JSONï∂éöóÒÇobjectÇ…ïœä∑
-//   ÅÀ ëÊ2à¯êîÇtrueÇ…ÇµÇ»Ç¢Ç∆ÉnÉ}ÇÈÇÃÇ≈íçà”
+// JSONÊñáÂ≠óÂàó„Çíobject„Å´Â§âÊèõ
+//   ‚áí Á¨¨2ÂºïÊï∞„Çítrue„Å´„Åó„Å™„ÅÑ„Å®„Éè„Éû„Çã„ÅÆ„ÅßÊ≥®ÊÑè
 $contents = json_decode($json, true);
 
 
@@ -26,23 +26,23 @@ write($id);
 //echo $id;
 
 try{
-    //SQLï∂ÇçÏÇÈÅiÉvÉåÅ[ÉXÉzÉãÉ_ÇégÇ¡ÇΩéÆÅj
+    //SQLÊñá„Çí‰Ωú„ÇãÔºà„Éó„É¨„Éº„Çπ„Éõ„É´„ÉÄ„Çí‰Ωø„Å£„ÅüÂºèÔºâ
     $sql = "SELECT count(*) FROM Alexa_coop WHERE pass_id = :id";
    
 
-    //ÉvÉäÉyÉAÅ[ÉhÉXÉeÅ[ÉgÉÅÉìÉgÇçÏÇÈ
+    //„Éó„É™„Éö„Ç¢„Éº„Éâ„Çπ„ÉÜ„Éº„Éà„É°„É≥„Éà„Çí‰Ωú„Çã
     $stm = $pdo->prepare($sql);
-    //ÉvÉäÉyÉAÅ[ÉhÉXÉeÅ[ÉgÉÅÉìÉgÇ…ílÇÉoÉCÉìÉhÇ∑ÇÈ
+    //„Éó„É™„Éö„Ç¢„Éº„Éâ„Çπ„ÉÜ„Éº„Éà„É°„É≥„Éà„Å´ÂÄ§„Çí„Éê„Ç§„É≥„Éâ„Åô„Çã
     $stm->bindValue(':id',(int)$id,PDO::PARAM_INT);
-    //SQLï∂Çé¿çsÇ∑ÇÈ
+    //SQLÊñá„ÇíÂÆüË°å„Åô„Çã
     $stm->execute();
-    //åãâ ÇÃéÊìæÅiòAëzîzóÒÇ≈éÛÇØéÊÇÈÅj
+    //ÁµêÊûú„ÅÆÂèñÂæóÔºàÈÄ£ÊÉ≥ÈÖçÂàó„ÅßÂèó„ÅëÂèñ„ÇãÔºâ
     $result = $stm->fetch(PDO::FETCH_COLUMN);
     // if(isset($result)){
     //     $a = "";
     //     foreach($result as $row){
            
-    //         $a.=$row["name"]."ÅA";
+    //         $a.=$row["name"]."„ÄÅ";
     //     }
     //     write($a);
     // }
