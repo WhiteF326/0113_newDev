@@ -141,7 +141,7 @@ else if(isset($_POST["entry_pass"])){
         <ul>
             <li><a href="index.php">ホーム</a></li>
             <li><a href="confrim.php?id=<?php echo $_SESSION['user_id'];?>">登録物一覧</a></li>
-            <li><a href="clock.php">時間登録</a></li>
+            <li><a href="time_top.php">時間登録</a></li>
             <li><a href="family_top.php">グループトップ</a></li>
             <li><a href="alexa_cooperation.php">Alexaと連携</a></li>
             <li><a href="maker.php">製作者情報</a></li>
@@ -163,7 +163,7 @@ else if(isset($_POST["entry_pass"])){
     <div class="col span-8">
 	<div class="breadcrumb">
 		<ul>
-        <li><a href="index.php">ホーム</a> > <a href="confrim.php?id=<?php echo $_SESSION['user_id'];?>">登録物一覧</a> > <a href="clock.php">時間登録</a> > グループトップ</li>
+        <li><a href="index.php">ホーム</a> > <a href="confrim.php?id=<?php echo $_SESSION['user_id'];?>">登録物一覧</a> > <a href="time_top.php">時間登録</a> > グループトップ</li>
 
 		</ul>
 		</div>
@@ -367,7 +367,7 @@ else if(isset($_POST["entry_pass"])){
  </div>
 	<div class="col span-4">
 		<a href="confrim.php?id=<?php echo $_SESSION['user_id'];?>"><img src="img/15.png" alt="バナー画像"></a>
-	    <a href="clock.php"><img src="img/14.png" alt="バナー画像"></a>
+	    <a href="time_top.php"><img src="img/14.png" alt="バナー画像"></a>
 	    <a href="family_top.php"><img src="img/16.png" alt="バナー画像"></a>
 	</div>
     </div>    

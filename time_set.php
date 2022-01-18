@@ -122,7 +122,7 @@ try{
                 }
             ?>
 
-            <br><a href='clock.php' title='時間登録ページへ'>戻る</a><br>
+            <br><a href='time_top.php' title='時間登録ページへ'>戻る</a><br>
 
             </div>
         </section>
