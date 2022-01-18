@@ -4,6 +4,7 @@ try {
     $sql = "SELECT Alexa_id 
     FROM user 
     WHERE id = :id";
+    
     $stm = $pdo->prepare($sql);
     $stm->bindValue(':id', $_SESSION['user_id'], PDO::PARAM_INT);
     $stm->execute();
@@ -20,6 +21,7 @@ try {
         $sql = "SELECT pass_id 
         FROM Alexa_coop 
         WHERE user_id = :user_id";
+
         $stm = $pdo->prepare($sql);
         $stm->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
         $stm->execute();
