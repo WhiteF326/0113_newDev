@@ -5,11 +5,9 @@
 require 'dbconnect.php';
 try {
     //グループメンバーが持ち物の確認をしていないときに通知するかの設定を更新する
-    $sql = "UPDATE comment 
-        SET alert = :alert 
-        WHERE family_id = :family_id 
-        AND from_id = :from_id 
-        AND to_id = :to_id";
+    $sql = "UPDATE comment SET alert = :alert
+    WHERE family_id = :family_id AND from_id = :from_id
+    AND to_id = :to_id";
 
     $stm = $pdo->prepare($sql);
     $stm->bindValue(':family_id', $_POST['family_id'], PDO::PARAM_INT);

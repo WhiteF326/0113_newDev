@@ -1,10 +1,9 @@
 <?php
 try {
     //ユーザーがAlexaと連携しているかどうか検索する
-    $sql = "SELECT Alexa_id 
-    FROM user 
+    $sql = "SELECT Alexa_id FROM user
     WHERE id = :id";
-    
+
     $stm = $pdo->prepare($sql);
     $stm->bindValue(':id', $_SESSION['user_id'], PDO::PARAM_INT);
     $stm->execute();
@@ -18,8 +17,7 @@ try {
 
         <?php
         //既に設定されているパスワードがないか検索する
-        $sql = "SELECT pass_id 
-        FROM Alexa_coop 
+        $sql = "SELECT pass_id FROM Alexa_coop
         WHERE user_id = :user_id";
 
         $stm = $pdo->prepare($sql);

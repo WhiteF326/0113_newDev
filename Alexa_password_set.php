@@ -4,8 +4,7 @@
 require 'dbconnect.php';
 try {
     //既に使用されているパスワードがないか検索する
-    $sql = "SELECT pass_id 
-    FROM Alexa_coop 
+    $sql = "SELECT pass_id FROM Alexa_coop
     WHERE pass_id = :pass_id";
 
     $stm = $pdo->prepare($sql);
@@ -18,7 +17,7 @@ try {
 <?php
     else :
         //Alexaで連携するパスワードを登録する
-        $sql = "INSERT INTO Alexa_coop(user_id,pass_id) 
+        $sql = "INSERT INTO Alexa_coop(user_id,pass_id)
         VALUES(:user_id,:pass_id)";
 
         $stm = $pdo->prepare($sql);
