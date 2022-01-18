@@ -49,7 +49,7 @@ try{
         <input type="submit" value="グループを退会" class="button1"><br>
         
         <hr>
-        <a href="f_top.php">グループトップに戻る</a><br>
+        <a href="family_top.php">グループトップに戻る</a><br>
         </div>
 
     </form>

@@ -146,6 +146,6 @@ echo "<hr>";
 
 ?>
 
-<a href="f_top.php">グループトップに戻る</a><br>
+<a href="family_top.php">グループトップに戻る</a><br>
 </body>
 </html>

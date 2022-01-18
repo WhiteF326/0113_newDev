@@ -52,9 +52,9 @@
         }
         //SQL文を実行する
         if($stm->execute()){
-            echo '<META http-equiv="Refresh" content="0;URL=f_top.php">';
+            echo '<META http-equiv="Refresh" content="0;URL=family_top.php">';
         }else{
-            echo '<META http-equiv="Refresh" content="3;URL=f_top.php">';
+            echo '<META http-equiv="Refresh" content="3;URL=family_top.php">';
         }
     }catch(Exception $e){
         echo "エラーが発生しました。";

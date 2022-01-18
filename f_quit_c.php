@@ -30,7 +30,7 @@ try{
 
     //SQL文を実行する
     if($stm->execute()){
-        echo '<META http-equiv="Refresh" content="3;URL=f_top.php"><p>グループから退会しました。<br>グループトップに戻ります。</p>';
+        echo '<META http-equiv="Refresh" content="3;URL=family_top.php"><p>グループから退会しました。<br>グループトップに戻ります。</p>';
     }
 
 }catch(Exception $e){
