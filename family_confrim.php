@@ -80,7 +80,7 @@
 				echo '<td>';
 				echo '<form action="family_registration.php" method="post"><input type="hidden" name="item_id" value="',$row['item_id'],'"><input type="submit" value="変更" class="button2"></form>';
 				echo '</td><td>';
-				echo '<form action="f_delete.php" method="post"><input type="hidden" name="item_id" value="',$row['item_id'],'"><input type="submit" value="削除" class="button2"></form>';
+				echo '<form action="family_delete_items.php" method="post"><input type="hidden" name="item_id" value="',$row['item_id'],'"><input type="submit" value="削除" class="button2"></form>';
 				echo '</td>';
 
 				if(preg_match('/ALL/u', $row["days"])){
