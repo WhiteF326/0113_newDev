@@ -14,7 +14,7 @@ try{
     $result = $stm->fetch(PDO::FETCH_COLUMN);
     if($result == true){
         echo "このコードは使えません。別のコードを設定してください。";
-        echo '<META http-equiv="Refresh" content="3;URL=alexa_r.php">';
+        echo '<META http-equiv="Refresh" content="3;URL=alexa_cooperation.php">';
     } else {
 
         //SQL文を作る（プレースホルダを使った式）
@@ -28,12 +28,12 @@ try{
 
         //SQL文を実行する
         if($stm->execute()){
-            echo '<META http-equiv="Refresh" content="0;URL=alexa_r.php">';
+            echo '<META http-equiv="Refresh" content="0;URL=alexa_cooperation.php">';
         }
     }
 
 }catch(Exception $e){
     echo "エラーが発生しました。";
-    echo '<META http-equiv="Refresh" content="3;URL=alexa_r.php">';
+    echo '<META http-equiv="Refresh" content="3;URL=alexa_cooperation.php">';
 }
 ?>
