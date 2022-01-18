@@ -278,7 +278,7 @@ else if(isset($_POST["entry_pass"])){
                                         <?php } ?>
 
                                     <?php
-                                    echo '<form action="f_con.php?id=',$row2['id'],'" method="post"><input type="hidden" name="f_id" value="',$row2['id'],'"><input type="submit" value="',$row2['name'],'さんの持ち物を登録"></form>';           
+                                    echo '<form action="family_confrim.php?id=',$row2['id'],'" method="post"><input type="hidden" name="f_id" value="',$row2['id'],'"><input type="submit" value="',$row2['name'],'さんの持ち物を登録"></form>';           
                                     echo "</td></tr>";
                                     }
                                 }
@@ -336,7 +336,7 @@ else if(isset($_POST["entry_pass"])){
                                         <?php } ?>
 
                                     <?php
-                                    echo '<form action="f_con.php?id=',$row2['id'],'" method="post"><input type="hidden" name="f_id" value="',$row2['id'],'"><input type="submit" value="',$row2['name'],'さんの持ち物を登録"></form>';           
+                                    echo '<form action="family_confrim.php?id=',$row2['id'],'" method="post"><input type="hidden" name="f_id" value="',$row2['id'],'"><input type="submit" value="',$row2['name'],'さんの持ち物を登録"></form>';           
                                     echo "</td></tr>";
                                 }
                             }

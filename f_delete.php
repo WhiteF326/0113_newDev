@@ -18,7 +18,7 @@ try{
     $stm->bindValue(':item_id',$item_id,PDO::PARAM_INT);
 
     if($stm->execute()){
-        echo '<META http-equiv="Refresh" content="0;URL=f_con.php?id=',$user_id,'">';
+        echo '<META http-equiv="Refresh" content="0;URL=family_confrim.php?id=',$user_id,'">';
     }
 
 }catch(Exception $e){
