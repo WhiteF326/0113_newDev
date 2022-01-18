@@ -78,7 +78,7 @@
 				echo "<tr>";
 				echo "<td>",$row['name'],"</td>";
 				echo '<td>';
-				echo '<form action="f_" method="post"><input type="hidden" name="item_id" value="',$row['item_id'],'"><input type="submit" value="変更" class="button2"></form>';
+				echo '<form action="family_registration.php" method="post"><input type="hidden" name="item_id" value="',$row['item_id'],'"><input type="submit" value="変更" class="button2"></form>';
 				echo '</td><td>';
 				echo '<form action="f_delete.php" method="post"><input type="hidden" name="item_id" value="',$row['item_id'],'"><input type="submit" value="削除" class="button2"></form>';
 				echo '</td>';
@@ -115,7 +115,7 @@
 ?>
 
 </ol>
-<h3><a href="f_">持ち物登録</a></h3>
+<h3><a href="family_registration_items.php">持ち物登録</a></h3>
 <hr>
 <?php
 try{

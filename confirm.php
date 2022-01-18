@@ -125,7 +125,7 @@
 						echo "<tr>";
 						echo "<td>",$row['name'],"</td>";
 						echo '<td>';
-						echo '<form action="" method="post"><input type="hidden" name="item_id" value="',$row['item_id'],'"><input type="submit" value="変更" class="con"></form>';
+						echo '<form action="registration_items.php" method="post"><input type="hidden" name="item_id" value="',$row['item_id'],'"><input type="submit" value="変更" class="con"></form>';
 						// echo '</td><td>';
 						echo '<form action="delete.php" method="post"><input type="hidden" name="item_id" value="',$row['item_id'],'"><input type="submit" value="削除" class="con"></form>';
 						echo '</td>';
@@ -161,7 +161,7 @@
 		?>
 <br>
 
-<a href="">持ち物登録</a><br>
+<a href="registration_items.php">持ち物登録</a><br>
 
 	</div>
 	<div class="col span-4">
