@@ -42,7 +42,7 @@ try{
 <body>
     <?php ?>
     <h2><span>グループ退会<br>グループ<?php echo $family_name ;?>から退会しますか？</span></h2>
-    <form action="family_exit_c.php" method="post">
+    <form action="family_exit_db.php" method="post">
 
         <div>
         <input type="hidden" name="family_id" value="<?php echo $_POST['family_id'];?>">
