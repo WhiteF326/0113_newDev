@@ -71,7 +71,7 @@
 
             <h2 class="underline">時間登録</h2>
             <?php
-            require 'dbconnectt.php';
+            require 'dbconnect.php';
 
             try {
               //SQL文を作る（プレースホルダを使った式）

@@ -147,14 +147,14 @@ try{
     </div>
     <div class="cp_iptxt">
     <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-    <label><input type="checkbox" name="days[]" value="ALL">毎日</label>
-    <label><input type="checkbox" name="days[]" value="sun">日</label>
-    <label><input type="checkbox" name="days[]" value="mon">月</label>
-    <label><input type="checkbox" name="days[]" value="tue">火</label>
-    <label><input type="checkbox" name="days[]" value="wed">水</label>
-    <label><input type="checkbox" name="days[]" value="thu">木</label>
-    <label><input type="checkbox" name="days[]" value="fri">金</label>
-    <label><input type="checkbox" name="days[]" value="sat">土</label>
+    <!-- <label><input type="checkbox" name="days[]" value="ALL">毎日</label> -->
+    <label><input type="checkbox" name="days[]" value="sun"><span>月</span></label>
+    <label><input type="checkbox" name="days[]" value="mon"><span>火</span></label>
+    <label><input type="checkbox" name="days[]" value="tue"><span>水</span></label>
+    <label><input type="checkbox" name="days[]" value="wed"><span>木</span></label>
+    <label><input type="checkbox" name="days[]" value="thu"><span>金</span></label>
+    <label><input type="checkbox" name="days[]" value="fri"><span>土</span></label>
+    <label><input type="checkbox" name="days[]" value="sat"><span>日</span></label>
 
     </div>
     <div class="cp_iptxt">
