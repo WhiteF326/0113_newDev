@@ -28,7 +28,8 @@ try {
                     <td><?= $row['name'] ?></td>
                     <td>
                         <form action="family_registration_items.php" method="post"><input type="hidden" name="item_id" value="<?= $row['item_id'] ?>"><input type="submit" value="変更" class="button2"></form>
-                    </td><td>
+                    </td>
+                    <td>
                         <form action="family_delete_items.php" method="post"><input type="hidden" name="item_id" value="<?= $row['item_id'] ?>"><input type="submit" value="削除" class="button2"></form>
                     </td>
 
