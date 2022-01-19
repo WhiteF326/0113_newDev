@@ -52,7 +52,7 @@ if($type == "follow"){
         $stm->bindValue(':user_id', $user_id, PDO::PARAM_STR);
         //SQL文を実行する
         if($stm->execute()){
-            sending_messages($accessToken, $replyToken, "text", "ユーザーを登録しました。以下のURLから忘れ物を登録できます。\nhttps://fukuiohr2.sakura.ne.jp/2021/wasurenai/confrim.php?id=$id");
+            sending_messages($accessToken, $replyToken, "text", "ユーザーを登録しました。以下のURLから忘れ物を登録できます。\nhttps://fukuiohr2.sakura.ne.jp/2021/wasurenai/confirm.php?id=$id");
             exit;
         }
         else{
@@ -62,7 +62,7 @@ if($type == "follow"){
     }
     else{
         //登録済みの場合
-        sending_messages($accessToken, $replyToken, "text", "以下のURLから忘れ物を登録できます。\nhttps://fukuiohr2.sakura.ne.jp/2021/wasurenai/confrim.php?id=$id");
+        sending_messages($accessToken, $replyToken, "text", "以下のURLから忘れ物を登録できます。\nhttps://fukuiohr2.sakura.ne.jp/2021/wasurenai/confirm.php?id=$id");
         exit;
     }
 }
@@ -140,7 +140,7 @@ else if($message_text == "登録"|| $message_text == "とうろく"){
         //結果を連想配列で取得
         $id = $stm->fetch(PDO::FETCH_COLUMN);
         if(!empty($id)){
-            sending_messages($accessToken, $replyToken, "text", "以下のURLから忘れ物を確認できます。\nhttps://fukuiohr2.sakura.ne.jp/2021/wasurenai/confrim.php?id=$id");
+            sending_messages($accessToken, $replyToken, "text", "以下のURLから忘れ物を確認できます。\nhttps://fukuiohr2.sakura.ne.jp/2021/wasurenai/confirm.php?id=$id");
             exit;
         }
         else{
@@ -249,12 +249,12 @@ else if($message_text == "天気解除" || $message_text == "てんきかいじ�
 }
 //ボタンのポストバックデータが送られてきたとき
 else if($type == "postback"){
-    if($postdata == "confrim_ok"){
+    if($postdata == "confirm_ok"){
         //MySQLデータベースに接続する
         require 'dbconnect.php';
         try{
             $sql = "SELECT DISTINCT a.id, a.name FROM user a, send_log b 
-                WHERE a.LINE_id = :id AND a.id = b.to_id AND b.confrim_check = false AND b.datetime >= :min_datetime AND b.datetime <= :now_datetime";
+                WHERE a.LINE_id = :id AND a.id = b.to_id AND b.confirm_check = false AND b.datetime >= :min_datetime AND b.datetime <= :now_datetime";
             //プリペアドステートメントを作る
             $stm = $pdo->prepare($sql);
             //プレースホルダに値をバインドする
@@ -270,7 +270,7 @@ else if($type == "postback"){
             }
 
             //ログを更新する
-            $sql = "UPDATE send_log SET confrim_check = true WHERE to_id = :id AND datetime >= :min_datetime AND datetime <= :now_datetime";
+            $sql = "UPDATE send_log SET confirm_check = true WHERE to_id = :id AND datetime >= :min_datetime AND datetime <= :now_datetime";
             //プリペアドステートメントを作る
             $stm = $pdo->prepare($sql);
             //プレースホルダに値をバインドする
@@ -307,7 +307,7 @@ else if($type == "postback"){
         require 'dbconnect.php';
         try{
             $sql = "SELECT DISTINCT a.id, a.name FROM user a, send_log b 
-                WHERE LINE_id = :id AND a.id = b.to_id AND b.confrim_check = false AND b.datetime >= :min_datetime AND b.datetime <= :now_datetime 
+                WHERE LINE_id = :id AND a.id = b.to_id AND b.confirm_check = false AND b.datetime >= :min_datetime AND b.datetime <= :now_datetime 
                 AND a.check_time >= :min_time AND a.check_time <= :now_time";
             //プリペアドステートメントを作る
             $stm = $pdo->prepare($sql);
@@ -326,7 +326,7 @@ else if($type == "postback"){
             }
 
             // ログを更新する
-            $sql = "UPDATE send_log SET confrim_check = true WHERE to_id = :id AND datetime >= :min_datetime AND datetime <= :now_datetime";
+            $sql = "UPDATE send_log SET confirm_check = true WHERE to_id = :id AND datetime >= :min_datetime AND datetime <= :now_datetime";
             //プリペアドステートメントを作る
             $stm = $pdo->prepare($sql);
             //プレースホルダに値をバインドする

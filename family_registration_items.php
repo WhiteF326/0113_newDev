@@ -178,7 +178,7 @@ try{
                 echo $value."<br>";
             }
         }
-        echo "<br><a href='family_confrim.php?id=",$user_id,"' title='トップページに戻ります'>戻る</a><br>";
+        echo "<br><a href='family_confirm.php?id=",$user_id,"' title='トップページに戻ります'>戻る</a><br>";
     ?>
     </div>
 </section>
