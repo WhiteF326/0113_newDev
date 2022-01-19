@@ -34,7 +34,7 @@
             <div id="navi">
               <ul>
                 <li><a href="index.php">ホーム</a></li>
-                <li><a href="confrim.php?id=<?php echo $_SESSION['user_id']; ?>">登録物一覧</a></li>
+                <li><a href="confirm.php?id=<?php echo $_SESSION['user_id']; ?>">登録物一覧</a></li>
                 <li><a href="time_top.php">時間登録</a></li>
                 <li><a href="family_top.php">グループトップ</a></li>
                 <li><a href="alexa_cooperation.php">Alexaと連携</a></li>
@@ -59,19 +59,19 @@
             <h2>各種説明</h2>
             <ul>
               <li>
-                <a href="confilm.php?id=<?php echo $_SESSION['user_id']; ?>">
+                <a href="confirm.php?id=<?php echo $_SESSION['user_id']; ?>">
                   <img src="img/15.png" alt="バナー画像">
                   　登録物一覧が表示されます
                 </a>
               </li>
               <li>
-                <a href="clock.php">
+                <a href="time_top.php">
                   <img src="img/14.png" alt="バナー画像">
                   　登録物の通知が来る時間を設定します
                 </a>
               </li>
               <li>
-                <a href="f_top.php">
+                <a href="family_top.php">
                   <img src="img/16.png" alt="バナー画像">
                   　グループ内のメンバーを表示します
                 </a>

@@ -141,7 +141,7 @@ if (isset($_POST['make_pass'])) {
             <div id="navi">
               <ul>
                 <li><a href="index.php">ホーム</a></li>
-                <li><a href="confrim.php?id=<?php echo $_SESSION['user_id']; ?>">登録物一覧</a></li>
+                <li><a href="confirm.php?id=<?php echo $_SESSION['user_id']; ?>">登録物一覧</a></li>
                 <li><a href="time_top.php">時間登録</a></li>
                 <li><a href="family_top.php">グループトップ</a></li>
                 <li><a href="alexa_cooperation.php">Alexaと連携</a></li>
@@ -165,7 +165,7 @@ if (isset($_POST['make_pass'])) {
           <div class="col span-8">
             <div class="breadcrumb">
               <ul>
-                <li><a href="index.php">ホーム</a> > <a href="confrim.php?id=<?php echo $_SESSION['user_id']; ?>">登録物一覧</a> > <a href="time_top.php">時間登録</a> > グループトップ</li>
+                <li><a href="index.php">ホーム</a> > <a href="confirm.php?id=<?php echo $_SESSION['user_id']; ?>">登録物一覧</a> > <a href="time_top.php">時間登録</a> > グループトップ</li>
 
               </ul>
             </div>
@@ -284,7 +284,7 @@ if (isset($_POST['make_pass'])) {
                           <?php } ?>
 
                         <?php
-                          echo '<form action="family_confrim.php?id=', $row2['id'], '" method="post"><input type="hidden" name="f_id" value="', $row2['id'], '"><input type="submit" value="', $row2['name'], 'さんの持ち物を登録"></form>';
+                          echo '<form action="family_confirm.php?id=', $row2['id'], '" method="post"><input type="hidden" name="f_id" value="', $row2['id'], '"><input type="submit" value="', $row2['name'], 'さんの持ち物を登録"></form>';
                           echo "</td></tr>";
                         }
                       }
@@ -340,7 +340,7 @@ if (isset($_POST['make_pass'])) {
                         <?php } ?>
 
                     <?php
-                        echo '<form action="family_confrim.php?id=', $row2['id'], '" method="post"><input type="hidden" name="f_id" value="', $row2['id'], '"><input type="submit" value="', $row2['name'], 'さんの持ち物を登録"></form>';
+                        echo '<form action="family_confirm.php?id=', $row2['id'], '" method="post"><input type="hidden" name="f_id" value="', $row2['id'], '"><input type="submit" value="', $row2['name'], 'さんの持ち物を登録"></form>';
                         echo "</td></tr>";
                       }
                     }
@@ -369,7 +369,7 @@ if (isset($_POST['make_pass'])) {
               </div>
               <div>
                 <button type="submit" name="send" class="button1">
-                  <a href="confrim.php?id=<?php echo $_SESSION['user_id'] ?>">登録物一覧に戻る</a>
+                  <a href="confirm.php?id=<?php echo $_SESSION['user_id'] ?>">登録物一覧に戻る</a>
                 </button>
               </div>
             <?php
@@ -381,7 +381,7 @@ if (isset($_POST['make_pass'])) {
 
           </div>
           <div class="col span-4">
-            <a href="confrim.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="img/15.png" alt="バナー画像"></a>
+            <a href="confirm.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="img/15.png" alt="バナー画像"></a>
             <a href="time_top.php"><img src="img/14.png" alt="バナー画像"></a>
             <a href="family_top.php"><img src="img/16.png" alt="バナー画像"></a>
           </div>
