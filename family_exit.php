@@ -1,8 +1,11 @@
 <?php session_start(); ?>
 <?php
 
-//MySQLデータベースに接続する
+//$_POST['family_id']が入っている
+
 require 'dbconnect.php';
+require 'search_family_name.php';
+/*
 try{
     //SQL文を作る（プレースホルダを使った式）
     $sql = "SELECT name FROM family WHERE id = :id";
@@ -23,7 +26,7 @@ try{
 }catch(Exception $e){
     $st = "error!";
 }
-
+*/
 ?>
 <!DOCTYPE html>
 <html>

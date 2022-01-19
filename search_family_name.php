@@ -1,17 +1,16 @@
 <?php
 try {
-    //グループに所属している人の名前を検索する
-    $sql = "SELECT name FROM user WHERE id = :id";
-    
+    //グループ名を検索する
+    $sql = "SELECT name FROM family WHERE id = :id";
+
     $stm = $pdo->prepare($sql);
-    $stm->bindValue(':id', $_SESSION['f_id'], PDO::PARAM_INT);
+    $stm->bindValue(':id', $_POST['family_id'], PDO::PARAM_INT);
     $stm->execute();
     $result = $stm->fetch(PDO::FETCH_COLUMN);
     if (empty($result)) {
-        $list = "あなたの登録物一覧";
     } else {
-        $list = $result . "さんの登録物一覧";
+        $family_name = "[" . $result . "]";
     }
 } catch (Exception $e) {
-    $list = "error!";
+    echo "エラーが発生思案した。";
 }
