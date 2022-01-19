@@ -78,7 +78,7 @@ if (isset($_REQUEST['id'])) {
                         //$listはsearch_user_name.phpで定義されている
                         ?>
 
-                        <h2 class="underline"><?php echo $list; ?></h2>
+                        <h2 class="underline"><?= $list; ?></h2>
 
                         <?php
                         require 'items_list.php';

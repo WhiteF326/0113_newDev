@@ -4,7 +4,7 @@ $week_jp = ["日", "月", "火", "水", "木", "金", "土"];
 date_default_timezone_set('Asia/Tokyo');
 
 try {
-    //ユーザーが登録している持ち物を検索する
+    //グループに所属しているユーザーが登録している持ち物を検索する
     $sql = "SELECT a.name, b.item_id, b.days, b.notice_datetime 
     FROM item a, user_item
     WHERE b.user_id = :id 
@@ -16,8 +16,9 @@ try {
     $result = $stm->fetchAll(PDO::FETCH_ASSOC);
     //リストで表示する
     if (isset($result)) : ?>
-        <table class="full-width">
+        <table align='center'>
             <th>持ち物</th>
+            <th></th>
             <th></th>
             <th>曜日</th>
             <th>日時</th>
@@ -26,8 +27,9 @@ try {
                 <tr>
                     <td><?= $row['name'] ?></td>
                     <td>
-                        <form action="registration_items.php" method="post"><input type="hidden" name="item_id" value="<?= $row['item_id'] ?>"><input type="submit" value="変更" class="con"></form>
-                        <form action="delete_items.php" method="post"><input type="hidden" name="item_id" value="<?= $row['item_id'] ?>"><input type="submit" value="削除" class="con"></form>
+                        <form action="family_registration_items.php" method="post"><input type="hidden" name="item_id" value="<?= $row['item_id'] ?>"><input type="submit" value="変更" class="button2"></form>
+                    </td><td>
+                        <form action="family_delete_items.php" method="post"><input type="hidden" name="item_id" value="<?= $row['item_id'] ?>"><input type="submit" value="削除" class="button2"></form>
                     </td>
 
                     <?php
