@@ -14,7 +14,6 @@ try {
     $stm = $pdo->prepare($sql);
     $stm->bindValue(':user_id', $user_id, PDO::PARAM_INT);
     $stm->bindValue(':item_id', $item_id, PDO::PARAM_INT);
-    // $stm->execute();
     if ($stm->execute()) {
         echo '<META http-equiv="Refresh" content="0;URL=confirm.php?id=', $user_id, '">';
     }

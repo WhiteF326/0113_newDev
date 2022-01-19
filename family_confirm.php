@@ -1,5 +1,11 @@
 <?php session_start();?>
 
+<?php
+if(isset($_POST["f_id"])){
+	$_SESSION['f_id'] = $_POST['f_id'];
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -18,11 +24,12 @@
 <body>
 	
 <?php
-	if(isset($_POST["f_id"])){
-		$_SESSION['f_id'] = $_POST['f_id'];
-	}
 	//MySQLデータベースに接続する
 	require 'dbconnect.php';
+	//search_user_name.phpとほぼ一緒
+	require 'search_family_name.php';
+
+	/*
 	try{
 		//SQL文を作る（プレースホルダを使った式）
 		$sql = "SELECT name FROM user WHERE id = :id";
@@ -42,15 +49,18 @@
 	}catch(Exception $e){
 		echo "エラーが発生しました。";
 	}
-	
+	*/
 ?>
+<h2><span><?=$list?></span></h2>
 <ol class = "sample">
 
 <?php
-
+	require 'family_items_list.php'
+/*
 	try{
 		//SQL文を作る（プレースホルダを使った式）
-		$sql = "SELECT a.name, b.item_id, b.days, b.notice_datetime FROM item a, user_item b
+		$sql = "SELECT a.name, b.item_id, b.days, b.notice_datetime 
+		FROM item a, user_item b
 		WHERE b.user_id = :id 
 		AND a.id = b.item_id";
 		//プリペアードステートメントを作る
@@ -88,7 +98,8 @@
 				}else{
 					$days = "";
 					for($i = 0 ; $i < count($week); $i++){
-						if(preg_match('/'.$week[$i].'/u', $row["days"])){//文字列が含まれるなら
+						//文字列が含まれるなら
+						if(preg_match('/'.$week[$i].'/u', $row["days"])){
 							$days .= $week_jp[$i];
 						}
 					}
@@ -111,13 +122,15 @@
 	}catch(Exception $e){
 		echo "エラーが発生しました。";
 	}
-    
+*/
 ?>
 
 </ol>
 <h3><a href="family_registration_items.php">持ち物登録</a></h3>
 <hr>
 <?php
+	require 'family_time_display.php';
+/*
 try{
 	//SQL文を作る（プレースホルダを使った式）
 	$sql ="SELECT notice_time, return_time, check_time FROM user WHERE id = :user_id";
@@ -139,13 +152,12 @@ try{
 	}
 
 }catch(Exception $e){
-    echo "エラーが発生しました
-    。";
+    echo "エラーが発生しました。";
 }
-echo "<hr>";
+*/
 
 ?>
-
+<hr>"
 <a href="family_top.php">グループトップに戻る</a><br>
 </body>
 </html>
