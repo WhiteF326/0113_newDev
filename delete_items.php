@@ -20,7 +20,7 @@ try{
     //SQL文を実行する
     $stm->execute();
     if($stm->execute()){
-        echo '<META http-equiv="Refresh" content="0;URL=confrim.php?id=',$user_id,'">';
+        echo '<META http-equiv="Refresh" content="0;URL=confirm.php?id=',$user_id,'">';
     }
 
 }catch(Exception $e){

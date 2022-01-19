@@ -1,12 +1,13 @@
 <?php session_start(); ?>
 
 <?php
+/*
     if(empty($_POST['comment'])){
         $comment = NULL;
     }else{
         $comment = $_POST["comment"];
     }
-
+*/
     require 'dbconnect.php';
     try{
         // $sql = "SELECT * FROM comment WHERE family_id = :family_id AND from_id = :from_id AND to_id = :to_id";
@@ -19,15 +20,15 @@
         $stm->bindValue(':family_id',$_POST['family_id'],PDO::PARAM_INT);
         $stm->bindValue(':from_id',$_POST['from_id'],PDO::PARAM_INT);
         $stm->bindValue(':to_id',$_POST['to_id'],PDO::PARAM_INT);
-        if(empty($comment)){
+        if(empty($_POST['comment'])){
             //コメントが登録されていなければ通知をオフにする
-            $stm->bindValue(':comment',$comment,PDO::PARAM_NULL);
-            $stm->bindValue(':comment2',$comment,PDO::PARAM_NULL);
+            $stm->bindValue(':comment',null,PDO::PARAM_NULL);
+            $stm->bindValue(':comment2',null,PDO::PARAM_NULL);
             $stm->bindValue(':alert',0,PDO::PARAM_INT);
         }else{
             //コメントが設定されていれば通知をオンにする
-            $stm->bindValue(':comment',$comment,PDO::PARAM_STR);
-            $stm->bindValue(':comment2',$comment,PDO::PARAM_STR);
+            $stm->bindValue(':comment',$_POST['comment'],PDO::PARAM_STR);
+            $stm->bindValue(':comment2',$_POST['comment'],PDO::PARAM_STR);
             $stm->bindValue(':alert',1,PDO::PARAM_INT);
         }
         /*
