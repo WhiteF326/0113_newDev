@@ -14,7 +14,7 @@ try {
     if ($result == true) : ?>
         <p>このコードは使えません。別のコードを設定してください。</p>
         <META http-equiv="Refresh" content="3;URL=alexa_cooperation.php">
-<?php
+        <?php
     else :
         //Alexaで連携するパスワードを登録する
         $sql = "INSERT INTO Alexa_coop(user_id,pass_id)
@@ -23,9 +23,9 @@ try {
         $stm = $pdo->prepare($sql);
         $stm->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
         $stm->bindValue(':pass_id', $_POST['pass_id'], PDO::PARAM_INT);
-        if ($stm->execute()) :?>
+        if ($stm->execute()) : ?>
             <META http-equiv="Refresh" content="0;URL=alexa_cooperation.php">
-        <?php
+<?php
         endif;
     endif;
 } catch (Exception $e) {
