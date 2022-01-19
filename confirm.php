@@ -61,6 +61,7 @@ if (isset($_REQUEST['id'])) {
       </div>
     </div>
   </header>
+
   <div class="mainimg">
     <img src="img/16.jpg" alt="サブページ画像">
   </div>
@@ -74,7 +75,11 @@ if (isset($_REQUEST['id'])) {
                 <li><a href="index.php">ホーム</a> > 登録物一覧</li>
               </ul>
             </div>
-
+            <div>
+              <button type="submit" name="send" class="button1">
+                <a href="registration_items.php">持ち物登録</a>
+              </button>
+            </div>
             <?php
             //MySQLデータベースに接続する
             require 'dbconnect.php';
@@ -124,19 +129,16 @@ if (isset($_REQUEST['id'])) {
               date_default_timezone_set('Asia/Tokyo');
 
               if (isset($result)) {
+                echo '<div class="table">';
                 echo '<table class="full-width">';
-                echo "<th>", "持ち物", "</th>";
-                echo "<th>", "", "</th>";
-                echo "<th>", "曜日", "</th>";
-                echo "<th>", "日時", "</th>";
                 foreach ($result as $row) {
                   echo "<tr>";
-                  echo "<td>", $row['name'], "</td>";
-                  echo '<td>';
-                  echo '<form action="registration_items.php" method="post"><input type="hidden" name="item_id" value="', $row['item_id'], '"><input type="submit" value="変更" class="con"></form>';
-                  // echo '</td><td>';
-                  echo '<form action="delete_items.php" method="post"><input type="hidden" name="item_id" value="', $row['item_id'], '"><input type="submit" value="削除" class="con"></form>';
-                  echo '</td>';
+                  echo "<td colspan='2'>", $row['name'], "</td>";
+                  echo '<td><form action="registration_items.php" method="post">
+                  <input type="hidden" name="item_id" value="', $row['item_id'], '">
+                  <input type="submit" value="変更" class="con">
+                  </form></td>';
+                  echo "</tr>";
 
                   if (preg_match('/ALL/u', $row["days"])) {
                     $days = "毎日";
@@ -148,16 +150,58 @@ if (isset($_REQUEST['id'])) {
                       }
                     }
                   }
+                  echo "<tr>";
+                  echo "<td colspan='2'>", $days, "</td>";
+                  echo '<td><form action="delete_items.php" method="post">
+                  <input type="hidden" name="item_id" value="', $row['item_id'], '">
+                  <input type="submit" value="削除" class="con">
+                  </form></td>';
+                  echo "</tr>";
 
-                  echo "<td>", $days, "</td>";
+                  echo "<tr>";
                   if (isset($row['notice_datetime'])) {
-                    echo "<td>", date("Y年m月d日 H時i分", strtotime($row['notice_datetime'])), "</td>";
+                    echo "<td colspan='3'>", date("Y年m月d日 H時i分", strtotime($row['notice_datetime'])), "</td>";
                   } else {
-                    echo "<td>", "</td>";
+                    echo "<td colspan='3'>指定なし", "</td>";
                   }
                   echo "</tr>";
                 }
                 echo "</table>";
+                echo '</div>';
+                // echo '<table class="full-width">';
+                // echo "<th>", "持ち物", "</th>";
+                // echo "<th>", "", "</th>";
+                // echo "<th>", "曜日", "</th>";
+                // echo "<th>", "日時", "</th>";
+                // foreach ($result as $row) {
+                //   echo "<tr>";
+                //   echo "<td>", $row['name'], "</td>";
+                //   echo '<td>';
+                //   echo '<form action="registration_items.php" method="post"><input type="hidden" name="item_id" value="', $row['item_id'], '"><input type="submit" value="変更" class="con"></form>';
+                //   // echo '</td><td>';
+                //   echo '<form action="delete_items.php" method="post"><input type="hidden" name="item_id" value="', $row['item_id'], '"><input type="submit" value="削除" class="con"></form>';
+                //   echo '</td>';
+
+                //   if (preg_match('/ALL/u', $row["days"])) {
+                //     $days = "毎日";
+                //   } else {
+                //     $days = "";
+                //     for ($i = 0; $i < count($week); $i++) {
+                //       if (preg_match('/' . $week[$i] . '/u', $row["days"])) { //文字列が含まれるなら
+                //         $days .= $week_jp[$i];
+                //       }
+                //     }
+                //   }
+
+                //   echo "<td>", $days, "</td>";
+                //   if (isset($row['notice_datetime'])) {
+                //     echo "<td>", date("Y年m月d日 H時i分", strtotime($row['notice_datetime'])), "</td>";
+                //   } else {
+                //     echo "<td>", "</td>";
+                //   }
+                //   echo "</tr>";
+                // }
+                // echo "</table>";
               } else {
                 echo "持ち物は登録されていません。";
               }
@@ -167,11 +211,6 @@ if (isset($_REQUEST['id'])) {
 
             ?>
 
-            <div>
-              <button type="submit" name="send" class="button1">
-                <a href="registration_items.php">持ち物登録</a>
-              </button>
-            </div>
           </div>
           <div class="col span-4">
             <a href="confirm.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="img/15.png" alt="バナー画像"></a>
@@ -201,7 +240,7 @@ if (isset($_REQUEST['id'])) {
       </div>
     </div>
   </footer>
-  
+
   <div class="copyright">
     <div class="container">
       <div class="row">
