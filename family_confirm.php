@@ -2,7 +2,7 @@
 
 <?php
 if (isset($_POST["f_id"])) {
-	$_SESSION['f_id'] = $_POST['f_id'];
+  $_SESSION['f_id'] = $_POST['f_id'];
 }
 ?>
 
@@ -10,27 +10,29 @@ if (isset($_POST["f_id"])) {
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>メンバーのページ</title>
-	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="table.css">
-	<link rel="icon" type="image/jpg" href="img/abcd2.png">
+  <title>メンバーのページ</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="table.css">
+  <link rel="icon" type="image/jpg" href="img/abcd2.png">
 </head>
-<header>
-	<h1><a href="index.php">None Leave<img src="img/abcd2.png" alt="バナー画像"></a></h1>
-</header>
+
+<?php
+//ヘッダ表示
+require 'header_form.php';
+?>
 
 <body>
 
-	<?php
-	//MySQLデータベースに接続する
-	require 'dbconnect.php';
-	//search_user_name.phpとほぼ一緒
-	require 'search_family_name.php';
+  <?php
+  //MySQLデータベースに接続する
+  require 'dbconnect.php';
+  //search_user_name.phpとほぼ一緒
+  require 'search_family_name.php';
 
-	/*
+  /*
 	try{
 		//SQL文を作る（プレースホルダを使った式）
 		$sql = "SELECT name FROM user WHERE id = :id";
@@ -51,13 +53,13 @@ if (isset($_POST["f_id"])) {
 		echo "エラーが発生しました。";
 	}
 	*/
-	?>
-	<h2><span><?= $list ?></span></h2>
-	<ol class="sample">
+  ?>
+  <h2><span><?= $list ?></span></h2>
+  <ol class="sample">
 
-		<?php
-		require 'family_items_list.php'
-		/*
+    <?php
+    require 'family_items_list.php'
+    /*
 	try{
 		//SQL文を作る（プレースホルダを使った式）
 		$sql = "SELECT a.name, b.item_id, b.days, b.notice_datetime 
@@ -124,14 +126,14 @@ if (isset($_POST["f_id"])) {
 		echo "エラーが発生しました。";
 	}
 */
-		?>
+    ?>
 
-	</ol>
-	<h3><a href="family_registration_items.php">持ち物登録</a></h3>
-	<hr>
-	<?php
-	require 'family_time_display.php';
-	/*
+  </ol>
+  <h3><a href="family_registration_items.php">持ち物登録</a></h3>
+  <hr>
+  <?php
+  require 'family_time_display.php';
+  /*
 try{
 	//SQL文を作る（プレースホルダを使った式）
 	$sql ="SELECT notice_time, return_time, check_time FROM user WHERE id = :user_id";
@@ -157,9 +159,9 @@ try{
 }
 */
 
-	?>
-	<hr>"
-	<a href="family_top.php">グループトップに戻る</a><br>
+  ?>
+  <hr>"
+  <a href="family_top.php">グループトップに戻る</a><br>
 </body>
 
 </html>
