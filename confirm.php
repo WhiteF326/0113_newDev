@@ -51,7 +51,7 @@ if (isset($_REQUEST['id'])) {
                 <li><a href="confirm.php?id=<?php echo $_SESSION['user_id']; ?>">登録物一覧</a></li>
                 <li><a href="time_top.php">時間登録</a></li>
                 <li><a href="family_top.php">グループトップ</a></li>
-                <li><a href="alexa_cooperation.php">Alexaと連携</a></li>
+                <li><a href="Alexa_cooperation.php">Alexaと連携</a></li>
                 <li><a href="maker.php">製作者情報</a></li>
 
               </ul>
@@ -75,11 +75,7 @@ if (isset($_REQUEST['id'])) {
                 <li><a href="index.php">ホーム</a> > 登録物一覧</li>
               </ul>
             </div>
-            <div>
-              <button type="submit" name="send" class="button1">
-                <a href="registration_items.php">持ち物登録</a>
-              </button>
-            </div>
+
             <?php
             //MySQLデータベースに接続する
             require 'dbconnect.php';
@@ -106,7 +102,11 @@ if (isset($_REQUEST['id'])) {
             ?>
 
             <h2 class="underline"><?php echo $st; ?></h2>
-
+            <div>
+              <button type="submit" name="send" class="button1">
+                <a href="registration_items.php">持ち物登録</a>
+              </button>
+            </div>
             <?php
             try {
               //SQL文を作る（プレースホルダを使った式）

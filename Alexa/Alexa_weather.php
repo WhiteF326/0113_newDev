@@ -18,14 +18,14 @@ $json = file_get_contents("php://input");
 $contents = json_decode($json, true);
 
 
-$alexa_id=$contents["name"];
-//$alexa_id="amzn1.ask.person.ALVQI5F6NHYHCSPHCGSGZIMK2WY2PRSR4G6NVYYEKF7DXKPJDBVWGSUGFN4IQLUJP3TJJ6ZZVBBTYYPFWRGBX7M7MJJJFIYJDPNJXS6A";
+$Alexa_id=$contents["name"];
+//$Alexa_id="amzn1.ask.person.ALVQI5F6NHYHCSPHCGSGZIMK2WY2PRSR4G6NVYYEKF7DXKPJDBVWGSUGFN4IQLUJP3TJJ6ZZVBBTYYPFWRGBX7M7MJJJFIYJDPNJXS6A";
 
 
-write($alexa_id);
+write($Alexa_id);
 
 
-// $weather = get_weather($alexa_id);
+// $weather = get_weather($Alexa_id);
 // if($weather != false){
 //     $text = "本日の天気\n取得した地域 : ". $weather[4]."\n";
 //     for($i = 1; $i < 5; $i++){
@@ -41,7 +41,7 @@ write($alexa_id);
 
 
 //天気が悪い場合、傘を持っていくことを提案する
-$weather = get_weather($alexa_id);
+$weather = get_weather($Alexa_id);
 if($weather != false){
     $text = "本日の天気\n取得した地域 : ". $weather[4]."\n";
     for($i = 1; $i < 5; $i++){
@@ -75,7 +75,7 @@ if($weather != false){
 
 
 <?php
-function get_weather($alexa_id){
+function get_weather($Alexa_id){
     require 'dbconnect.php';
     try{
         //登録されている現在位置を取得
@@ -83,7 +83,7 @@ function get_weather($alexa_id){
         //プリペアドステートメントを作る
         $stm = $pdo->prepare($sql);
         //プレースホルダに値をバインドする
-        $stm->bindValue(':id', $alexa_id, PDO::PARAM_STR);
+        $stm->bindValue(':id', $Alexa_id, PDO::PARAM_STR);
         //SQL文を実行する
         $stm->execute();
         //結果を連想配列で取得

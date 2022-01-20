@@ -18,21 +18,21 @@ $json = file_get_contents("php://input");
 $contents = json_decode($json, true);
 
 // デバッグ用にダンプ
-$alexa_id=$contents["name"];
+$Alexa_id=$contents["name"];
 //書き込み
-//$alexa_id="amzn1.ask.person.ALVQI5F6NHYHCSPHCGSGZIMK2WY2PRSR4G6NVYYEKF7DXKPJDBVWGSUGFN4IQLUJP3TJJ6ZZVBBTYYPFWRGBX7M7MJJJFIYJDPNJXS6A";
-$str="alexa=".$alexa_id;
+//$Alexa_id="amzn1.ask.person.ALVQI5F6NHYHCSPHCGSGZIMK2WY2PRSR4G6NVYYEKF7DXKPJDBVWGSUGFN4IQLUJP3TJJ6ZZVBBTYYPFWRGBX7M7MJJJFIYJDPNJXS6A";
+$str="Alexa=".$Alexa_id;
 write($str);
 
 
 try{
-    //$alexa_id=$_POST;
+    //$Alexa_id=$_POST;
     //SQL文を作る（プレースホルダを使った式）
     $sql='SELECT count(comment) FROM comment a,user b WHERE a.to_id=b.id AND b.Alexa_id=:Alexa_id';
     //プリペアードステートメントを作る
     $stm = $pdo->prepare($sql);
     //プリペアードステートメントに値をバインドする
-    $stm->bindValue(':Alexa_id',$alexa_id,PDO::PARAM_STR);
+    $stm->bindValue(':Alexa_id',$Alexa_id,PDO::PARAM_STR);
     //SQL文を実行する
     $stm->execute();
     //結果の取得（連想配列で受け取る）

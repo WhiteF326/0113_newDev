@@ -34,7 +34,7 @@
             <li><a href="confirm.php?id=<?php echo $_SESSION['user_id'];?>">登録物一覧</a></li>
             <li><a href="time_top.php">時間登録</a></li>
             <li><a href="family_top.php">グループトップ</a></li>
-            <li><a href="alexa_cooperation.php">Alexaと連携</a></li>
+            <li><a href="Alexa_cooperation.php">Alexaと連携</a></li>
             <li><a href="maker.php">製作者情報</a></li>
             </ul>
                 </div>
@@ -44,7 +44,7 @@
     </div>
     </header>
     <div class="mainimg">
-              <img src="img/alexa.jpg" alt="メイン画像">
+              <img src="img/Alexa.jpg" alt="メイン画像">
         </div>
     <main>
 <div class="container">
@@ -70,7 +70,7 @@
                 $result = $stm->fetch(PDO::FETCH_COLUMN);
                 if($result == NULL){ ?>
 
-                <form action="alexa_password_set.php" method="post" >
+                <form action="Alexa_password_set.php" method="post" >
                 <input type="number" name="pass_id" placeholder="6桁の数字" min="100000" max="999999" required>
                 <input type="submit" title="設定を完了します。" value="設定">
                 </form>
