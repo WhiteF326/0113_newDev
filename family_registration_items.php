@@ -172,17 +172,17 @@ if (!count($error)) {
         <?php
         if (empty($error)) : ?>
             <HR>
-            <h3>[<?= $contents ?>]をリストに登録しました。<br>
+            <h3>[<?= $contents; ?>]をリストに登録しました。<br>
                 <h3>
                 <?php
             else if (isset($_POST['send'])) : ?>
                     <HR>
                     <?php
                     foreach ($error as $value) : ?>
-                        <?= $value ?><br>
+                        <?= $value; ?><br>
                 <?php
                     endforeach;
                 endif ?>
-                <br><a href='family_confirm.php?id=<?= $user_id ?>' title='トップページに戻ります'>戻る</a><br>
+                <br><a href='family_confirm.php?id=<?= $user_id; ?>' title='トップページに戻ります'>戻る</a><br>
     </div>
 </section>

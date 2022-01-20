@@ -25,12 +25,12 @@ try {
             <?php
             foreach ($result as $row) : ?>
                 <tr>
-                    <td><?= $row['name'] ?></td>
+                    <td><?= $row['name']; ?></td>
                     <td>
-                        <form action="family_registration_items.php" method="post"><input type="hidden" name="item_id" value="<?= $row['item_id'] ?>"><input type="submit" value="変更" class="button2"></form>
+                        <form action="family_registration_items.php" method="post"><input type="hidden" name="item_id" value="<?= $row['item_id']; ?>"><input type="submit" value="変更" class="button2"></form>
                     </td>
                     <td>
-                        <form action="family_delete_items.php" method="post"><input type="hidden" name="item_id" value="<?= $row['item_id'] ?>"><input type="submit" value="削除" class="button2"></form>
+                        <form action="family_delete_items.php" method="post"><input type="hidden" name="item_id" value="<?= $row['item_id']; ?>"><input type="submit" value="削除" class="button2"></form>
                     </td>
 
                     <?php
@@ -47,10 +47,10 @@ try {
                     }
                     ?>
 
-                    <td><?= $days ?></td>
+                    <td><?= $days; ?></td>
                     <?php
                     if (isset($row['notice_datetime'])) : ?>
-                        <td><?= date("Y年m月d日 H時i分", strtotime($row['notice_datetime'])) ?></td>
+                        <td><?= date("Y年m月d日 H時i分", strtotime($row['notice_datetime'])); ?></td>
                     <?php
                     else : ?>
                         <td>,</td>

@@ -52,7 +52,7 @@ if (isset($_POST["f_id"])) {
 	}
 	*/
 	?>
-	<h2><span><?= $list ?></span></h2>
+	<h2><span><?= $list; ?></span></h2>
 	<ol class="sample">
 
 		<?php
