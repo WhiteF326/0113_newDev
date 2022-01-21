@@ -175,7 +175,7 @@ else if(isset($_POST["entry_pass"])){
         <h2 class="underline">グループトップ</h2>
             <?php 
             // require 'dbconnect.php';
-            require 'display_family.php';
+            require 'family_display.php';
             /*
             try{
                 //SQL文を作る（プレースホルダを使った式）
