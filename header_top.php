@@ -3,8 +3,10 @@
     <div class="row">
       <div class="col span-12">
         <div class="head">
-          <h1><a href="index.php">None Leave
-              <img src="img/abcd2.png" alt="バナー画像"></a>
+          <h1>
+            <a href="index.php">
+              <img src="img/icon.png" alt="バナー画像">
+            </a>
           </h1>
         </div>
       </div>
