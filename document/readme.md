@@ -12,7 +12,7 @@
 |グループ、および<br>送信者と受信者を指定して<br>コメントと既読フラグを更新|comment_send.php|$23$|`UPDATE comment SET comment = :comment , alert = :alert`<br>`WHERE family_id = :family_id`<br>`AND from_id = :from_id AND to_id = :to_id"`||
 |新規にコメントを登録|comment_send.php|$39$|`INSERT INTO comment(family_id, from_id, to_id, comment)`<br>`VALUES (:family_id, :from_id, :to_id, :comment)`||
 |ユーザの LINE ID から名前を取得|confirm.php|$76$|`SELECT name FROM user WHERE id = :id`||
-|ユーザ LINE ID と持ち物 ID から<br>持ち物の通知時刻を取得|confirm.php|$101$|`SELECT a.name, b.item_id, b.days, b.notice_datetime`<br>`FROM item a, user_item b`<br>`WHERE b.user_id = :id AND a.id = b.item_id`|`item` テーブルは `user_item` に統合|
+|ユーザ LINE ID ~~と持ち物 ID~~ から<br>持ち物の通知時刻を取得|confirm.php|$101$|`SELECT a.name, b.item_id, b.days, b.notice_datetime`<br>`FROM item a, user_item b`<br>`WHERE b.user_id = :id AND a.id = b.item_id`|`item` テーブルは `user_item` に統合|
 |通知時刻が現在時刻(前後 $2$ 分)<br>であるユーザをすべて取得|cron.php|$10$|`SELECT id, LINE_id FROM user`<br>`WHERE notice_time >= :min_time AND notice_time < :max_time`|`BETWEEN` 構文の方がよさそう<br>半開区間なので注意|
 |帰りの時間が現在時刻(前後 $2$ 分)<br>であるユーザをすべて取得|cron.php|$168$|`SELECT id, LINE_id FROM user`<br>`WHERE return_time >= :min_time AND return_time < :max_time`||
 |持ち物更新の時間が現在時刻(前後 $2$ 分)<br>であるユーザをすべて取得|cron.php|$244$|`SELECT id, LINE_id FROM user`<br>`WHERE check_time >= :min_time AND check_time < :max_time`||
@@ -29,6 +29,8 @@
 |通知時刻が現在時刻(前後 $2$ 分)かつ<br>通知を確認していないユーザをすべて取得|cron.php|$390$|`SELECT DISTINCT a.id, a.name, a.LINE_id FROM user a, user_item b, send_log c`<br>`WHERE a.id = b.user_id AND b.user_id = c.to_id AND`<br>`b.notice_datetime >= :min_time2 AND b.notice_datetime < :max_time2`<br>`AND c.datetime >= :min_time AND c.datetime < :max_time`<br>`AND c.confirm_check = false`||
 |受信者がメッセージを確認済みであるような<br>メッセージの送信者をすべて取得|cron.php|$429$|`SELECT a.id, a.name FROM user a, send_log b`<br>`WHERE b.confirm_check = true AND b.datetime >= :min_time`<br>`AND b.datetime < :max_time AND a.id = b.to_id`||
 ||cron.php|$442$|`SELECT a.LINE_id FROM user a, comment b`<br>`WHERE b.to_id = :id AND a.id = b.from_id AND b.LINE_check = false`<br>`AND b.to_id != b.from_id AND b.alert = true`||
+||cron.php|$456$|`UPDATE comment SET LINE_check = true WHERE to_id = :id`||
+||cron.php|$466$|`SELECT DISTINCT a.to_id, b.LINE_id FROM send_log a, user b`<br>`WHERE a.datetime >= :min_datetime AND a.datetime < :max_datetime`<br>`AND a.to_id = b.id`<br>`AND b.notice_time >= :min_time AND b.notice_time < :max_time`||
 |持ち物確認のログ保存|cron.php|$46, 204$|`INSERT INTO send_log(to_id, message, datetime)`<br>`VALUES (:id, :item, :datetime)`||
 |持ち物更新のログ保存|cron.php|$272, 347$|`INSERT INTO send_log(to_id, message, datetime)`<br>`VALUES (:id, :item, :datetime)`||
 

@@ -79,13 +79,17 @@ class DBController
     public const WEEKDAY_ALL = 127;
 
     /**
+     * @var int RANGE_MONTH_AGO 遡る期間の指定で 1 カ月を指定するための値です。
+     */
+    public const RANGE_DAY_AGO = 0;
+    /**
      * @var int RANGE_WEEK_AGO 遡る期間の指定で 1 週間を指定するための値です。
      */
-    public const RANGE_WEEK_AGO = 0;
+    public const RANGE_WEEK_AGO = 1;
     /**
      * @var int RANGE_MONTH_AGO 遡る期間の指定で 1 カ月を指定するための値です。
      */
-    public const RANGE_MONTH_AGO = 1;
+    public const RANGE_MONTH_AGO = 2;
 
     /**
      * コンストラクタです。
@@ -117,7 +121,7 @@ class DBController
      * 
      * ### might change in the further development
      * 
-     * - Rename field "alert" to "notification_check".
+     * - Field "alert" will be renamed to "notification_check".
      * 
      * ---
      * 
@@ -304,6 +308,7 @@ class DBController
      * 指定したユーザ ID からユーザ名を取得します。
      * 
      * 名前が登録されていない場合(Alexa のみの登録者)は null が返されます。
+     * 該当するユーザが存在しない場合は空文字列を返します。
      * 
      * ### 参照先テーブル
      * 
@@ -317,7 +322,6 @@ class DBController
      * 
      * @param int $user_id ユーザ ID を指定します。
      * @return string|null
-     * @throws WrappedDBError 指定したユーザ ID に対応するデータがない場合
      */
     function getUserNameFromId(int $user_id)
     {
@@ -332,8 +336,182 @@ class DBController
             $name = $result[0]["name"];
             return $name;
         } else {
-            throw new WrappedDBError($this->error_text[0]);
+            return "";
         }
+    }
+
+    /**
+     * 次に追加するユーザの ID を取得します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - user
+     * 
+     * ### 参照先フィールド
+     * 
+     * - user_id
+     * 
+     * ---
+     * 
+     * @return int
+     */
+    private function getNextUserId()
+    {
+        $sql = "SELECT max(user_id) + 1 as next_user_id FROM user";
+        return $this->pdo->query($sql)
+            ->fetchAll(PDO::FETCH_ASSOC)[0]["next_user_id"];
+    }
+
+    /**
+     * 指定した LINE ID でユーザを登録します。
+     * 
+     * ### 返り値
+     * 
+     * ```
+     * {
+     *   "succeed" => (bool),
+     *   "ascribed_user_id" => (int),
+     * }
+     * ```
+     * 
+     * - "succeed" はユーザ登録が成功したか否かを示す bool 値です。
+     * - "ascribed_user_id" はユーザ ID として割り当てられた値です。
+     * ユーザ登録に失敗した場合は、"ascribed_user_id" をもつユーザは実際には存在しないことに注意してください。
+     * 
+     * ### 追加先テーブル
+     * 
+     * - user
+     * 
+     * ### 引数により値を指定するフィールド
+     * 
+     * - LINE_id
+     * 
+     * ### 内部で計算するフィールド
+     * 
+     * - user_id
+     * 
+     * ### デフォルト値を用いるフィールド
+     * 
+     * - name
+     * - Alexa_id
+     * - notification_time
+     * - homecoming_time
+     * - update_time
+     * - latitude
+     * - longitude
+     * - password
+     * 
+     * ---
+     * 
+     * @param string $user_id LINE ID を指定します。
+     * 
+     * @return array
+     */
+    function registerUser(string $user_id)
+    {
+        $next_user_id = $this->getNextUserId();
+        $sql = "INSERT INTO user(user_id, LINE_id) VALUES (:user_id, :LINE_id)";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":user_id", $next_user_id, PDO::PARAM_INT);
+        $stm->bindValue(":LINE_id", $user_id, PDO::PARAM_STR);
+
+        try {
+            $succeed = $stm->execute();
+            return array(
+                "succeed" => $succeed,
+                "ascribed_user_id" => $next_user_id,
+            );
+        } catch (Exception $e) {
+            return array(
+                "succeed" => false,
+                "ascribed_user_id" => null,
+            );
+        }
+    }
+
+    /**
+     * ユーザ ID を指定して、当該ユーザの一連の退会処理を行います。
+     * 
+     * **ユーザ情報が完全に削除されます。**
+     * 
+     * 返り値として退会処理が成功したかどうかを返します。
+     * 
+     * ---
+     * @param string $user_id 退会するユーザの LINE ID を指定します。
+     * @return bool
+     */
+    function withdrawal(string $LINE_id)
+    {
+        try {
+            // start transaction for protecting the integrity during a withdrawal processes.
+            $this->pdo->beginTransaction();
+
+            // 1. get user_id from user table
+            try {
+                $user_id = $this->getUserIdFromLINEid($LINE_id);
+            } catch (WrappedDBError $e) {
+                // no matches. throw Exception and send failed signal.
+                throw new Exception();
+            }
+
+            // matched. continue
+
+            // 2. remove from user_item
+            $this->pdo->query(
+                "DELETE FROM user_item WHERE user_id = $user_id"
+            );
+            // 3. remove from location
+            $this->pdo->query(
+                "DELETE FROM location WHERE id = $user_id"
+            );
+            // 4. remove from send_log
+            $this->pdo->query(
+                "DELETE FROM send_log WHERE to_id = $user_id"
+            );
+            // 5. remove from comment
+            $this->pdo->query(
+                "DELETE FROM comment
+                    WHERE from_id = $user_id OR to_id = $user_id"
+            );
+            // 6. remove from family_user
+            $this->pdo->query(
+                "DELETE FROM family_user WHERE user_id = $user_id"
+            );
+            // 7. remove from user
+            $this->pdo->query(
+                "DELETE FROM user WHERE user_id = $user_id"
+            );
+
+            // end transaction.
+            $this->pdo->commit();
+            // transaction succeed. return succeed signal (boolean true)
+            return true;
+        } catch (Exception $e) {
+            // transaction failed. rollback and return failed signal (boolean false)
+            $this->pdo->rollBack();
+            return false;
+        }
+    }
+
+    /**
+     * 指定したユーザ ID の位置情報を削除します。
+     * 
+     * ---
+     * 
+     * @param string LINE_id LINE ID を指定します。
+     */
+    function eraseLocationData(string $LINE_id)
+    {
+        try {
+            $user_id = $this->getUserIdFromLINEid($LINE_id);
+        } catch (WrappedDBError $e) {
+            // no matches. throw Exception and send failed signal.
+            throw new Exception();
+        }
+
+        $this->pdo->query(
+            "DELETE FROM location WHERE id = $user_id"
+        );
     }
 
     /**
@@ -553,14 +731,27 @@ class DBController
      * 
      * ---
      * 
+     * ### might change in the further development
+     * 
+     * - Field "alert" will be renamed to "notification_check".
+     * 
+     * ---
+     * 
      * @param int $to_id 受信者ユーザ ID を指定します。
      * @return array
      */
-    function getReceivingMessage(int $to_id)
+    function getReceivingMessage(int $to_id, bool $alerted)
     {
-        $sql = "SELECT a.name, b.comment FROM user a, comment b
-            WHERE b.to_id = :to_id AND b.from_id = a.user_id
-            AND b.comment IS NOT NULL";
+        if ($alerted) {
+            $sql = "SELECT user.user_id, user.name, comment.comment
+                FROM user, comment
+                WHERE comment.to_id = :to_id AND comment.from_id = user.user_id
+                AND comment.alert = true";
+        } else {
+            $sql = "SELECT a.name, b.comment FROM user a, comment b
+                WHERE b.to_id = :to_id AND b.from_id = a.user_id
+                AND b.comment IS NOT NULL";
+        }
         $stm = $this->pdo->prepare($sql);
         $stm->bindValue(":to_id", $to_id, PDO::PARAM_INT);
 
@@ -570,7 +761,7 @@ class DBController
     }
 
     /**
-     * 指定した受信者 ID のメッセージ確認状態を `false` にします。
+     * 指定した受信者 ID のメッセージ確認状態を `false` に変更します。
      * 
      * ### 変更先テーブル
      * 
@@ -584,12 +775,41 @@ class DBController
      * 
      * @param int $to_id 受信者ユーザ ID を指定します。
      * @return void
+     * 
+     * @deprecated 1.0.0 use setReadStatus() instead.
      */
     function markAsUnread(int $to_id)
     {
         $sql = "UPDATE comment SET LINE_check = false WHERE to_id = :to_id";
         $stm = $this->pdo->prepare($sql);
         $stm->bindValue(":to_id", $to_id, PDO::PARAM_INT);
+
+        $stm->execute();
+    }
+
+    /**
+     * 指定した受信者 ID のメッセージ確認状態を変更します。
+     * 
+     * ### 変更先テーブル
+     * 
+     * - comment
+     * 
+     * ### 変更先フィールド
+     * 
+     * - LINE_check
+     * 
+     * ---
+     * 
+     * @param int $to_id 受信者ユーザ ID を指定します。
+     * @param bool $status 変更先の確認状態を指定します。
+     * @return void
+     */
+    function setReadStatus(int $to_id, bool $status)
+    {
+        $sql = "UPDATE comment SET LINE_check = :status WHERE to_id = :to_id";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":to_id", $to_id, PDO::PARAM_INT);
+        $stm->bindValue(":status", $status, PDO::PARAM_BOOL);
 
         $stm->execute();
     }
@@ -618,9 +838,13 @@ class DBController
     {
         // 1 week ago = 604800 seconds ago, and shift 60 seconds after
         if ($range == 0) {
+            // a day ago
+            $min_time = date("Y-m-d 00:01:00", strtotime("-1 day", $time));
+        } else if ($range == 1) {
             // a week ago
             $min_time = date("Y-m-d 00:01:00", strtotime("-1 week", $time));
-        } else {
+        } else if ($range == 2) {
+            // a month ago
             $min_time = date("Y-m-d 00:01:00", strtotime("-1 month", $time));
         }
         $max_time = date("Y-m-d H:i:s", $time + 60);
@@ -697,7 +921,253 @@ class DBController
 
         $stm = $this->pdo->prepare($sql);
         $stm->execute();
+
         return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * 受信者を指定して、送信済みのメッセージについて送信者を取得します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - user
+     * - comment
+     * 
+     * ### 参照先フィールド
+     * 
+     * - user.user_id
+     * 
+     * - comment.to_id
+     * - comment.from_id
+     * - comment.alert
+     * 
+     * ---
+     * 
+     * ### might change in the further development
+     * 
+     * - Field "alert" will be renamed to "notification_check".
+     * 
+     * ---
+     * 
+     * @param int $to_id 受信者ユーザ ID を指定します。
+     * @return array
+     */
+    function getMessageSender(int $to_id)
+    {
+        $sql = "SELECT user.LINE_id FROM user, comment
+            WHERE comment.to_id = :to_id AND comment.from_id = user.user_id
+            AND comment.from_id != comment.to_id AND comment.alert = true";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":to_id", $to_id, PDO::PARAM_INT);
+        $stm->execute();
+
+        return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * 時刻を指定して、通知時刻が現在時刻であるユーザの情報を取得します。
+     * 
+     * 1 回限りの時刻指定通知に対して使用することを想定しています。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - user
+     * - user_item
+     * - item
+     * 
+     * ### 参照先フィールド
+     * 
+     * - user.user_id
+     * 
+     * - user_item.user_id
+     * - user_item.item_id
+     * - user_item.notice_datetime
+     * 
+     * - item.id
+     * 
+     * ### might change in the further development
+     * 
+     * - Table "item" will be integrated into "user_item".
+     * 
+     * ---
+     * 
+     * @param int $time 対象時刻を設定します。
+     * @return array
+     */
+    function getItemFromTime(int $time)
+    {
+        // before 1m30s from specified time
+        $min_time = date("Y-m-d H:i:s", $time - 90);
+        // after 30s from specified time
+        $max_time = date("Y-m-d H:i:s", $time + 30);
+
+        $sql = "SELECT a.user_id, a.LINE_ID, c.name
+            FROM user a, user_item b, item c
+            WHERE a.user_id = b.user_id AND c.id = b.item_id
+            AND b.notice_datetime BETWEEN '$min_time' AND '$max_time'";
+
+        $stm = $this->pdo->prepare($sql);
+        $stm->execute();
+
+        return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * 指定時刻から前 30 分の間に送信された確認済みのメッセージについて、送信者を取得します。
+     * 
+     * 厳密には、実行時刻の 30 分 10 秒前から 10 秒前までに含まれるかを判定しています。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - user
+     * - send_log
+     * 
+     * ### 参照先フィールド
+     * 
+     * - user.user_id
+     * - user.name
+     * 
+     * - send_log.date_time
+     * - send_log.to_id
+     * - send_log.confirm_check
+     * 
+     * ---
+     * 
+     * @param int $time 対象時刻を指定します。
+     * @return array
+     */
+    function getCheckedMessageSender(int $time)
+    {
+        // before 1m30s from specified time
+        $min_time = date("Y-m-d H:i:s", $time - 1810);
+        // after 30s from specified time
+        $max_time = date("Y-m-d H:i:s", $time - 10);
+
+        $sql = "SELECT a.user_id, a.name FROM user a, send_log b
+            WHERE b.comfirm_check = true
+            AND b.date_time BETWEEN '$min_time' AND '$max_time'
+            AND a.user_id = b.to_id";
+
+        $stm = $this->pdo->prepare($sql);
+        $stm->execute();
+
+        return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * 送信者 ID を指定し、通知済みかつ未確認のメッセージについて、送信元の LINE ID を取得します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - user
+     * - comment
+     * 
+     * ### 参照先フィールド
+     * 
+     * - user.user_id
+     * 
+     * - comment.to_id
+     * - comment.from_id
+     * - comment.LINE_check
+     * - comment.alert
+     * 
+     * ---
+     * 
+     * ### might change in the further development
+     * 
+     * - Field "alert" will be renamed to "notification_check".
+     * 
+     * ---
+     * 
+     * @param int $to_id 送信者 ID を指定します。
+     * @return array
+     */
+    function getMessageUnreadUser(int $to_id)
+    {
+        $sql = "SELECT a.LINE_id from user a, comment b
+            WHERE b.to_id = :to_id AND a.user_id = b.from_id
+            AND b.to_id != b.from_id 
+            AND b.LINE_check = false AND b.alert = true";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":to_id", $to_id, PDO::PARAM_INT);
+        $stm->execute();
+
+        return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * 日時を指定して、その 1 日前に通知されたユーザをすべて取得します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - user
+     * - send_log
+     * 
+     * ### 参照先フィールド
+     * 
+     * - user.LINE_id
+     * - user.user_id
+     * 
+     * - send_log.to_id
+     * - send_log.datetime
+     * - send_log.notice_time
+     * 
+     * ---
+     * 
+     * @param int $time 対象時刻を指定します。
+     */
+    function getYesterdayNotified(int $time)
+    {
+        // before 1m30s from specified time
+        $min_log_time = date("Y-m-d 00:00:00", $time - 86460);
+        // after 30s from specified time
+        $max_log_time = date("Y-m-d 00:00:00", $time + 60);
+
+        // before 1m30s from specified time
+        $min_time = date("Y-m-d H:i:s", $time - 1810);
+        // after 30s from specified time
+        $max_time = date("Y-m-d H:i:s", $time - 10);
+
+        $sql = "SELECT DISTINCT a.to_id, b.LINE_id FROM send_log a, user b
+            WHERE a.datetime BETWEEN '$min_log_time' AND '$max_log_time'
+            AND a.to_id = b.user_id
+            AND b.notice_time BETWEEN '$min_time' AND '$max_time'";
+        $stm = $this->pdo->prepare($sql);
+        $stm->execute();
+
+        return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * 持ち物の登録を解除します。
+     * 
+     * ### 削除先テーブル
+     * 
+     * - user_item
+     * 
+     * ---
+     * 
+     * @param int $user_id 削除対象の持ち物を登録しているユーザ ID を指定します。
+     * @param int $item_id 削除対象の持ち物 ID を指定します。
+     * @return void
+     */
+    function deleteItem(int $user_id, int $item_id)
+    {
+        $sql = "DELETE FROM user_item
+            WHERE user_id = :user_id AND item_id = :item_id";
+
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+        $stm->bindValue(":item_id", $item_id, PDO::PARAM_INT);
+
+        $stm->execute();
+
+        return;
+    }
+
+    function getUnreadValidMessage(string $LINE_id, int $time)
+    {
+        //
     }
 
     /**
@@ -733,5 +1203,39 @@ class DBController
         $stm->execute();
 
         return;
+    }
+
+    /**
+     * LINE ID からユーザ ID を取得します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - user
+     * 
+     * ### 参照先フィールド
+     * 
+     * - user_id
+     * - LINE_id
+     * 
+     * ---
+     * 
+     * @param string $LINE_id LINE ID を指定します。
+     * @throws WrappedDBError 指定された LINE ID をもつユーザが存在しない場合
+     */
+    private function getUserIdFromLINEid(string $LINE_id)
+    {
+        $user_id = $this->pdo->query(
+            "SELECT user_id from user WHERE LINE_id = '$LINE_id'"
+        )->fetchAll(PDO::FETCH_ASSOC);
+
+        if (count($user_id)) {
+            // matched. continue
+            $user_id = $user_id[0]["user_id"];
+        } else {
+            // no matches. throw Exception and send failed signal.
+            throw new WrappedDBError($this->error_text[0]);
+        }
+
+        return $user_id;
     }
 };

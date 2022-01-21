@@ -31,7 +31,10 @@ $dbController = new DBController();
 // var_dump($dbController->getReceivingMessage(8));
 // $dbController->markAsUnread(8);
 // var_dump($dbController->countUnreadChecks(1, strtotime("2021-11-01 08:00:00"), DBController::RANGE_MONTH_AGO));
-var_dump($dbController->getUnreadUser(strtotime("2021-11-03 08:05:00"), DBController::GET_USER_NOTIFY_TIME));
+// var_dump($dbController->getUnreadUser(strtotime("2021-11-03 08:05:00"), DBController::GET_USER_NOTIFY_TIME));
+// var_dump($dbController->getItemFromTime(strtotime("2021-11-03 13:01:00")));
+// var_dump($dbController->registerUser("testestestest"));
+// var_dump($dbController->withdrawal("testestestest"));
 ?>
     </pre>
 </body>
