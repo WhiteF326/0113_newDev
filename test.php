@@ -35,6 +35,7 @@ $dbController = new DBController();
 // var_dump($dbController->getItemFromTime(strtotime("2021-11-03 13:01:00")));
 // var_dump($dbController->registerUser("testestestest"));
 // var_dump($dbController->withdrawal("testestestest"));
+// echo strtolower(date("D"));
 ?>
     </pre>
 </body>

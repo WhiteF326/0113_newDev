@@ -44,6 +44,10 @@ class DBController
      * @var int GET_USER_CHECK_TIME 持ち物更新時刻を取得する為の mode 指定値です。
      */
     public const GET_USER_CHECK_TIME = 2;
+    /**
+     * @var int FOR_LINEBOT
+     */
+    public const FOR_LINEBOT = 3;
 
     /**
      * @var int WEEKDAY_SUNDAY 曜日指定で日曜日を指定する為の値です。
@@ -341,6 +345,24 @@ class DBController
     }
 
     /**
+     * 指定した LINE ID からユーザ名を取得します。
+     * 
+     * ### 注意
+     * 
+     * `getUserIdFromLINEId` および `getUserNameFromId` により実装されています。
+     * 
+     * ---
+     * 
+     * @param string $LINE_id LINE ID を指定します。
+     * @return string|null
+     */
+    function getUserNameFromLINEId(string $LINE_id)
+    {
+        $user_id = $this->getUserIdFromLINEId($LINE_id);
+        return $this->getUserNameFromId($user_id);
+    }
+
+    /**
      * 次に追加するユーザの ID を取得します。
      * 
      * ### 参照先テーブル
@@ -448,7 +470,7 @@ class DBController
 
             // 1. get user_id from user table
             try {
-                $user_id = $this->getUserIdFromLINEid($LINE_id);
+                $user_id = $this->getUserIdFromLINEId($LINE_id);
             } catch (WrappedDBError $e) {
                 // no matches. throw Exception and send failed signal.
                 throw new Exception();
@@ -494,7 +516,74 @@ class DBController
     }
 
     /**
+     * LINE ID を指定して、登録されている位置情報を取得します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - location
+     * 
+     * ### 参照先フィールド
+     * 
+     * - lat
+     * - lon
+     * - id
+     * 
+     * ---
+     * 
+     * @param $string LINE_id LINE ID を指定します。
+     * @param array
+     */
+    function getLocationData(string $LINE_id)
+    {
+        $user_id = $this->getUserIdFromLINEId($LINE_id);
+        $sql = "SELECT lat, lon FROM location
+            WHERE id = :user_id";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+
+        $stm->execute();
+
+        return $stm->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * 位置情報を追加します。
+     * 
+     * ### 追加先テーブル
+     * 
+     * - location
+     * 
+     * ---
+     * 
+     * @param string $LINE_id LINE ID を指定します。
+     * @param string $latitude
+     * @param string $longitude
+     * @return bool 追加処理が成功したかどうかを返します。
+     */
+    function addLocationData(
+        string $LINE_id,
+        string $latitude,
+        string $longitude
+    ) {
+        $sql = "INSERT INTO location(id, lat, lon)
+            VALUES (:user_id, :latitude, :longitude)
+            ON DUPLICATE KEY UPDATE lat = :latitude, lon = :longitude";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":user_id", $this->getUserIdFromLINEId($LINE_id));
+        $stm->bindValue(":latitude", $latitude);
+        $stm->bindValue(":longitude", $longitude);
+
+        return $stm->execute();
+    }
+
+    /**
      * 指定したユーザ ID の位置情報を削除します。
+     * 
+     * ---
+     * 
+     * ### 削除先テーブル
+     * 
+     * - location
      * 
      * ---
      * 
@@ -503,7 +592,7 @@ class DBController
     function eraseLocationData(string $LINE_id)
     {
         try {
-            $user_id = $this->getUserIdFromLINEid($LINE_id);
+            $user_id = $this->getUserIdFromLINEId($LINE_id);
         } catch (WrappedDBError $e) {
             // no matches. throw Exception and send failed signal.
             throw new Exception();
@@ -863,10 +952,16 @@ class DBController
     /**
      * 時刻を指定して、確認されていない通知を取得します。
      * 
+     * ### $mode = GET_USER_(NOTICE, RETURN, CHECK)_TIME
+     * 
      * 厳密には、5 分前 ±2 分 に送信されており、未確認であるような通知の送信ログを取得します。
      * また、±2 分 の判定は通知時刻が実行時刻の 1 分 30 秒前から 30 秒後までに含まれるかを判定しています。
      * 
      * $mode は DBController::GET_USER_******_TIME を用いて指定してください。
+     * 
+     * ### $mode = FOR_LINEBOT
+     * 
+     * 指定時刻から前 30 分以内のみに対して実行されます。
      * 
      * ### 参照先テーブル
      * 
@@ -885,44 +980,56 @@ class DBController
      * 
      * ---
      * 
-     * @param int $time 対象時刻を指定します。
+     * @param int? $time 対象時刻を指定します。省略すると現在時刻になります。
      * @param int $mode 判定対象の通知時間を DBController::GET_USER_******_TIME を用いて指定します。
      * @return array
      */
-    function getUnreadUser(int $time, int $mode)
+    function getUnreadUser(?int $time = null, int $mode)
     {
-        switch ($mode) {
-            case DBController::GET_USER_NOTIFY_TIME: {
-                    $key_name = "notice_time";
-                    break;
-                }
-
-            case DBController::GET_USER_RETURN_TIME: {
-                    $key_name = "return_time";
-                    break;
-                }
-
-            case DBController::GET_USER_CHECK_TIME: {
-                    $key_name = "check_time";
-                    break;
-                }
+        if (is_null($time)) {
+            $time = time();
         }
+        switch ($mode) {
+            case DBController::GET_USER_NOTIFY_TIME:
+                $key_name = "notice_time";
 
-        // before 1m30s from specified time, and more before 5m
-        $min_time = date("Y-m-d H:i:s", $time - 90 - 300);
-        // after 30s from specified time, and before 5m from it
-        $max_time = date("Y-m-d H:i:s", $time + 30 - 300);
+            case DBController::GET_USER_RETURN_TIME:
+                $key_name = "return_time";
 
-        $sql = "SELECT DISTINCT a.user_id, a.name, a.LINE_id
-            FROM user a, send_log b
-            WHERE a.$key_name BETWEEN '$min_time' AND '$max_time'
-            AND b.datetime BETWEEN '$min_time' AND '$max_time'
-            AND b.confirm_check = false AND a.user_id = b.to_id";
+            case DBController::GET_USER_CHECK_TIME:
+                $key_name = "check_time";
 
-        $stm = $this->pdo->prepare($sql);
-        $stm->execute();
+                // before 1m30s from specified time, and more before 5m
+                $min_time = date("Y-m-d H:i:s", $time - 90 - 300);
+                // after 30s from specified time, and before 5m from it
+                $max_time = date("Y-m-d H:i:s", $time + 30 - 300);
 
-        return $stm->fetchAll(PDO::FETCH_ASSOC);
+                $sql = "SELECT DISTINCT a.user_id, a.name, a.LINE_id
+                    FROM user a, send_log b
+                    WHERE a.$key_name BETWEEN '$min_time' AND '$max_time'
+                    AND b.datetime BETWEEN '$min_time' AND '$max_time'
+                    AND b.confirm_check = false AND a.user_id = b.to_id";
+
+                $stm = $this->pdo->prepare($sql);
+                $stm->execute();
+
+                return $stm->fetchAll(PDO::FETCH_ASSOC);
+
+                break;
+
+            case DBController::FOR_LINEBOT:
+                // before 1m30s from specified time, and more before 5m
+                $min_time = date("Y-m-d H:i:s", $time - 1800);
+                // after 30s from specified time, and before 5m from it
+                $max_time = date("Y-m-d H:i:s", $time);
+
+                $sql = "SELECT DISTINCT a.user_id, a.name, a.LINE_id
+                    FROM user a, send_log b
+                    WHERE a.notice_time BETWEEN '$min_time' AND '$max_time'
+                    AND b.datetime BETWEEN '$min_time' AND '$max_time'
+                    AND b.confirm_check = false AND a.user_id = b.to_id";
+                break;
+        }
     }
 
     /**
@@ -1115,6 +1222,7 @@ class DBController
      * ---
      * 
      * @param int $time 対象時刻を指定します。
+     * @return array|false
      */
     function getYesterdayNotified(int $time)
     {
@@ -1133,6 +1241,53 @@ class DBController
             AND a.to_id = b.user_id
             AND b.notice_time BETWEEN '$min_time' AND '$max_time'";
         $stm = $this->pdo->prepare($sql);
+        $stm->execute();
+
+        return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * 指定した日数後に通知される持ち物を取得します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - item
+     * - user_item
+     * 
+     * ### might change in the further development
+     * 
+     * - Table "item" will be integrated into "user_item".
+     * - Query will be remade as using the union phrase.
+     * 
+     * ---
+     * 
+     * @param int $user_id ユーザ ID を指定します。
+     * @param int $move_day 参照する日数を指定します。
+     */
+
+    function getFurtherItem(int $user_id, int $move_day)
+    {
+        $sql = "SELECT a.name FROM item a, user_item b
+            WHERE b.user_id = :user_id AND a.id = b.item_id
+            AND (
+                (b.days LIKE :weekday OR b.days LIKE 'ALL')
+                OR(
+                    b.notice_datetime >= :min_time
+                    AND b.notice_datetime < :max_time
+                )
+            )";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+        $stm->bindValue(":weekday", strtolower(date("D")), PDO::PARAM_STR);
+        // 86400s = 1 day
+        $stm->bindValue(
+            ":min_time",
+            date("Y-m-d 00:00:00", time() + 86400 * $move_day)
+        );
+        $stm->bindValue(
+            ":max_time",
+            date("Y-m-d 23:59:59", time() + 86400 * $move_day)
+        );
         $stm->execute();
 
         return $stm->fetchAll(PDO::FETCH_ASSOC);
@@ -1165,9 +1320,152 @@ class DBController
         return;
     }
 
-    function getUnreadValidMessage(string $LINE_id, int $time)
+    /**
+     * まだ読まれていない、実行時刻の 30 分以内に送信されたメッセージを取得します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - user
+     * - send_log
+     * 
+     * ### 参照先フィールド
+     * 
+     * - user.LINE_id
+     * - user.user_id
+     * 
+     * - send_log.to_id
+     * - send_log.confirm_check
+     * - send_log.datetime
+     * 
+     * ---
+     * 
+     * @param string $LINE_id LINE ID を指定します。
+     * @return array
+     */
+    function getUnreadValidMessage(string $LINE_id)
     {
-        //
+        $sql = "SELECT DISTINCT a.id, a.name FROM user a, send_log b 
+            WHERE a.LINE_id = :LINE_id AND a.id = b.to_id
+            AND b.confirm_check = false
+            AND b.datetime BETWEEN :min_time AND :current_time";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":LINE_id", $LINE_id);
+        // 30m ago
+        $stm->bindValue(":min_time", date("Y-m-d H:i:s", time() - 30 * 60));
+        $stm->bindValue(":current_time", date("Y-m-d H:i:s", time()));
+
+        $stm->execute();
+        return $stm->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * 次に登録する持ち物の ID を取得します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - item
+     * 
+     * ### 参照先フィールド
+     * 
+     * - id
+     * 
+     * ### might change in the further development
+     * 
+     * - Table "item" will be integrated into the table "user_item".
+     * 
+     * @return int
+     */
+    private function getNextItemId()
+    {
+        $sql = "SELECT max(id) FROM item";
+        $result = $this->pdo->query($sql)->fetch(PDO::FETCH_COLUMN);
+        if (!isset($result)) {
+            return 1;
+        } else {
+            return $result + 1;
+        }
+    }
+
+    /**
+     * 持ち物を新規に登録します。
+     * 
+     * ### 追加先テーブル
+     * 
+     * - item
+     * - user_item
+     * 
+     * ### might change in the further development
+     * 
+     * - Table "item" will be integrated into the table "user_item".
+     * 
+     * ---
+     * 
+     * @param int $user_id ユーザ ID を指定します。
+     * @param string $name 持ち物の名前を指定します。
+     * @param string $weekday 通知する曜日を指定します。
+     * @param string $notify_time 通知する日時を指定します。
+     * @return bool 追加が成功したかを返します。
+     */
+    function registerItem(
+        int $user_id,
+        string $name,
+        string $weekday = "",
+        string $notify_time = ""
+    ) {
+        // adding into item table
+        $sql = "INSERT INTO item(id, name) VALUES (:id, :name)";
+        $stm = $this->pdo->prepare($sql);
+        $item_id = $this->getNextItemId();
+        $stm->bindValue(":id", $item_id, PDO::PARAM_INT);
+        $stm->bindValue(":name", $name, PDO::PARAM_STR);
+
+        $result = $stm->execute();
+
+        // adding into user_item table
+        $sql = "INSERT INTO user_item(user_id, item_id, days, notice_time)
+            VALUES (:user_id, :item_id, :weekday, :notice_datetime)
+            ON DUPLICATE KEY
+                UPDATE days = :weekday, notice_datetime = :notice_time";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":user_id", $user_id);
+        $stm->bindValue(":item_id", $item_id);
+        $stm->bindValue(":weekday", $weekday);
+        $stm->bindValue(":notice_time", $notify_time);
+
+        $result = $result & $stm->execute();
+
+        return $result;
+    }
+
+    /**
+     * 保存されているログに対して既読状態を更新します。
+     * 
+     * ### 更新先テーブル
+     * 
+     * - send_log
+     * 
+     * ### 更新先フィールド
+     * 
+     * - confirm_check
+     * 
+     * ---
+     * 
+     * @param int $user_id ユーザ ID を指定します。
+     * @return void
+     */
+    function markAsRead(int $user_id)
+    {
+        $sql = "UPDATE send_log SET confirm_check = true
+            WHERE to_id = :user_id
+            AND datetime BETWEEN :min_time AND :current_time";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+        // 30m ago
+        $stm->bindValue(":min_time", date("Y-m-d H:i:s", time() - 30 * 60));
+        $stm->bindValue(":current_time", date("Y-m-d H:i:s", time()));
+
+        $stm->execute();
+        return;
     }
 
     /**
@@ -1222,7 +1520,7 @@ class DBController
      * @param string $LINE_id LINE ID を指定します。
      * @throws WrappedDBError 指定された LINE ID をもつユーザが存在しない場合
      */
-    private function getUserIdFromLINEid(string $LINE_id)
+    private function getUserIdFromLINEId(string $LINE_id)
     {
         $user_id = $this->pdo->query(
             "SELECT user_id from user WHERE LINE_id = '$LINE_id'"
