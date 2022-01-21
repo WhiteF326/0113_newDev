@@ -4,7 +4,8 @@
 if (isset($_REQUEST['id'])) {
   $_SESSION['user_id'] = $_REQUEST['id'];
 } else {
-  $st = "idを取得できませんでした。";
+  //ここ変わってます。
+  echo "LINEで友達登録を行い、LINEで表示されるURLからご利用ください。";
   return;
 }
 ?>
@@ -46,138 +47,17 @@ if (isset($_REQUEST['id'])) {
             </div>
 
             <?php
-            //MySQLデータベースに接続する
             require 'dbconnect.php';
-            try {
-              //SQL文を作る（プレースホルダを使った式）
-              $sql = "SELECT name FROM user WHERE id = :id";
-              //プリペアードステートメントを作る
-              $stm = $pdo->prepare($sql);
-              //プリペアードステートメントに値をバインドする
-              $stm->bindValue(':id', $_SESSION['user_id'], PDO::PARAM_INT);
-              //SQL文を実行する
-              $stm->execute();
-              //結果の取得（連想配列で受け取る）
-              $result = $stm->fetch(PDO::FETCH_COLUMN);
-              if (empty($result)) {
-                $st = "あなたの登録物一覧";
-              } else {
-                $st = $result . "さんの登録物一覧";
-              }
-            } catch (Exception $e) {
-              $st = "error!";
-            }
-
+            require 'search_user_name.php';
             ?>
-
-            <h2 class="underline"><?php echo $st; ?></h2>
+            <h2 class="underline"><?php echo $list; ?></h2>
             <div>
               <button type="submit" name="send" class="button1">
                 <a href="registration_items.php">持ち物登録</a>
               </button>
             </div>
             <?php
-            try {
-              //SQL文を作る（プレースホルダを使った式）
-              $sql = "SELECT a.name, b.item_id, b.days, b.notice_datetime 
-              FROM item a, user_item b
-				      WHERE b.user_id = :id 
-				      AND a.id = b.item_id";
-              //プリペアードステートメントを作る
-              $stm = $pdo->prepare($sql);
-              //プリペアードステートメントに値をバインドする
-
-              $stm->bindValue(':id', $_SESSION["user_id"], PDO::PARAM_INT);
-              //SQL文を実行する
-              $stm->execute();
-              //結果の取得（連想配列で受け取る）
-              $result = $stm->fetchAll(PDO::FETCH_ASSOC);
-              //リストで表示する
-              $week = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-              $week_jp = ["日", "月", "火", "水", "木", "金", "土"];
-              date_default_timezone_set('Asia/Tokyo');
-
-              if (isset($result)) {
-                echo '<div class="table">';
-                echo '<table class="full-width">';
-                foreach ($result as $row) {
-                  echo "<tr>";
-                  echo "<td colspan='2'>", $row['name'], "</td>";
-                  echo '<td><form action="registration_items.php" method="post">
-                  <input type="hidden" name="item_id" value="', $row['item_id'], '">
-                  <input type="submit" value="変更" class="con">
-                  </form></td>';
-                  echo "</tr>";
-
-                  if (preg_match('/ALL/u', $row["days"])) {
-                    $days = "毎日";
-                  } else {
-                    $days = "";
-                    for ($i = 0; $i < count($week); $i++) {
-                      if (preg_match('/' . $week[$i] . '/u', $row["days"])) { //文字列が含まれるなら
-                        $days .= $week_jp[$i];
-                      }
-                    }
-                  }
-                  echo "<tr>";
-                  echo "<td colspan='2'>", $days, "</td>";
-                  echo '<td><form action="delete_items.php" method="post">
-                  <input type="hidden" name="item_id" value="', $row['item_id'], '">
-                  <input type="submit" value="削除" class="con">
-                  </form></td>';
-                  echo "</tr>";
-
-                  echo "<tr>";
-                  if (isset($row['notice_datetime'])) {
-                    echo "<td colspan='3'>", date("Y年m月d日 H時i分", strtotime($row['notice_datetime'])), "</td>";
-                  } else {
-                    echo "<td colspan='3'>指定なし", "</td>";
-                  }
-                  echo "</tr>";
-                }
-                echo "</table>";
-                echo '</div>';
-                // echo '<table class="full-width">';
-                // echo "<th>", "持ち物", "</th>";
-                // echo "<th>", "", "</th>";
-                // echo "<th>", "曜日", "</th>";
-                // echo "<th>", "日時", "</th>";
-                // foreach ($result as $row) {
-                //   echo "<tr>";
-                //   echo "<td>", $row['name'], "</td>";
-                //   echo '<td>';
-                //   echo '<form action="registration_items.php" method="post"><input type="hidden" name="item_id" value="', $row['item_id'], '"><input type="submit" value="変更" class="con"></form>';
-                //   // echo '</td><td>';
-                //   echo '<form action="delete_items.php" method="post"><input type="hidden" name="item_id" value="', $row['item_id'], '"><input type="submit" value="削除" class="con"></form>';
-                //   echo '</td>';
-
-                //   if (preg_match('/ALL/u', $row["days"])) {
-                //     $days = "毎日";
-                //   } else {
-                //     $days = "";
-                //     for ($i = 0; $i < count($week); $i++) {
-                //       if (preg_match('/' . $week[$i] . '/u', $row["days"])) { //文字列が含まれるなら
-                //         $days .= $week_jp[$i];
-                //       }
-                //     }
-                //   }
-
-                //   echo "<td>", $days, "</td>";
-                //   if (isset($row['notice_datetime'])) {
-                //     echo "<td>", date("Y年m月d日 H時i分", strtotime($row['notice_datetime'])), "</td>";
-                //   } else {
-                //     echo "<td>", "</td>";
-                //   }
-                //   echo "</tr>";
-                // }
-                // echo "</table>";
-              } else {
-                echo "持ち物は登録されていません。";
-              }
-            } catch (Exception $e) {
-              echo "エラーが発生しました。";
-            }
-
+            require 'items_list.php';
             ?>
 
           </div>
