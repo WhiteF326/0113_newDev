@@ -13,7 +13,7 @@
 
 <?php
 //ヘッダ表示
-require 'header_form.php';
+include 'header_form.php';
 ?>
 
 
@@ -41,9 +41,8 @@ require 'header_form.php';
       <input type="submit" value="グループに参加" class="button1">
       <br>
 
-  </form>
-  <hr>
-  <a href="family_top.php">グループトップに戻る</a><br>
+  </form><br>
+  <a href="family_top.php">グループトップに戻る</a>
   </div>
 
 </body>

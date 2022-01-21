@@ -15,7 +15,7 @@
 
 <?php
 //ヘッダ表示
-require 'header_form.php';
+include 'header_form.php';
 ?>
 
 <h2><span>持ち物登録</span></h2>

@@ -35,7 +35,7 @@ try {
 
 <?php
 //ヘッダ表示
-require 'header_form.php';
+include 'header_form.php';
 ?>
 
 
