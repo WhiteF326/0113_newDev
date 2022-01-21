@@ -6,7 +6,7 @@ date_default_timezone_set('Asia/Tokyo');
 try {
     //グループに所属しているユーザーが登録している持ち物を検索する
     $sql = "SELECT a.name, b.item_id, b.days, b.notice_datetime 
-    FROM item a, user_item
+    FROM item a, user_item b
     WHERE b.user_id = :id 
     AND a.id = b.item_id";
 
@@ -53,7 +53,7 @@ try {
                         <td><?= date("Y年m月d日 H時i分", strtotime($row['notice_datetime'])); ?></td>
                     <?php
                     else : ?>
-                        <td>,</td>
+                        <td></td>
                     <?php
                     endif; ?>
                 </tr>
