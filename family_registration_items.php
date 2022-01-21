@@ -70,7 +70,8 @@ if (empty($_POST['days']) && empty($_POST['datetime'])) {
 // else {
 if (!count($error)) {
     //DBの変更との兼ね合いで少し変形するかもしれない
-
+    require 'registration_items_db.php';
+    require 'registration_user_item.php';
     /*
     try {
         //現在登録されている名前を検索
