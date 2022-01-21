@@ -259,18 +259,18 @@ else if(isset($_POST["entry_pass"])){
                                     ?>
 
                                     <form action="comment_send.php" method="post">
-                                    <textarea name="comment" cols="40" rows="2" maxlength="80" placeholder="入力可能なのは80文字までです。"><?php echo $value['comment'];?></textarea><br>
-                                    <input type="hidden" name="from_id" value="<?php echo $_SESSION['user_id'];?>">
-                                    <input type="hidden" name="to_id" value="<?php echo $row2['id'];?>">
-                                    <input type="hidden" name="family_id" value="<?php echo $row1['family_id'];?>">
+                                    <textarea name="comment" cols="40" rows="2" maxlength="80" placeholder="入力可能なのは80文字までです。"><?= $value['comment'];?></textarea><br>
+                                    <input type="hidden" name="from_id" value="<?= $_SESSION['user_id'];?>">
+                                    <input type="hidden" name="to_id" value="<?= $row2['id'];?>">
+                                    <input type="hidden" name="family_id" value="<?= $row1['family_id'];?>">
                                     <input type="submit" title="送信されるコメントを設定します。" value="設定する">
                                     </form>
                                     
                                         <?php if(!empty($value['comment']) && $row2['id'] != $_SESSION['user_id']){ ?>
                                             <form action="alert_set.php" method="post">
-                                                <input type="hidden" name="from_id" value="<?php echo $_SESSION['user_id'];?>">
-                                                <input type="hidden" name="to_id" value="<?php echo $row2['id'];?>">
-                                                <input type="hidden" name="family_id" value="<?php echo $row1['family_id'];?>">
+                                                <input type="hidden" name="from_id" value="<?= $_SESSION['user_id'];?>">
+                                                <input type="hidden" name="to_id" value="<?= $row2['id'];?>">
+                                                <input type="hidden" name="family_id" value="<?= $row1['family_id'];?>">
                                                 <?php if($value['alert'] == 1){ ?>
                                                 <input type="hidden" name="alert" value="0">
                                                 <input type="submit" title="このメンバーからの通知をオフにします。" value="通知をオフ">
@@ -317,18 +317,18 @@ else if(isset($_POST["entry_pass"])){
                                     ?>
 
                                     <form action="comment_send.php" method="post">
-                                    <textarea name="comment" cols="40" rows="2" maxlength="80" placeholder="入力可能なのは80文字までです。"><?php echo $value['comment'];?></textarea><br>
-                                    <input type="hidden" name="from_id" value="<?php echo $_SESSION['user_id'];?>">
-                                    <input type="hidden" name="to_id" value="<?php echo $row2['id'];?>">
-                                    <input type="hidden" name="family_id" value="<?php echo $row1['family_id'];?>">
+                                    <textarea name="comment" cols="40" rows="2" maxlength="80" placeholder="入力可能なのは80文字までです。"><?= $value['comment'];?></textarea><br>
+                                    <input type="hidden" name="from_id" value="<?= $_SESSION['user_id'];?>">
+                                    <input type="hidden" name="to_id" value="<?= $row2['id'];?>">
+                                    <input type="hidden" name="family_id" value="<?= $row1['family_id'];?>">
                                     <input type="submit" title="送信されるコメントを設定します。" value="設定する">
                                     </form>
                                     
                                         <?php if(!empty($value['comment']) && $row2['id'] != $_SESSION['user_id']){ ?>
                                             <form action="alert_set.php" method="post">
-                                                <input type="hidden" name="from_id" value="<?php echo $_SESSION['user_id'];?>">
-                                                <input type="hidden" name="to_id" value="<?php echo $row2['id'];?>">
-                                                <input type="hidden" name="family_id" value="<?php echo $row1['family_id'];?>">
+                                                <input type="hidden" name="from_id" value="<?= $_SESSION['user_id'];?>">
+                                                <input type="hidden" name="to_id" value="<?= $row2['id'];?>">
+                                                <input type="hidden" name="family_id" value="<?= $row1['family_id'];?>">
                                                 <?php if($value['alert'] == 1){ ?>
                                                 <input type="hidden" name="alert" value="0">
                                                 <input type="submit" title="このメンバーからの通知をオフにします。" value="通知をオフ">
@@ -348,7 +348,7 @@ else if(isset($_POST["entry_pass"])){
                             echo "</table>";
                             ?>
                             <form action="family_exit.php" method="post">
-                                <input type="hidden" name="family_id" value="<?php echo $row1['family_id'];?>">
+                                <input type="hidden" name="family_id" value="<?= $row1['family_id'];?>">
                                 <input type="submit" title="グループから退会する" value="グループから退会する">
                                 </form>
 

@@ -139,11 +139,11 @@ try{
 
 
 <section>
-    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+    <form action="<?= $_SERVER['PHP_SELF'];?>" method="post">
     
     <div class="cp_iptxt">
     <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-	<input type="text" name="contents" value="<?php echo $value; ?>" placeholder="登録内容"><br>
+	<input type="text" name="contents" value="<?= $value; ?>" placeholder="登録内容"><br>
     </div>
     <div class="cp_iptxt">
     <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>

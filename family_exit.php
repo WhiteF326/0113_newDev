@@ -44,11 +44,11 @@ try{
 
 <body>
     <?php ?>
-    <h2><span>グループ退会<br>グループ<?php echo $family_name; ?>から退会しますか？</span></h2>
+    <h2><span>グループ退会<br>グループ<?= $family_name; ?>から退会しますか？</span></h2>
     <form action="family_exit_db.php" method="post">
 
         <div>
-            <input type="hidden" name="family_id" value="<?php echo $_POST['family_id']; ?>">
+            <input type="hidden" name="family_id" value="<?= $_POST['family_id']; ?>">
             <input type="submit" value="グループを退会" class="button1"><br>
 
             <hr>

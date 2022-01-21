@@ -80,13 +80,13 @@ try{
 ?>
 
         <section>
-            <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+            <form action="<?= $_SERVER['PHP_SELF'];?>" method="post">
             
             <div class="cp_iptxt">
             <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
             その日の持ち物を通知する時間<br>
             (ex.通勤等で家を出る時間、持ち物を通知してほしい時間)<br>
-            <input type="time" name="m_time" value="<?php echo $mtime ?>" required><br>
+            <input type="time" name="m_time" value="<?= $mtime ?>" required><br>
             </div>
 
             <div class="cp_iptxt">
@@ -94,14 +94,14 @@ try{
             家に帰りだす時間<br>
             (ex.会社や学校を出る時間)<br>
             <input type="time" name="r_time"><br>
-            <!-- <input type="time" name="r_time" value="<?php echo $rtime ?>" ><br> -->
+            <!-- <input type="time" name="r_time" value="<?= $rtime ?>" ><br> -->
             </div>
 
             <div class="cp_iptxt">
             <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
             次の日の持ち物を確認する時間<br>
             (ex.寝る前に持ち物の準備をする時間)<br>
-            <input type="time" name="e_time" value="<?php echo $etime ?>" required><br>
+            <input type="time" name="e_time" value="<?= $etime ?>" required><br>
             </div>
 
             <div><button type="submit" name="send" class="button1">登録</button></div>
