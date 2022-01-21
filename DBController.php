@@ -585,7 +585,8 @@ class DBController
      * @param int $to_id 受信者ユーザ ID を指定します。
      * @return void
      */
-    function markAsUnread(int $to_id){
+    function markAsUnread(int $to_id)
+    {
         $sql = "UPDATE comment SET LINE_check = false WHERE to_id = :to_id";
         $stm = $this->pdo->prepare($sql);
         $stm->bindValue(":to_id", $to_id, PDO::PARAM_INT);
@@ -613,12 +614,13 @@ class DBController
      * @param int $time 対象となる時刻を設定します。
      * @param int $range 遡る期間を DBController::RANGE_*****_AGO で指定します。
      */
-    function countUnreadChecks(int $to_id, int $time, int $range){
+    function countUnreadChecks(int $to_id, int $time, int $range)
+    {
         // 1 week ago = 604800 seconds ago, and shift 60 seconds after
-        if($range == 0){
+        if ($range == 0) {
             // a week ago
             $min_time = date("Y-m-d 00:01:00", strtotime("-1 week", $time));
-        }else{
+        } else {
             $min_time = date("Y-m-d 00:01:00", strtotime("-1 month", $time));
         }
         $max_time = date("Y-m-d H:i:s", $time + 60);
@@ -663,7 +665,8 @@ class DBController
      * @param int $mode 判定対象の通知時間を DBController::GET_USER_******_TIME を用いて指定します。
      * @return array
      */
-    function getUnreadUser(int $time, int $mode){
+    function getUnreadUser(int $time, int $mode)
+    {
         switch ($mode) {
             case DBController::GET_USER_NOTIFY_TIME: {
                     $key_name = "notice_time";
