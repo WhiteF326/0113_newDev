@@ -41,7 +41,8 @@
 
             <?php
             require 'dbconnect.php';
-            try {
+            require 'Alexa_cooperation_db.php';
+            /*try {
               $sql = "SELECT Alexa_id FROM user WHERE id = :id";
               //プリペアードステートメントを作る
               $stm = $pdo->prepare($sql);
@@ -75,7 +76,7 @@
               }
             } catch (Exception $e) {
               echo "エラーが発生しました。";
-            }
+            }*/
             ?>
 
           </div>
