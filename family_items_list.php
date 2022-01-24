@@ -18,19 +18,12 @@ try {
     if (isset($result)) : ?>
         <table align='center'>
             <th>持ち物</th>
+            <th>曜日/日時</th>
             <th></th>
-            <th></th>
-            <th>曜日</th>
-            <th>日時</th>
             <?php
             foreach ($result as $row) : ?>
                 <tr>
                     <td><?= $row['name'] ?></td>
-                    <td>
-                        <form action="family_registration_items.php" method="post"><input type="hidden" name="item_id" value="<?= $row['item_id'] ?>"><input type="submit" value="変更" class="button2"></form>
-                    </td><td>
-                        <form action="family_delete_items.php" method="post"><input type="hidden" name="item_id" value="<?= $row['item_id'] ?>"><input type="submit" value="削除" class="button2"></form>
-                    </td>
 
                     <?php
                     if (preg_match('/ALL/u', $row["days"])) {
@@ -45,16 +38,27 @@ try {
                         }
                     }
                     ?>
+                    <td>
+                        <?php
+                        if (isset($row['notice_datetime'])) : ?>
+                            <?= date("Y年m月d日\nH時i分", strtotime($row['notice_datetime'])) ?>
+                        <?php
+                        else : ?>
+                            <?= $days ?>
+                        <?php
+                        endif; ?>
+                    </td>
 
-                    <td><?= $days ?></td>
-                    <?php
-                    if (isset($row['notice_datetime'])) : ?>
-                        <td><?= date("Y年m月d日 H時i分", strtotime($row['notice_datetime'])) ?></td>
-                    <?php
-                    else : ?>
-                        <td></td>
-                    <?php
-                    endif; ?>
+                    <td>
+                        <form action="family_registration_items.php" method="post">
+                            <input type="hidden" name="item_id" value="<?= $row['item_id']; ?>">
+                            <input type="submit" value="変更" class="button2">
+                        </form>
+                        <form action="family_delete_items.php" method="post">
+                            <input type="hidden" name="item_id" value="<?= $row['item_id']; ?>">
+                            <input type="submit" value="削除" class="button2">
+                        </form>
+                    </td>
                 </tr>
             <?php
             endforeach; ?>
