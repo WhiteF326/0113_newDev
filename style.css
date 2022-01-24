@@ -3,7 +3,7 @@
                 position: relative;
                 padding: 0.25em 0;
             }
-
+            
             h2:after {
                 content: "";
                 display: block;
@@ -11,7 +11,6 @@
                 background: -webkit-linear-gradient(to right, rgb(39, 110, 204), #52f5e7);
                 background: linear-gradient(to right, rgb(39, 110, 204), #52f5e7);
             }
-
             /* .button1{
   color: #555;
     width: 20%;
@@ -27,20 +26,20 @@
 
     cursor: pointer;
 }  */
-
+            
             .button2 {
                 color: #555;
                 background-color: transparent;
                 border: 1px solid #bbb;
             }
-
+            
             .button2:hover,
             .button2:focus {
                 color: #333;
                 border-color: #888;
                 outline: 0;
             }
-
+            
             .button1 {
                 display: inline-block;
                 height: 38px;
@@ -61,21 +60,53 @@
                 cursor: pointer;
                 box-sizing: border-box;
             }
-
+            
             .button1:hover,
             .button1:focus {
                 color: #333;
                 border-color: #888;
                 outline: 0;
             }
-
+            
+            .button3 {
+                display: inline-block;
+                height: 38px;
+                padding: 0 20px;
+                margin-right: 5px;
+                color: #555;
+                text-align: center;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 38px;
+                letter-spacing: .1rem;
+                text-transform: none;
+                text-decoration: none;
+                white-space: nowrap;
+                background-color: #555;
+                border: 1px solid #bbb;
+                border-radius: 0;
+                cursor: pointer;
+                box-sizing: border-box;
+            }
+            
+            .button3:hover,
+            .button3:focus {
+                color: #333;
+                border-color: #888;
+                outline: 0;
+            }
+            
+            .a {
+                color: #fff;
+            }
+            
             .cp_iptxt {
                 position: relative;
                 /* width: 60%; */
                 /* margin: 40px 3%; */
                 margin: auto;
             }
-
+            
             .cp_iptxt input[type='text'],
             .cp_iptxt input[type='password'] {
                 font: 15px/24px sans-serif;
@@ -86,29 +117,28 @@
                 letter-spacing: 1px;
                 border: 0;
             }
-
+            
             .cp_iptxt input[type='text']:focus,
             .cp_iptxt input[type='password']:focus {
                 outline: none;
             }
-
+            
             .cp_iptxt input[type='text']:focus::after,
             .cp_iptxt input[type='password']:focus::after {
                 outline: none;
             }
-
             /* ここお願いします↓ */
-
+            
             .cp_iptxt label {
                 margin-right: 0px;
                 /* ボタン同士の間隔 */
             }
-
+            
             .cp_iptxt label input {
                 display: none;
                 /* デフォルトのinputは非表示にする */
             }
-
+            
             .cp_iptxt label span {
                 color: #333;
                 /* 文字色を黒に */
@@ -121,7 +151,7 @@
                 padding: 3px 10px;
                 /* 上下左右に余白をトル */
             }
-
+            
             .cp_iptxt label input:checked+span {
                 color: #000;
                 background: rgb(195, 245, 170);
@@ -129,7 +159,7 @@
                 border: 1px solid rgb(195, 245, 170);
                 /* 淵の線を薄い赤に */
             }
-
+            
             .cp_iptxt input[type='time'] {
                 position: relative;
                 padding: 0 10px;
@@ -141,7 +171,7 @@
                 font-size: 14px;
                 color: #999;
             }
-
+            
             date {
                 position: relative;
                 display: inline-block;
@@ -150,7 +180,7 @@
                 border: 2px solid #ccc;
                 border-radius: 15px;
             }
-
+            
             .cp_iptxt input[type='datetime-local'] {
                 position: relative;
                 padding: 0 10px;
@@ -162,7 +192,7 @@
                 font-size: 14px;
                 color: #999;
             }
-
+            
             date {
                 position: relative;
                 display: inline-block;
@@ -171,7 +201,7 @@
                 border: 2px solid #ccc;
                 border-radius: 15px;
             }
-
+            
             .cp_iptxt i {
                 position: absolute;
                 top: 0;
@@ -180,7 +210,7 @@
                 transition: 0.3s;
                 color: #aaaaaa;
             }
-
+            
             .cp_iptxt::after {
                 display: block;
                 width: 100%;
@@ -192,44 +222,42 @@
                 border-style: solid;
                 border-color: #5d51fd;
             }
-
+            
             div {
                 text-align: center;
             }
-
+            
             textarea {
                 resize: none;
                 width: 30%;
                 height: 10%;
             }
-
             /* a {
   color: #8f8f8f; 
 }
 a:hover {
   color: #949494; 
 } */
-
+            
             a {
                 /* display:block; */
                 color: #666;
                 text-decoration-line: none;
             }
-
+            
             a:hover {
                 color: #999;
             }
-
+            
             a img:hover {
                 opacity: 0.8;
             }
-
+            
             .telbox {
                 margin-left: auto;
                 font-size: 2.0rem;
                 padding: 1rem 0 0 0;
             }
-
             /* @media screen and (min-width: 481px){
   .button1 {
     width: 300px;
@@ -274,13 +302,13 @@ a:hover {
   color: darkslateblue;
   font-size: 30px;
 } */
-
+            
             @media screen and (min-width: 481px) {
                 .cp_iptxt {
                     width: 50%;
                 }
             }
-
+            
             @media screen and (max-width: 480px) {
                 .cp_iptxt {
                     width: 75%;
