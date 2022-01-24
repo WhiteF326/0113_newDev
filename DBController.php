@@ -1438,6 +1438,58 @@ class DBController
     }
 
     /**
+     * ユーザ ID を指定して、登録されている時刻を取得します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - user
+     * 
+     * ### 参照先フィールド
+     * 
+     * - notice_time
+     * - return_time
+     * - check_time
+     * 
+     * ---
+     * 
+     * @param int $user_id ユーザ ID を指定します。
+     * @return array
+     */
+    function getRegisteredTime(int $user_id)
+    {
+        $sql = "SELECT notice_time, return_time, check_time
+            FROM user where user_id = :user_id";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+        $stm->execute();
+
+        return $stm->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function setTime(
+        int $user_id,
+        int $notice_time,
+        int $return_time,
+        int $check_time
+    ) {
+        $sql = "UPDATE user SET
+            notice_time = :notice_time,
+            return_time = :return_time,
+            check_time = :check_time
+            WHERE user_id = :user_id";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+        $stm->bindValue(":notice_time", $notice_time, PDO::PARAM_INT);
+        if ($return_time == 000000) {
+            $stm->bindValue(":return_time", null, PDO::PARAM_NULL);
+        } else {
+            $stm->bindValue(":return_time", $return_time, PDO::PARAM_INT);
+        }
+        $stm->bindValue(":check_time", $check_time, PDO::PARAM_INT);
+        $stm->execute();
+    }
+
+    /**
      * 保存されているログに対して既読状態を更新します。
      * 
      * ### 更新先テーブル
