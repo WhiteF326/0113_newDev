@@ -41,38 +41,28 @@
             <h2 class="underline">時間登録</h2>
             <?php
             require 'dbconnect.php';
+            require 'search_time.php';
 
-            try {
-              //SQL文を作る（プレースホルダを使った式）
-              $sql = "SELECT notice_time, return_time, check_time 
-                      FROM user 
-                      WHERE id = :user_id";
-              //プリペアードステートメントを作る
-              $stm = $pdo->prepare($sql);
-              //プリペアードステートメントに値をバインドする
-              $stm->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-              //SQL文を実行する
-              $stm->execute();
-              //結果の取得（連想配列で受け取る）
-              $time = $stm->fetch(PDO::FETCH_ASSOC);
-              if (!empty($time["notice_time"] && !empty($time["check_time"]))) {
-                echo "現在設定されている時間<br>";
-                echo "その日の持ち物を通知する時間 : ", $time["notice_time"], "<br>";
-                if (($time["return_time"]) != null) {
-                  echo "帰りだす時間 　　　　　　　　: ", $time["return_time"], "<br>";
-                } else {
-                  echo "帰りだす時間 　　　　　　　　: 未設定　<br>";
-                }
-                echo "次の日の持ち物を確認する時間 : ", $time["check_time"], "<br>";
-              } else {
-                echo "時間を登録してください。", "<br>";
-              }
-            } catch (Exception $e) {
-              echo "エラーが発生しました。";
-            }
-            echo "<hr>";
-            ?>
+            if (!empty($result["notice_time"] && !empty($result["check_time"]))) : ?>
+              現在設定されている時間<br>
+              その日の持ち物を通知する時間 : <?= $result["notice_time"]; ?><br>
+              <?php
+              if (($result["return_time"]) != null) : ?>
+                帰りだす時間 　　　　　　　　: <?= $result["return_time"]; ?><br>
+              <?php
 
+              else : ?>
+                帰りだす時間 　　　　　　　　: 未設定　<br>
+              <?php
+              endif; ?>
+              次の日の持ち物を確認する時間 : <?= $result["check_time"]; ?><br>
+            <?php
+            else : ?>
+              持ち物を通知する時間を登録してください。<br>
+            <?php
+            endif; ?>
+            <hr>
+            
             <div>
               <button type="submit" name="send" class="button1">
                 <a href="time_set.php">時間を設定する</a>
