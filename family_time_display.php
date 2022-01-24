@@ -9,20 +9,20 @@ try{
 	$stm->execute();
 	$time = $stm->fetch(PDO::FETCH_ASSOC);
 	if(!empty($time["notice_time"]) && !empty($time["check_time"])) : ?>
-		<l style="text-align: left">現在設定されている時間</l><br>
-		<l style="text-align: left">その日の持ち物を通知する時間 : <?= $time["notice_time"] ?></l><br>
+		<p>現在設定されている時間</p>
+		<p>その日の持ち物を通知する時間 : <?= $time["notice_time"] ?></p>
         <?php
         if(!empty($time["return_time"])) : ?>
-            <l style="text-align: left">帰りだす時間 　　　　　　　　: <?= $time["return_time"] ?></l><br>
+            <p>帰りだす時間 　　　　　　　　: <?= $time["return_time"] ?></p>
         <?php
         else : ?>
-            <l style="text-align: left">帰りだす時間は登録されていません。</l><br>
+            <p>帰りだす時間は登録されていません。</p>
         <?php
         endif ; ?>
-		<l style="text-align: left">次の日の持ち物を確認する時間 : <?=  $time["check_time"] ?></l><br>
+		<p>次の日の持ち物を確認する時間 : <?=  $time["check_time"] ?></p>
 	<?php
     else : ?>
-		<l style="text-align: left">時間が登録されていません。</l><br>
+		<p>時間が登録されていません。</p>
 	<?php
     endif ;
 

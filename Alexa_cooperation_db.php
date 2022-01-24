@@ -10,7 +10,7 @@ try {
     $result = $stm->fetch(PDO::FETCH_COLUMN);
     if ($result == NULL) : ?>
 
-        <form action="Alexa_password_set.php" method="post">
+        <form action="alexa_password_set.php" method="post">
             <input type="number" name="pass_id" placeholder="6桁の数字を入力してください。" min="100000" max="999999" required>
             <input type="submit" title="設定を完了します。" value="設定">
         </form>
