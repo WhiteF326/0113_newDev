@@ -21,23 +21,14 @@ include 'header_form.php';
 <h2><span>持ち物登録</span></h2>
 
 <?php
-require_once("dbconnect.php");
+//require_once("dbconnect.php");
+require 'dbconnect.php';
+date_default_timezone_set('Asia/Tokyo');
+
+
 
 if (!empty($_POST['item_id'])) {
-    try {
-
-        //現在登録されている名前を検索
-        $sql = "SELECT name FROM item WHERE id = :id";
-        //プリペアドステートメントを作る
-        $stm = $pdo->prepare($sql);
-        //プレースホルダに値をバインドする
-        $stm->bindValue(':id', $_POST['item_id'], PDO::PARAM_INT);
-        //SQL文を実行す
-        $stm->execute();
-        //結果を連想配列で取得
-        $value = $stm->fetch(PDO::FETCH_COLUMN);
-    } catch (Exception $e) {
-    }
+    require 'search_item_name.php';
 } else {
     $value = null;
 }
@@ -62,11 +53,17 @@ if (empty($_POST['days']) && empty($_POST['datetime'])) {
     $error[] = "曜日と日付が入力されていません。";
 } else if (!empty($_POST['days']) && !empty($_POST['datetime'])) {
     $error[] = "設定できるのは曜日か日付のどちらか片方だけです。";
-} else {
-
+} /*else {
     date_default_timezone_set('Asia/Tokyo');
+}*/
 
-    try {
+if (!count($error)) {
+    //DBの変更との兼ね合いで少し変形するかもしれない
+    require 'registration_items_db.php';
+    require 'registration_user_item.php';
+}
+/*
+try {
         //現在登録されている名前を検索
         $sql = "SELECT id FROM item WHERE name = :name";
         //プリペアドステートメントを作る
@@ -128,8 +125,10 @@ if (empty($_POST['days']) && empty($_POST['datetime'])) {
         }
         $stm->execute();
     } catch (Exception $e) {
+        echo "持ち物登録でエラーが発生しました。";    
     }
-}
+    */
+
 
 ?>
 
@@ -180,7 +179,7 @@ if (empty($_POST['days']) && empty($_POST['datetime'])) {
             endforeach;
         endif; ?>
         <br><button type="submit" name="send" class="button3">
-            <a href="confirm.php?id="<?echo $user_id ?> class="a">戻る</a>
+            <a href="confirm.php?id=<?php echo $_SESSION['user_id']; ?>" class="a">戻る</a>
         </button><br>
 
     </div>
