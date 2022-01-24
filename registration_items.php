@@ -180,7 +180,7 @@ if (empty($_POST['days']) && empty($_POST['datetime'])) {
             endforeach;
         endif; ?>
         <br><button type="submit" name="send" class="button3">
-            <a href="family_top.php" class="a">戻る</a>
+            <a href="confirm.php?id="<?echo $user_id ?> class="a">戻る</a>
         </button><br>
 
     </div>
