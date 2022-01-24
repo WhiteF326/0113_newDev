@@ -44,55 +44,55 @@ if ($_POST['m_time'] == 000000 or $_POST['e_time'] == 000000) {
 }
 ?>
 
-  <section>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+<section>
+  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
-      <div class="cp_iptxt">
-        <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-        その日の持ち物を通知する時間<br>
-        (ex.通勤等で家を出る時間、持ち物を通知してほしい時間)<br>
-        <date><input type="time" name="m_time" value="<?= $mtime; ?>" required></date><br>
-      </div>
+    <div class="cp_iptxt">
+      <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+      その日の持ち物を通知する時間<br>
+      (ex.通勤等で家を出る時間、持ち物を通知してほしい時間)<br>
+      <date><input type="time" name="m_time" value="<?= $mtime; ?>" required></date><br>
+    </div>
 
-      <div class="cp_iptxt">
-        <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-        家に帰りだす時間<br>
-        (ex.会社や学校を出る時間)<br>
-        <date>
-          <input type="time" name="r_time">
-        </date><br>
-        <!-- <input type="time" name="r_time" value="<?= $rtime; ?>" ><br> -->
-      </div>
+    <div class="cp_iptxt">
+      <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+      家に帰りだす時間<br>
+      (ex.会社や学校を出る時間)<br>
+      <date>
+        <input type="time" name="r_time">
+      </date><br>
+      <!-- <input type="time" name="r_time" value="<?= $rtime; ?>" ><br> -->
+    </div>
 
-      <div class="cp_iptxt">
-        <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-        次の日の持ち物を確認する時間<br>
-        (ex.寝る前に持ち物の準備をする時間)<br>
-        <date>
-          <input type="time" name="e_time" value="<?= $etime; ?>" required>
-        </date><br>
-      </div>
+    <div class="cp_iptxt">
+      <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+      次の日の持ち物を確認する時間<br>
+      (ex.寝る前に持ち物の準備をする時間)<br>
+      <date>
+        <input type="time" name="e_time" value="<?= $etime; ?>" required>
+      </date><br>
+    </div>
 
-      <div><button type="submit" name="send" class="button1">登録</button></div>
-    </form>
+    <div><button type="submit" name="send" class="button1">登録</button></div>
+  </form>
 
-    <div>
-      <?php
+  <div>
+    <?php
 
-      if (empty($error)) : ?>
-        <HR>
-        <h3>その日の持ち物を通知する時間<br>[<?= $notice_time; ?>] <br>次の日の持ち物を確認する時間<br>[<?= $check_time; ?>]<br>で登録しました。<br>
-          <h3>
+    if (empty($error)) : ?>
+      <HR>
+      <h3>その日の持ち物を通知する時間<br>[<?= $notice_time; ?>] <br>次の日の持ち物を確認する時間<br>[<?= $check_time; ?>]<br>で登録しました。<br>
+        <h3>
+        <?php
+      elseif (isset($_POST['send'])) : ?>
+          <HR>
           <?php
-        elseif (isset($_POST['send'])) : ?>
-            <HR>
-            <?php
-            foreach ($error as $value) : ?>
-              <?= $value; ?><br>
+          foreach ($error as $value) : ?>
+            <?= $value; ?><br>
 
         <?php
-            endforeach;
-          endif;
+          endforeach;
+        endif;
         ?>
 
         <br>
@@ -101,5 +101,5 @@ if ($_POST['m_time'] == 000000 or $_POST['e_time'] == 000000) {
             <a href='time_top.php' title='時間登録ページへ' class="a">戻る</a></button>
         </div><br>
 
-    </div>
-  </section>
+  </div>
+</section>
