@@ -18,24 +18,24 @@ $json = file_get_contents("php://input");
 $contents = json_decode($json, true);
 
 
-$alexa_id=$contents["name"];
-//$alexa_id="amzn1.ask.person.AKJSQKKTKSR2ACJPQM4YQ7IT7GIH2VANC5HXSYKUAZ6ACLSW37WT7E34DDGD3GKJD6VNQBJHWBY4QBMKASVJN2OMIB2UG2EMQ3FY64JC";
+$Alexa_id=$contents["name"];
+//$Alexa_id="amzn1.ask.person.AKJSQKKTKSR2ACJPQM4YQ7IT7GIH2VANC5HXSYKUAZ6ACLSW37WT7E34DDGD3GKJD6VNQBJHWBY4QBMKASVJN2OMIB2UG2EMQ3FY64JC";
 
 
-write($alexa_id);
+write($Alexa_id);
 
 
 
 try{
     //SQL文を作る（プレースホルダを使った式）
-    $sql = "SELECT Alexa_check FROM user WHERE Alexa_id = :alexa_id";
+    $sql = "SELECT Alexa_check FROM user WHERE Alexa_id = :Alexa_id";
     //LIKE 'amzn1.ask.person.AKJSQKKTKSR2ACJPQM4YQ7IT7GIH2VANC5HXSYKUAZ6ACLSW37WT7E34DDGD3GKJD6VNQBJHWBY4QBMKASVJN2OMIB2UG2EMQ3FY64JC%'";
 
 
     //プリペアードステートメントを作る
     $stm = $pdo->prepare($sql);
     //プリペアードステートメントに値をバインドする
-    $stm->bindValue(':alexa_id',$alexa_id,PDO::PARAM_STR);
+    $stm->bindValue(':Alexa_id',$Alexa_id,PDO::PARAM_STR);
     //SQL文を実行する
     $stm->execute();
     //結果の取得（連想配列で受け取る）

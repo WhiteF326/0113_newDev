@@ -20,20 +20,20 @@ $json = file_get_contents("php://input");
 $contents = json_decode($json, true);
 
 
-$alexa_id=$contents["name"];
-//$alexa_id="amzn1.ask.person.AKJSQKKTKSR2ACJPQM4YQ7IT7GIH2VANC5HXSYKUAZ6ACLSW37WT7E34DDGD3GKJD6VNQBJHWBY4QBMKASVJN2OMIB2UG2EMQ3FY64JC";
+$Alexa_id=$contents["name"];
+//$Alexa_id="amzn1.ask.person.AKJSQKKTKSR2ACJPQM4YQ7IT7GIH2VANC5HXSYKUAZ6ACLSW37WT7E34DDGD3GKJD6VNQBJHWBY4QBMKASVJN2OMIB2UG2EMQ3FY64JC";
 
 
-write($alexa_id);
+write($Alexa_id);
 
 
 try{
     //現在登録されている名前を検索
-    $sql = "SELECT a.name, b.days, b.notice_datetime FROM item a, user_item b, user c WHERE c.Alexa_id = :alexa_id AND b.user_id = c.id AND a.id = b.item_id";
+    $sql = "SELECT a.name, b.days, b.notice_datetime FROM item a, user_item b, user c WHERE c.Alexa_id = :Alexa_id AND b.user_id = c.id AND a.id = b.item_id";
     //プリペアドステートメントを作る
     $stm = $pdo->prepare($sql);
     //プレースホルダに値をバインドする
-    $stm->bindValue(':alexa_id',$alexa_id, PDO::PARAM_STR);
+    $stm->bindValue(':Alexa_id',$Alexa_id, PDO::PARAM_STR);
     //SQL文を実行する
     $stm->execute();
     //結果を連想配列で取得
@@ -54,14 +54,14 @@ try{
     // //SQL文を作る（プレースホルダを使った式）
     // $sql = "SELECT item.name FROM item, user_item, user 
     // WHERE item.id = user_item.item_id AND user.id = user_item.user_id
-    // AND user.Alexa_id = :alexa_id";
+    // AND user.Alexa_id = :Alexa_id";
     // //LIKE 'amzn1.ask.person.AKJSQKKTKSR2ACJPQM4YQ7IT7GIH2VANC5HXSYKUAZ6ACLSW37WT7E34DDGD3GKJD6VNQBJHWBY4QBMKASVJN2OMIB2UG2EMQ3FY64JC%'";
 
 
     // //プリペアードステートメントを作る
     // $stm = $pdo->prepare($sql);
     // //プリペアードステートメントに値をバインドする
-    // $stm->bindValue(':alexa_id',$alexa_id,PDO::PARAM_STR);
+    // $stm->bindValue(':Alexa_id',$Alexa_id,PDO::PARAM_STR);
     // //SQL文を実行する
     // $stm->execute();
     // //結果の取得（連想配列で受け取る）
