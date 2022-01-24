@@ -295,6 +295,8 @@ else if($type == "postback"){
                 else{
                     sending_messages($accessToken, $replyToken, "text", "確認できました。良い一日を。\n\n". substr($text,0,-1));
                 }
+            }else{
+                sending_messages($accessToken, $replyToken, "text", "確認できました。良い一日を。\n\n". substr($text,0,-1));
             }
         }
         catch(Exception $e){
