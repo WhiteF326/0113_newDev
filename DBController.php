@@ -1438,6 +1438,29 @@ class DBController
     }
 
     /**
+     * 持ち物を登録解除します。
+     * 
+     * ### 削除先テーブル
+     * 
+     * - user_item
+     * 
+     * ---
+     * 
+     * @param int $user_id ユーザ ID を指定します。
+     * @param int $item_id 持ち物 ID を指定します。
+     * @return bool 処理が成功したかを返します。
+     */
+    function removeItem(int $user_id, int $item_id)
+    {
+        $sql = "DELETE FROM user_item
+            WHERE user_id = :user_id AND item_id = :item_id";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+        $stm->bindValue(":item_id", $item_id, PDO::PARAM_INT);
+        return $stm->execute();
+    }
+
+    /**
      * ユーザ ID を指定して、登録されている時刻を取得します。
      * 
      * ### 参照先テーブル
@@ -1466,6 +1489,27 @@ class DBController
         return $stm->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * 登録されている時刻を更新します。
+     * 
+     * ### 更新先テーブル
+     * 
+     * - user
+     * 
+     * ### 更新先フィールド
+     * 
+     * - notice_time
+     * - return_time
+     * - check_time
+     * 
+     * ---
+     * 
+     * @param int $user_id ユーザ ID を指定します。
+     * @param int $notice_time
+     * @param int $return_time
+     * @param int $check_time
+     * @return void
+     */
     function setTime(
         int $user_id,
         int $notice_time,
@@ -1486,6 +1530,249 @@ class DBController
             $stm->bindValue(":return_time", $return_time, PDO::PARAM_INT);
         }
         $stm->bindValue(":check_time", $check_time, PDO::PARAM_INT);
+        $stm->execute();
+    }
+
+    /**
+     * 次に登録するグループの ID を取得します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - family
+     * 
+     * ### 参照先フィールド
+     * 
+     * - id
+     * 
+     * ---
+     * 
+     * @return int
+     */
+    private function getNextFamilyId()
+    {
+        return $this->pdo->query(
+            "SELECT MAX(id) + 1 FROM family"
+        )->fetch(PDO::FETCH_COLUMN) ?? 1;
+    }
+
+    /**
+     * グループを新規登録します。
+     * 
+     * ### 追加先テーブル
+     * 
+     * - family
+     * 
+     * ---
+     * 
+     * @param string $name グループ名を指定します。
+     * @param string $pass パスワードを指定します。
+     * @return bool 追加処理が成功したかを返します。
+     */
+    function registerFamily(string $name, string $pass)
+    {
+        $family_id = $this->getNextFamilyId();
+        $sql = "INSERT INTO family(id, name, pass)
+            VALUES (:id, :name, :pass)";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":id", $family_id, PDO::PARAM_INT);
+        $stm->bindValue(":name", $name, PDO::PARAM_STR);
+        $stm->bindValue(":pass", $pass, PDO::PARAM_STR);
+
+        return $stm->execute();
+    }
+
+    /**
+     * ユーザをグループに追加します。
+     * 
+     * ### 追加先テーブル
+     * 
+     * - family_user
+     * - user
+     * 
+     * ---
+     * @param int $family_id グループ ID を指定します。
+     * @param int $user_id ユーザ ID を指定します。
+     * @param string $name_in_family グループ内で使う名前を指定します。
+     * @return void
+     */
+    function registerUserIntoFamily(
+        int $family_id,
+        int $user_id,
+        string $name_in_family
+    ) {
+        $sql = "INSERT INTO family_user(family_id, user_id)
+            VALUES (:family_id, :user_id)";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":family_id", $family_id, PDO::PARAM_INT);
+        $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+
+        $stm->execute();
+
+        $sql = "UPDATE user SET name = :name WHERE user_id = :user_id";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":name", $name_in_family, PDO::PARAM_STR);
+        $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+
+        $stm->execute();
+    }
+
+    /**
+     * グループを名前とパスワードで検索します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - family_id
+     * 
+     * ### 参照先フィールド
+     * 
+     * - name
+     * - pass
+     * 
+     * ---
+     * 
+     * @param string $name グループ名を指定します。
+     * @param string $pass パスワードを指定します。
+     * @return array
+     */
+    function searchFamily(string $name, string $pass)
+    {
+        $sql = "SELECT DISTINCT id from family
+            WHERE name = :name AND pass = :pass";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":name", $name, PDO::PARAM_INT);
+        $stm->bindValue(":pass", $pass, PDO::PARAM_STR);
+        $stm->execute();
+
+        return $stm->fetch(PDO::FETCH_COLUMN);
+    }
+
+    /**
+     * ユーザ ID を指定して、当該ユーザが所属するグループをすべて取得します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - family
+     * - family_user
+     * 
+     * ### 参照先フィールド
+     * 
+     * - family.id
+     * - family_user.user_id
+     * - family_user.family_id
+     * 
+     * ---
+     * 
+     * @param int $user_id ユーザ ID を指定します。
+     * @return array
+     */
+    function getAllFamilyFromUserId(int $user_id)
+    {
+        $sql = "SELECT DISTINCT a.family_id, b.name FROM family_user a, family b
+            WHERE a.user_id = :user_id AND a.family_id = b.id";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+        $stm->execute();
+
+        return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * グループ ID を指定して、所属するユーザ情報をすべて取得します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - user
+     * - family_user
+     * 
+     * ### 参照先フィールド
+     * 
+     * - user.user_id
+     * - family_user.user_id
+     * - family_user.family_id
+     * 
+     * ---
+     * 
+     * @param int $family_id グループ ID を指定します。
+     * @return array
+     */
+    function getAllUserFromFamilyId(int $family_id)
+    {
+        $sql = "SELECT a.user_id, a.user_name from user a, family_user b
+            WHERE b.family_id = :family_id AND a.user_id = b.user_id";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":family_id", $family_id, PDO::PARAM_INT);
+        $stm->execute();
+
+        return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * グループ ID、送信者、受信者を指定してメッセージを取得します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - comment
+     * 
+     * ### 参照先テーブル
+     * 
+     * - family_id
+     * - from_id
+     * - to_id
+     * 
+     * ---
+     * 
+     * @param int $family_id グループ ID を指定します。
+     * @param int $from_id 送信者のユーザ ID を指定します。
+     * @param int $to_id 受信者のユーザ ID を指定します。
+     * @return array
+     */
+    function getMessageOnFamily(int $family_id, int $from_id, int $to_id)
+    {
+        $sql = "SELECT comment, alert FROM comment
+            WHERE family_id = :family_id
+            AND from_id = :from_id AND to_id = :to_id";
+        //プリペアードステートメントを作る
+        $stm = $this->pdo->prepare($sql);
+        //プリペアードステートメントに値をバインドする
+        $stm->bindValue(':family_id', $family_id, PDO::PARAM_INT);
+        $stm->bindValue(':from_id', $from_id, PDO::PARAM_INT);
+        $stm->bindValue(':to_id', $to_id, PDO::PARAM_INT);
+        //SQL文を実行する
+        $stm->execute();
+        //結果の取得（連想配列で受け取る）
+        return $stm->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * グループからユーザを退会させます。
+     * 
+     * ### 削除先テーブル
+     * 
+     * - comment
+     * - family_user
+     * 
+     * ---
+     * 
+     * @param int $family_id 退会元のグループ ID を指定します。
+     * @param int $user_id 退会するユーザ ID を指定します。
+     */
+    function familyWithdrawal(int $family_id, int $user_id)
+    {
+        $sql = "DELETE FROM comment
+            WHERE family_id = :family_id
+            AND (to_id = :user_id OR from_id = :user_id)";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":family_id", $family_id, PDO::PARAM_INT);
+        $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+
+        $stm->execute();
+
+        $sql = "DELETE FROM family_user
+            WHERE family_id = :family_id AND user_id = :user_id";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":family_id", $family_id, PDO::PARAM_INT);
+        $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+
         $stm->execute();
     }
 
