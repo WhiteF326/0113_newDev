@@ -4,6 +4,9 @@
 
 if(isset($_POST['make_pass'])){
     require 'dbconnect.php';
+    require "DBController.php";
+
+    $dbController = new DBController();
     try{
         //SQL文を作る
         $sql = "SELECT MAX(id) FROM family";
@@ -34,25 +37,9 @@ if(isset($_POST['make_pass'])){
         $stm->bindValue(':pass', $_POST['make_pass'], PDO::PARAM_STR);
         //SQL文を実行する
         if($stm->execute()){
-            $sql = "INSERT INTO family_user(family_id, user_id) VALUES (:family_id,:user_id)";
-            //プリペアドステートメントを作る
-            $stm = $pdo->prepare($sql);
-            //プレースホルダに値をバインドする
-            $stm->bindValue(':family_id', $result, PDO::PARAM_INT);
-            $stm->bindValue(':user_id', $_SESSION["user_id"], PDO::PARAM_INT);
-            //SQL文を実行する
-            $stm->execute();
-            //SQL文を作る（プレースホルダを使った式）
-            $sql = "UPDATE user SET name = :name
-            WHERE id = :id";
-            //プリペアードステートメントを作る
-            $stm = $pdo->prepare($sql);
-            //プリペアードステートメントに値をバインドする
-
-            $stm->bindValue(':name',$_POST['name'],PDO::PARAM_STR);
-            $stm->bindValue(':id',$_SESSION['user_id'],PDO::PARAM_INT);
-            //SQL文を実行する
-            $stm->execute();
+            $dbController->registerUserIntoFamily(
+                $result, $_SESSION["user_id"], $_POST["name"]
+            );
         }else{
             echo "エラーが発生しました。1";
         }
