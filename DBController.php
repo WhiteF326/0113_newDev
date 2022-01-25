@@ -1601,7 +1601,7 @@ class DBController
         string $name_in_family
     ) {
         $sql = "INSERT INTO family_user(family_id, user_id, user_name)
-            VALUES (:family_id, :user_id: :user_name)";
+            VALUES (:family_id, :user_id, :user_name)";
         $stm = $this->pdo->prepare($sql);
         $stm->bindValue(":family_id", $family_id, PDO::PARAM_INT);
         $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
