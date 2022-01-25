@@ -6,7 +6,7 @@ if (isset($_REQUEST['id'])) {
 } else {
     //ここ変わってます。
     echo "LINEで友達登録を行い、LINEで表示されるURLからご利用ください。";
-    return;
+    exit;
 }
 ?>
 

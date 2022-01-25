@@ -309,6 +309,64 @@ class DBController
     }
 
     /**
+     * 指定したユーザに対するメッセージを変更します。
+     * 
+     * ### 追加先テーブル
+     * 
+     * - comment
+     * 
+     * ### 引数により値を指定するフィールド
+     * 
+     * - family_id
+     * - from_id
+     * - to_id
+     * - comment
+     * - alert
+     * 
+     * ### デフォルト値を用いるフィールド
+     * 
+     * (なし)
+     * 
+     * ---
+     * 
+     * @param int $family_id グループ ID を指定します。
+     * @param int $from_id 送信者 ID を指定します。
+     * @param int $to_id 受信者 ID を指定します。
+     * @param string $comment コメントを指定します。
+     * @param bool $alert_value 変更後の値を指定します。
+     * @return void
+     */
+
+    function setComment(
+    int $family_id,
+    int $from_id,
+    int $to_id,
+    string $comment,
+    bool $alert_value
+    )
+    {
+        $sql = "INSERT INTO comment(family_id,from_id,to_id,comment)
+        VALUES (:family_id,:from_id,:to_id,:comment)
+        ON DUPLICATE KEY UPDATE comment = :comment2, alert = :alert";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(':family_id', $family_id, PDO::PARAM_INT);
+        $stm->bindValue(':from_id', $from_id, PDO::PARAM_INT);
+        $stm->bindValue(':to_id', $to_id, PDO::PARAM_INT);
+
+        if (empty($comment)) {
+            //コメントが登録されていなければ通知をオフにする
+            $stm->bindValue(':comment', null, PDO::PARAM_NULL);
+            $stm->bindValue(':comment2', null, PDO::PARAM_NULL);
+            $stm->bindValue(':alert', $alert_value, PDO::PARAM_INT);
+        } else {
+            //コメントが設定されていれば通知をオンにする
+            $stm->bindValue(':comment', $comment, PDO::PARAM_STR);
+            $stm->bindValue(':comment2', $comment, PDO::PARAM_STR);
+            $stm->bindValue(':alert', $alert_value, PDO::PARAM_INT);
+        }
+    }
+
+    /**
      * 指定したユーザ ID からユーザ名を取得します。
      * 
      * 名前が登録されていない場合(Alexa のみの登録者)は null が返されます。
