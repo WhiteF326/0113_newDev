@@ -204,7 +204,7 @@ else if(isset($_POST["entry_pass"])){
                     
                     foreach($result as $row1){
                         //SQL文を作る（プレースホルダを使った式）
-                        $sql = "SELECT user.id,user.name FROM user,family_user
+                        $sql = "SELECT user.id,family_user.user_name FROM user,family_user
                         WHERE family_user.family_id = :family_id AND user.id = family_user.user_id";
                         //プリペアードステートメントを作る
                         $stm = $pdo->prepare($sql);
