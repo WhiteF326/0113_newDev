@@ -20,37 +20,26 @@ if($type == "follow"){
     require 'dbconnect.php';
     //現在登録されている名前を検索
     $sql = "SELECT id FROM user WHERE LINE_id = :id";
-    //プリペアドステートメントを作る
     $stm = $pdo->prepare($sql);
-    //プレースホルダに値をバインドする
     $stm->bindValue(':id', $user_id, PDO::PARAM_STR);
-    //SQL文を実行する
     $stm->execute();
-    //結果を連想配列で取得
     $id = $stm->fetch(PDO::FETCH_COLUMN);
     if(empty($id)){
         //未登録の場合
         $sql = "SELECT MAX(id) FROM user";
-        //プリペアドステートメントを作る
         $stm = $pdo->prepare($sql);
-        //SQL文を実行する
         $stm->execute();
-        //結果を連想配列で取得
         $id = $stm->fetch(PDO::FETCH_COLUMN);
-        //新規id番号
         if(!empty($id)){
            $id += 1; 
         }else{
             $id = 1;
         }
-        //SQL文を作る
+        //ユーザー情報をDBに登録する
         $sql = "INSERT INTO user(id, LINE_id) VALUES (:id, :user_id)";
-        //プリペアドステートメントを作る
         $stm = $pdo->prepare($sql);
-        //プレースホルダに値をバインドする
         $stm->bindValue(':id', $id, PDO::PARAM_INT);
         $stm->bindValue(':user_id', $user_id, PDO::PARAM_STR);
-        //SQL文を実行する
         if($stm->execute()){
             sending_messages($accessToken, $replyToken, "text", "ユーザーを登録しました。以下のURLから忘れ物を登録できます。\nhttps://fukuiohr2.sakura.ne.jp/2021/wasurenai/confirm.php?id=$id");
             exit;
@@ -69,53 +58,42 @@ if($type == "follow"){
 else if($type == "unfollow"){ 
     require 'dbconnect.php';
     try{
+        //ユーザー情報をDBから削除する
         $sql = "DELETE FROM user_item WHERE user_id = (SELECT id FROM user WHERE LINE_id = :id)";
-        //プリペアドステートメントを作る
+
         $stm = $pdo->prepare($sql);
-        //プレースホルダに値をバインドする
         $stm->bindValue(':id', $user_id, PDO::PARAM_STR);
-        //SQL文を実行する
         $stm->execute();
 
         $sql = "DELETE FROM location WHERE id = (SELECT id FROM user WHERE LINE_id = :id)";
-        //プリペアドステートメントを作る
+
         $stm = $pdo->prepare($sql);
-        //プレースホルダに値をバインドする
         $stm->bindValue(':id', $user_id, PDO::PARAM_STR);
-        //SQL文を実行する
         $stm->execute();
 
         $sql = "DELETE FROM send_log WHERE to_id = (SELECT id FROM user WHERE LINE_id = :id)";
-        //プリペアドステートメントを作る
+
         $stm = $pdo->prepare($sql);
-        //プレースホルダに値をバインドする
         $stm->bindValue(':id', $user_id, PDO::PARAM_STR);
-        //SQL文を実行する
         $stm->execute(); 
 
         $sql = "DELETE FROM comment WHERE (from_id = (SELECT id FROM user WHERE LINE_id = :id) OR to_id = (SELECT id FROM user WHERE LINE_id = :id2))";
-        //プリペアドステートメントを作る
+
         $stm = $pdo->prepare($sql);
-        //プレースホルダに値をバインドする
         $stm->bindValue(':id', $user_id, PDO::PARAM_STR);
         $stm->bindValue(':id2', $user_id, PDO::PARAM_STR);
-        //SQL文を実行する
         $stm->execute(); 
 
         $sql = "DELETE FROM family_user WHERE user_id = (SELECT id FROM user WHERE LINE_id = :id)";
-        //プリペアドステートメントを作る
+
         $stm = $pdo->prepare($sql);
-        //プレースホルダに値をバインドする
         $stm->bindValue(':id', $user_id, PDO::PARAM_STR);
-        //SQL文を実行する
         $stm->execute(); 
 
         $sql = "DELETE FROM user WHERE LINE_id = :id";
-        //プリペアドステートメントを作る
+
         $stm = $pdo->prepare($sql);
-        //プレースホルダに値をバインドする
         $stm->bindValue(':id', $user_id, PDO::PARAM_STR);
-        //SQL文を実行する
         $stm->execute(); 
 
     }catch(Exception $e){
@@ -131,13 +109,10 @@ else if($message_text == "登録"|| $message_text == "とうろく"){
     try{
         //現在登録されている名前を検索
         $sql = "SELECT id FROM user WHERE LINE_id = :id";
-        //プリペアドステートメントを作る
+
         $stm = $pdo->prepare($sql);
-        //プレースホルダに値をバインドする
         $stm->bindValue(':id', $user_id, PDO::PARAM_STR);
-        //SQL文を実行する
         $stm->execute();
-        //結果を連想配列で取得
         $id = $stm->fetch(PDO::FETCH_COLUMN);
         if(!empty($id)){
             sending_messages($accessToken, $replyToken, "text", "以下のURLから忘れ物を確認できます。\nhttps://fukuiohr2.sakura.ne.jp/2021/wasurenai/confirm.php?id=$id");
@@ -159,13 +134,10 @@ else if($message_text == "確認" || $message_text == "かくにん"){
     try{
         //現在登録されている名前を検索
         $sql = "SELECT a.name, b.days, b.notice_datetime FROM item a, user_item b, user c WHERE c.LINE_id = :id AND b.user_id = c.id AND a.id = b.item_id";
-        //プリペアドステートメントを作る
+
         $stm = $pdo->prepare($sql);
-        //プレースホルダに値をバインドする
         $stm->bindValue(':id', $user_id, PDO::PARAM_STR);
-        //SQL文を実行する
         $stm->execute();
-        //結果を連想配列で取得
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
         if(empty($result)){
             //未登録の場合
@@ -234,11 +206,9 @@ else if($message_text == "天気解除" || $message_text == "てんきかいじ�
     require 'dbconnect.php';
     try{
         $sql = "DELETE FROM location WHERE id = (SELECT id FROM user WHERE LINE_id = :id)";
-        //プリペアドステートメントを作る
+
         $stm = $pdo->prepare($sql);
-        //プレースホルダに値をバインドする
         $stm->bindValue(':id', $user_id, PDO::PARAM_STR);
-        //SQL文を実行する
         $stm->execute();
     }catch(Exception $e){
         $fp = fopen("sample.txt", "a");
@@ -255,13 +225,11 @@ else if($type == "postback"){
         try{
             $sql = "SELECT DISTINCT a.id, a.name FROM user a, send_log b 
                 WHERE a.LINE_id = :id AND a.id = b.to_id AND b.confirm_check = false AND b.datetime >= :min_datetime AND b.datetime <= :now_datetime";
-            //プリペアドステートメントを作る
+
             $stm = $pdo->prepare($sql);
-            //プレースホルダに値をバインドする
             $stm->bindValue(':id', $user_id, PDO::PARAM_STR);
             $stm->bindValue(':min_datetime', date("Y-m-d H:i:s", strtotime('-30min')), PDO::PARAM_STR);
             $stm->bindValue(':now_datetime', date("Y-m-d H:i:s", strtotime('now')), PDO::PARAM_STR);
-            //SQL文を実行する
             $stm->execute();
             $result = $stm->fetch(PDO::FETCH_ASSOC);
             if(empty($result)){
@@ -271,13 +239,11 @@ else if($type == "postback"){
 
             //ログを更新する
             $sql = "UPDATE send_log SET confirm_check = true WHERE to_id = :id AND datetime >= :min_datetime AND datetime <= :now_datetime";
-            //プリペアドステートメントを作る
+
             $stm = $pdo->prepare($sql);
-            //プレースホルダに値をバインドする
             $stm->bindValue(':id', $result["id"], PDO::PARAM_INT);
             $stm->bindValue(':min_datetime', date("Y-m-d H:i:s", strtotime('-30min')), PDO::PARAM_STR);
             $stm->bindValue(':now_datetime', date("Y-m-d H:i:s", strtotime('now')), PDO::PARAM_STR);
-            //SQL文を実行する
             $stm->execute();
 
             //天気が悪い場合、傘を持っていくことを提案する
@@ -285,7 +251,7 @@ else if($type == "postback"){
             if($weather != false){
                 $text = "本日の天気\n取得した地域 : ". $weather[0]."\n";
                 for($i = 0; $i < 4; $i++){
-                    $text .= $weather["time"][$i]."時の天気 : ". $weather["weather"][$i]. "\n　　 気温 : ". $weather["temp"][$i]."℃\n";
+                    $text .= $weather["time"][$i]."時の天気 : ". $weather["weather"][$i]. "\n     気温 : ". $weather["temp"][$i]."℃\n";
                 }
 
                 if(in_array("雨",$weather["weather"]) || in_array("霧雨",$weather["weather"]) || in_array("雷雨",$weather["weather"]) || in_array("雪",$weather["weather"]) || in_array("台風",$weather["weather"])){
@@ -309,15 +275,13 @@ else if($type == "postback"){
             $sql = "SELECT DISTINCT a.id, a.name FROM user a, send_log b 
                 WHERE LINE_id = :id AND a.id = b.to_id AND b.confirm_check = false AND b.datetime >= :min_datetime AND b.datetime <= :now_datetime 
                 AND a.check_time >= :min_time AND a.check_time <= :now_time";
-            //プリペアドステートメントを作る
+
             $stm = $pdo->prepare($sql);
-            //プレースホルダに値をバインドする
             $stm->bindValue(':id', $user_id, PDO::PARAM_STR);
             $stm->bindValue(':min_datetime', date("Y-m-d H:i:s", strtotime('-30min')), PDO::PARAM_STR);
             $stm->bindValue(':now_datetime', date("Y-m-d H:i:s", strtotime('now')), PDO::PARAM_STR);
             $stm->bindValue(':min_time', date("Y-m-d H:i:s", strtotime('-30min')), PDO::PARAM_STR);
             $stm->bindValue(':now_time', date("Y-m-d H:i:s", strtotime('now')), PDO::PARAM_STR);
-            //SQL文を実行する
             $stm->execute();
             $result = $stm->fetch(PDO::FETCH_ASSOC);
             if(empty($result)){
@@ -327,28 +291,23 @@ else if($type == "postback"){
 
             // ログを更新する
             $sql = "UPDATE send_log SET confirm_check = true WHERE to_id = :id AND datetime >= :min_datetime AND datetime <= :now_datetime";
-            //プリペアドステートメントを作る
+
             $stm = $pdo->prepare($sql);
-            //プレースホルダに値をバインドする
             $stm->bindValue(':id', $result["id"], PDO::PARAM_INT);
             $stm->bindValue(':min_datetime', date("Y-m-d H:i:s", strtotime('-30min')), PDO::PARAM_STR);
             $stm->bindValue(':now_datetime', date("Y-m-d H:i:s", strtotime('now')), PDO::PARAM_STR);
-            //SQL文を実行する
             $stm->execute();
 
             //登録されているアイテムを検索
             for($i = 1 ; $i <= 7 ; $i++){
                 $sql = "SELECT a.name FROM item a, user_item b WHERE b.user_id = :id AND a.id = b.item_id AND ((b.days LIKE :day OR b.days LIKE 'ALL') OR (b.notice_datetime >= :min_datetime AND b.notice_datetime < :max_datetime))";
-                //プリペアドステートメントを作る
+                
                 $stm = $pdo->prepare($sql);
-                //プレースホルダに値をバインドする
                 $stm->bindValue(':id', $result["id"], PDO::PARAM_INT);
                 $stm->bindValue(':day', "%".$week_name[(date("w") + $i) % 7]."%", PDO::PARAM_STR);
                 $stm->bindValue(':min_datetime', date("Y-m-d 00:00:00", strtotime('+'.$i.'day')), PDO::PARAM_STR);
                 $stm->bindValue(':max_datetime', date("Y-m-d 00:00:00", strtotime('+'.($i + 1).'day')), PDO::PARAM_STR);
-                //SQL文を実行する
                 $stm->execute();
-                //結果を連想配列で取得
                 $result2 = $stm->fetchAll(PDO::FETCH_ASSOC);
                 $item = "";
                 foreach($result2 as $row2){
@@ -382,15 +341,13 @@ else if($message_type == "location"){
         //カラムを追加する、存在すればカラムを更新する
         $sql = "INSERT INTO location(id, lat, lon) VALUES ((SELECT id FROM user WHERE LINE_id = :id), :latitude, :longitude)
                 ON DUPLICATE KEY UPDATE lat = :latitude2, lon = :longitude2";
-        //プリペアドステートメントを作る
+
         $stm = $pdo->prepare($sql);
-        //プレースホルダに値をバインドする
         $stm->bindValue(':id', $user_id, PDO::PARAM_STR);
         $stm->bindValue(':latitude', $latitude, PDO::PARAM_STR);
         $stm->bindValue(':longitude', $longitude, PDO::PARAM_STR);
         $stm->bindValue(':latitude2', $latitude, PDO::PARAM_STR);
         $stm->bindValue(':longitude2', $longitude, PDO::PARAM_STR);
-        //SQL文を実行する
         if($stm->execute()){
             sending_messages($accessToken, $replyToken, "text", "位置情報を登録しました。");
         }
@@ -417,7 +374,7 @@ function sending_messages($accessToken, $replyToken, $message_type, $return_mess
     //ポストデータ
     $post_data = [
         "replyToken" => $replyToken,
-        "messages" => [$response_format_text]//←これに2つ以上のテキストを入れると連続して返信することができる
+        "messages" => [$response_format_text]
     ];
  
     //curl実行
@@ -476,13 +433,10 @@ function get_weather($user_id){
     try{
         //登録されている現在位置を取得
         $sql = "SELECT lat, lon FROM location WHERE id = (SELECT id FROM user WHERE LINE_id = :id)";
-        //プリペアドステートメントを作る
+
         $stm = $pdo->prepare($sql);
-        //プレースホルダに値をバインドする
         $stm->bindValue(':id', $user_id, PDO::PARAM_STR);
-        //SQL文を実行する
         $stm->execute();
-        //結果を連想配列で取得
         $result = $stm->fetch(PDO::FETCH_ASSOC);
 
         if(empty($result)){

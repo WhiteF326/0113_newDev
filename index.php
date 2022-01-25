@@ -31,7 +31,7 @@
             <div id="navi">
         <ul>
             <li><a href="index.php">ホーム</a></li>
-            <li><a href="confirm.php?id=<?php echo $_SESSION['user_id'];?>">登録物一覧</a></li>
+            <li><a href="confirm.php?id=<?= $_SESSION['user_id'];?>">登録物一覧</a></li>
             <li><a href="time_top.php">時間登録</a></li>
             <li><a href="family_top.php">グループトップ</a></li>
             <li><a href="alexa_cooperation.php">Alexaと連携</a></li>
@@ -54,7 +54,7 @@
     <div class="news">
 		<h2>各種説明</h2>
 		<ul>
-			<li> <a href="confirm.php?id=<?php echo $_SESSION['user_id'];?>">　登録物一覧　　　登録物一覧が表示されます</a></li>
+			<li> <a href="confirm.php?id=<?= $_SESSION['user_id'];?>">　登録物一覧　　　登録物一覧が表示されます</a></li>
 		    <li> <a href="time_top.php">　時間登録　　　　登録物の通知が来る時間を設定します</a></li>
 		    <li> <a href="family_top.php">　グループトップ　グループ内のメンバーを表示します</a></li>
             <li> ↓　LINEBot　QRコード　　まだの人は友達追加しましょう</li>
@@ -65,7 +65,7 @@
 		</div>
     </div>
 	<div class="col span-4">
-		<a href="confirm.php?id=<?php echo $_SESSION['user_id'];?>"><img src="img/15.png" alt="バナー画像"></a>
+		<a href="confirm.php?id=<?= $_SESSION['user_id'];?>"><img src="img/15.png" alt="バナー画像"></a>
 	    <a href="time_top.php"><img src="img/14.png" alt="バナー画像"></a>
 	    <a href="family_top.php"><img src="img/16.png" alt="バナー画像"></a>
 	</div>

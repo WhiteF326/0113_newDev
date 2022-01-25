@@ -28,7 +28,7 @@ if (isset($_POST["f_id"])) {
 	//MySQLデータベースに接続する
 	require 'dbconnect.php';
 	//search_user_name.phpとほぼ一緒
-	require 'search_family_name.php';
+	require 'search_family_user_name.php';
 
 	/*
 	try{
@@ -52,7 +52,7 @@ if (isset($_POST["f_id"])) {
 	}
 	*/
 	?>
-	<h2><span><?= $list ?></span></h2>
+	<h2><span><?= $list; ?></span></h2>
 	<ol class="sample">
 
 		<?php

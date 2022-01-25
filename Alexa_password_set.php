@@ -1,33 +1,30 @@
 <?php session_start(); ?>
 
 <?php
+require 'check_error.php';
+//pass_idをチェックする
+if (!check_error($_POST["pass_id"])) : ?>
+    <p>6桁の数字を入力してください。</p>
+    <META http-equiv="Refresh" content="0;URL=alexa_cooperation.php">
+    <?php endif;
 require 'dbconnect.php';
-try {
-    //既に使用されているパスワードがないか検索する
-    $sql = "SELECT pass_id FROM Alexa_coop
-    WHERE pass_id = :pass_id";
+require 'DBController.php';
+$DBControl = new DBController();
 
-    $stm = $pdo->prepare($sql);
-    $stm->bindValue(':pass_id', $_POST['pass_id'], PDO::PARAM_INT);
-    $stm->execute();
-    $result = $stm->fetch(PDO::FETCH_COLUMN);
-    if ($result == true) : ?>
+try {
+    //既に使用されているパスワードがないか検索
+    if ($DBControl->alexaPasswordUniqueCheck($_POST["pass_id"])) : ?>
         <p>このコードは使えません。別のコードを設定してください。</p>
         <META http-equiv="Refresh" content="3;URL=alexa_cooperation.php">
-        <?php
+    <?php
     else :
-        //Alexaで連携するパスワードを登録する
-        $sql = "INSERT INTO Alexa_coop(user_id,pass_id)
-        VALUES(:user_id,:pass_id)";
-
-        $stm = $pdo->prepare($sql);
-        $stm->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-        $stm->bindValue(':pass_id', $_POST['pass_id'], PDO::PARAM_INT);
-        if ($stm->execute()) : ?>
-            <META http-equiv="Refresh" content="0;URL=alexa_cooperation.php">
-<?php
-        endif;
-    endif;
+        //既にパスワードが使用されていない場合、パスワードを登録する
+        $DBControl->addAlexaCooperation(
+            $_SESSION["user_id"],
+            $_POST["pass_id"]
+        ); ?>
+        <META http-equiv="Refresh" content="0;URL=alexa_cooperation.php">
+<?php endif;
 } catch (Exception $e) {
     echo "エラーが発生しました。";
     echo '<META http-equiv="Refresh" content="3;URL=alexa_cooperation.php">';
