@@ -62,7 +62,6 @@
                         <h2>Alexaと連携</h2>
 
                         <?php
-                        require 'dbconnect.php';
                         require 'Alexa_cooperation_db.php';
                         ?>
 
