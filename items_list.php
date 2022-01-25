@@ -3,17 +3,13 @@ $week = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 $week_jp = ["日", "月", "火", "水", "木", "金", "土"];
 date_default_timezone_set('Asia/Tokyo');
 
+require 'dbconnect.php';
+require 'DBController.php';
+$DBControl = new DBController();
+
 try {
     //ユーザーが登録している持ち物を検索する
-    $sql = "SELECT a.name, b.item_id, b.days, b.notice_datetime 
-    FROM item a, user_item b
-    WHERE b.user_id = :id 
-    AND a.id = b.item_id";
-
-    $stm = $pdo->prepare($sql);
-    $stm->bindValue(':id', $_SESSION["user_id"], PDO::PARAM_INT);
-    $stm->execute();
-    $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+    $result = $DBControl->getNotificationData($SESSION["user_id"]);
     //リストで表示する
     if (isset($result)) : ?>
         <table class="full-width">
