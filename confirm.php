@@ -74,11 +74,11 @@ if (isset($_REQUEST['id'])) {
 
                         <?php
                         require 'dbconnect.php';
-                        require 'search_user_name.php';
-                        //$listはsearch_user_name.phpで定義されている
                         ?>
 
-                        <h2 class="underline"><?= $list; ?></h2>
+                        あなたの登録物一覧
+
+                        <h2 class="underline">あなたの登録物一覧</h2>
 
                         <?php
                         require 'items_list.php';
