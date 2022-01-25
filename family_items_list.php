@@ -11,7 +11,7 @@ try {
     AND a.id = b.item_id";
 
     $stm = $pdo->prepare($sql);
-    $stm->bindValue(':id', $_SESSION["user_id"], PDO::PARAM_INT);
+    $stm->bindValue(':id', $_POST["f_id"], PDO::PARAM_INT);
     $stm->execute();
     $result = $stm->fetchAll(PDO::FETCH_ASSOC);
     //リストで表示する

@@ -225,7 +225,7 @@ class DBController
         if (count($result)) {
             return $result[0]["pass_id"];
         } else {
-            throw new WrappedDBError($this->error_text[1]);
+            return false;
         }
     }
 
