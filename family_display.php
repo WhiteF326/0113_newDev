@@ -28,7 +28,7 @@ try {
 
     foreach ($result as $row1) :
       //グループに所属しているユーザーのIDと名前を検索する
-      $sql = "SELECT user.id,user.name
+      $sql = "SELECT user.id,family_user.user_name
             FROM user,family_user
             WHERE family_user.family_id = :family_id
             AND user.id = family_user.user_id";
@@ -56,12 +56,12 @@ try {
 
               $keyword = "/$k/u";
 
-              if (!preg_match($keyword, $row2['name'])) :
+              if (!preg_match($keyword, $row2['user_name'])) :
                 continue;
               endif;
             endif; ?>
             <tr>
-              <td><?= $row2['name']; ?>
+              <td><?= $row2['user_name']; ?>
 
                 <?php
                 if ($row2['id'] == $_SESSION['user_id']) : ?>
@@ -115,7 +115,7 @@ try {
                 <?php endif; ?>
                 <form action="family_confirm.php?id=<?= $row2['id']; ?>" method="post">
                   <input type="hidden" name="f_id" value="<?= $row2['id']; ?>">
-                  <input type="submit" value="<?= $row2['name']; ?>さんの持ち物を登録">
+                  <input type="submit" value="<?= $row2['user_name']; ?>さんの持ち物を登録">
                 </form>
               </td>
             </tr>
@@ -135,7 +135,7 @@ try {
 
   <div>
     <button type="submit" name="send" class="button1">
-      <a href="family_make.php">グループを作成する</a>
+      <a href="family_make_form.php">グループを作成する</a>
     </button>
   </div>
   <div>
