@@ -6,7 +6,7 @@ require 'check_error.php';
 if (!check_error($_POST["comment"])) : ?>
     <p>特殊な文字は使用しないでください。</p>
     <META http-equiv="Refresh" content="0;URL=family_top.php">
-<?php elseif($_POST["comment"]) :
+<?php elseif ($_POST["comment"]) :
     $alert_value = true;
 else :
     $alert_value = false;
@@ -25,7 +25,7 @@ try {
         $_POST["comment"],
         $alert_value
     );
-    ?>
+?>
     <META http-equiv="Refresh" content="0;URL=family_top.php">
 <?php
 } catch (Exception $e) {
