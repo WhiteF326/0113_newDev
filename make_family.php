@@ -24,30 +24,9 @@ try {
     $stm->bindValue(':pass', $_POST['make_pass'], PDO::PARAM_STR);
 
     if ($stm->execute()) {
-        //グループに加入する
-        $sql = "INSERT INTO family_user(family_id, user_id)
-        VALUES (:family_id,:user_id)";
-
-        $stm = $pdo->prepare($sql);
-        $stm->bindValue(':family_id', $result, PDO::PARAM_INT);
-        $stm->bindValue(':user_id', $_SESSION["user_id"], PDO::PARAM_INT);
-
-        if ($stm->execute()) {
-        } else {
-            echo "グループが正常に作成できませんでした。";
-        }
-
-        //ユーザー情報に名前を登録する
-        $sql = "UPDATE user SET name = :name
-        WHERE id = :id";
-
-        $stm = $pdo->prepare($sql);
-        $stm->bindValue(':name', $_POST['name'], PDO::PARAM_STR);
-        $stm->bindValue(':id', $_SESSION['user_id'], PDO::PARAM_INT);
-        if ($stm->execute()) {
-        } else {
-            echo "ユーザーの名前が正常に登録されませんでした。";
-        }
+        $dbController->registerUserIntoFamily(
+            $result, $_SESSION["user_id"], $_POST["name"]
+        );
     } else {
         echo "グループ作成時にエラーが発生しました。";
     }
