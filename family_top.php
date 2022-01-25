@@ -1,8 +1,10 @@
 <?php session_start(); ?>
 
 <?php
-
+require 'dbconnect.php';
 if(isset($_POST['make_pass'])){
+    require 'make_family.php';
+    /*
     require 'dbconnect.php';
     try{
         //SQL文を作る
@@ -19,11 +21,11 @@ if(isset($_POST['make_pass'])){
         }else{
             $result = 1;
         }
-
         //プリペアドステートメントのエミュレーションを無効にする
 		$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 		//例外がスローされる
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
         //SQL文を作る（プレースホルダを使った式）
         $sql = "INSERT INTO family(id,name,pass) VALUES (:id,:name,:pass)";
         //プリペアドステートメントを作る
@@ -59,10 +61,11 @@ if(isset($_POST['make_pass'])){
         
     }catch(Exception $e){
         echo "そのパスワードは使用できません。別のパスワードで登録してください。";
-    }
+    }*/
 }
 else if(isset($_POST["entry_pass"])){
-    require 'dbconnect.php';
+    require 'join_family.php';
+    /*
     try{
         //SQL文を作る（プレースホルダを使った式）
         $sql = "SELECT DISTINCT id from family WHERE name = :name AND pass = :pass";
@@ -105,6 +108,7 @@ else if(isset($_POST["entry_pass"])){
     }catch(Exception $e){
         echo "エラーが発生しました。3";
     }
+    */
 }
 
 ?>
@@ -140,7 +144,7 @@ else if(isset($_POST["entry_pass"])){
             <div id="navi">
         <ul>
             <li><a href="index.php">ホーム</a></li>
-            <li><a href="confirm.php?id=<?php echo $_SESSION['user_id'];?>">登録物一覧</a></li>
+            <li><a href="confirm.php?id=<?= $_SESSION['user_id'];?>">登録物一覧</a></li>
             <li><a href="time_top.php">時間登録</a></li>
             <li><a href="family_top.php">グループトップ</a></li>
             <li><a href="alexa_cooperation.php">Alexaと連携</a></li>
@@ -163,15 +167,16 @@ else if(isset($_POST["entry_pass"])){
     <div class="col span-8">
 	<div class="breadcrumb">
 		<ul>
-        <li><a href="index.php">ホーム</a> > <a href="confirm.php?id=<?php echo $_SESSION['user_id'];?>">登録物一覧</a> > <a href="time_top.php">時間登録</a> > グループトップ</li>
+        <li><a href="index.php">ホーム</a> > <a href="confirm.php?id=<?= $_SESSION['user_id'];?>">登録物一覧</a> > <a href="time_top.php">時間登録</a> > グループトップ</li>
 
 		</ul>
 		</div>
 
         <h2 class="underline">グループトップ</h2>
             <?php 
-
-            require 'dbconnect.php';
+            // require 'dbconnect.php';
+            require 'family_display.php';
+            /*
             try{
                 //SQL文を作る（プレースホルダを使った式）
                 $sql = "SELECT DISTINCT a.family_id, b.name FROM family_user a, family b
@@ -223,7 +228,7 @@ else if(isset($_POST["entry_pass"])){
                                 
                                 foreach($result1 as $row2){
                                     $k = $_POST['keyword'];
-                                    $test = "陽子";
+                                    // $test = "陽子";
                                     
                                     $keyword = "/$k/u";
 
@@ -254,18 +259,18 @@ else if(isset($_POST["entry_pass"])){
                                     ?>
 
                                     <form action="comment_send.php" method="post">
-                                    <textarea name="comment" cols="40" rows="2" maxlength="80" placeholder="入力可能なのは80文字までです。"><?php echo $value['comment'];?></textarea><br>
-                                    <input type="hidden" name="from_id" value="<?php echo $_SESSION['user_id'];?>">
-                                    <input type="hidden" name="to_id" value="<?php echo $row2['id'];?>">
-                                    <input type="hidden" name="family_id" value="<?php echo $row1['family_id'];?>">
+                                    <textarea name="comment" cols="40" rows="2" maxlength="80" placeholder="入力可能なのは80文字までです。"><?= $value['comment'];?></textarea><br>
+                                    <input type="hidden" name="from_id" value="<?= $_SESSION['user_id'];?>">
+                                    <input type="hidden" name="to_id" value="<?= $row2['id'];?>">
+                                    <input type="hidden" name="family_id" value="<?= $row1['family_id'];?>">
                                     <input type="submit" title="送信されるコメントを設定します。" value="設定する">
                                     </form>
                                     
                                         <?php if(!empty($value['comment']) && $row2['id'] != $_SESSION['user_id']){ ?>
                                             <form action="alert_set.php" method="post">
-                                                <input type="hidden" name="from_id" value="<?php echo $_SESSION['user_id'];?>">
-                                                <input type="hidden" name="to_id" value="<?php echo $row2['id'];?>">
-                                                <input type="hidden" name="family_id" value="<?php echo $row1['family_id'];?>">
+                                                <input type="hidden" name="from_id" value="<?= $_SESSION['user_id'];?>">
+                                                <input type="hidden" name="to_id" value="<?= $row2['id'];?>">
+                                                <input type="hidden" name="family_id" value="<?= $row1['family_id'];?>">
                                                 <?php if($value['alert'] == 1){ ?>
                                                 <input type="hidden" name="alert" value="0">
                                                 <input type="submit" title="このメンバーからの通知をオフにします。" value="通知をオフ">
@@ -312,18 +317,18 @@ else if(isset($_POST["entry_pass"])){
                                     ?>
 
                                     <form action="comment_send.php" method="post">
-                                    <textarea name="comment" cols="40" rows="2" maxlength="80" placeholder="入力可能なのは80文字までです。"><?php echo $value['comment'];?></textarea><br>
-                                    <input type="hidden" name="from_id" value="<?php echo $_SESSION['user_id'];?>">
-                                    <input type="hidden" name="to_id" value="<?php echo $row2['id'];?>">
-                                    <input type="hidden" name="family_id" value="<?php echo $row1['family_id'];?>">
+                                    <textarea name="comment" cols="40" rows="2" maxlength="80" placeholder="入力可能なのは80文字までです。"><?= $value['comment'];?></textarea><br>
+                                    <input type="hidden" name="from_id" value="<?= $_SESSION['user_id'];?>">
+                                    <input type="hidden" name="to_id" value="<?= $row2['id'];?>">
+                                    <input type="hidden" name="family_id" value="<?= $row1['family_id'];?>">
                                     <input type="submit" title="送信されるコメントを設定します。" value="設定する">
                                     </form>
                                     
                                         <?php if(!empty($value['comment']) && $row2['id'] != $_SESSION['user_id']){ ?>
                                             <form action="alert_set.php" method="post">
-                                                <input type="hidden" name="from_id" value="<?php echo $_SESSION['user_id'];?>">
-                                                <input type="hidden" name="to_id" value="<?php echo $row2['id'];?>">
-                                                <input type="hidden" name="family_id" value="<?php echo $row1['family_id'];?>">
+                                                <input type="hidden" name="from_id" value="<?= $_SESSION['user_id'];?>">
+                                                <input type="hidden" name="to_id" value="<?= $row2['id'];?>">
+                                                <input type="hidden" name="family_id" value="<?= $row1['family_id'];?>">
                                                 <?php if($value['alert'] == 1){ ?>
                                                 <input type="hidden" name="alert" value="0">
                                                 <input type="submit" title="このメンバーからの通知をオフにします。" value="通知をオフ">
@@ -343,7 +348,7 @@ else if(isset($_POST["entry_pass"])){
                             echo "</table>";
                             ?>
                             <form action="family_exit.php" method="post">
-                                <input type="hidden" name="family_id" value="<?php echo $row1['family_id'];?>">
+                                <input type="hidden" name="family_id" value="<?= $row1['family_id'];?>">
                                 <input type="submit" title="グループから退会する" value="グループから退会する">
                                 </form>
 
@@ -361,12 +366,13 @@ else if(isset($_POST["entry_pass"])){
             }catch(Exception $e){
                 echo "エラーが発生しました。";
             }
+            */
             
             ?>
 
  </div>
 	<div class="col span-4">
-		<a href="confirm.php?id=<?php echo $_SESSION['user_id'];?>"><img src="img/15.png" alt="バナー画像"></a>
+		<a href="confirm.php?id=<?= $_SESSION['user_id'];?>"><img src="img/15.png" alt="バナー画像"></a>
 	    <a href="time_top.php"><img src="img/14.png" alt="バナー画像"></a>
 	    <a href="family_top.php"><img src="img/16.png" alt="バナー画像"></a>
 	</div>

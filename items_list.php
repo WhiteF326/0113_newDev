@@ -6,7 +6,7 @@ date_default_timezone_set('Asia/Tokyo');
 try {
     //ユーザーが登録している持ち物を検索する
     $sql = "SELECT a.name, b.item_id, b.days, b.notice_datetime 
-    FROM item a, user_item
+    FROM item a, user_item b
     WHERE b.user_id = :id 
     AND a.id = b.item_id";
 
@@ -24,10 +24,10 @@ try {
             <?php
             foreach ($result as $row) : ?>
                 <tr>
-                    <td><?= $row['name'] ?></td>
+                    <td><?= $row['name']; ?></td>
                     <td>
-                        <form action="registration_items.php" method="post"><input type="hidden" name="item_id" value="<?= $row['item_id'] ?>"><input type="submit" value="変更" class="con"></form>
-                        <form action="delete_items.php" method="post"><input type="hidden" name="item_id" value="<?= $row['item_id'] ?>"><input type="submit" value="削除" class="con"></form>
+                        <form action="registration_items.php" method="post"><input type="hidden" name="item_id" value="<?= $row['item_id']; ?>"><input type="submit" value="変更" class="con"></form>
+                        <form action="delete_items.php" method="post"><input type="hidden" name="item_id" value="<?= $row['item_id']; ?>"><input type="submit" value="削除" class="con"></form>
                     </td>
 
                     <?php
@@ -44,10 +44,10 @@ try {
                     }
                     ?>
 
-                    <td><?= $days ?></td>
+                    <td><?= $days; ?></td>
                     <?php
                     if (isset($row['notice_datetime'])) : ?>
-                        <td><?= date("Y年m月d日 H時i分", strtotime($row['notice_datetime'])) ?></td>
+                        <td><?= date("Y年m月d日 H時i分", strtotime($row['notice_datetime'])); ?></td>
                     <?php
                     else : ?>
                         <td>,</td>

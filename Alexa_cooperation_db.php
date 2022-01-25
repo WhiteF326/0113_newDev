@@ -11,7 +11,7 @@ try {
             <input type="submit" title="設定を完了します。" value="設定">
         </form>
 
-        <?php 
+        <?php
         $password = $DBControl->getAlexaPassword($_SESSION["user_id"]);
 
         if ($password) : ?>
@@ -19,9 +19,10 @@ try {
         <?php else : ?>
             <p> 現在設定されている番号はありません。</p>
         <?php endif;
+
     else : ?>
         <p>既にAlexaと連携しています。</p>
-    <?php endif;
+<?php endif;
 } catch (Exception $e) {
     echo "エラーが発生しました。";
 }
