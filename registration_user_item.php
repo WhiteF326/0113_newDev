@@ -1,7 +1,9 @@
 <?php
 try {
     //持ち物を登録する
-    $sql = "INSERT INTO user_item(user_id, item_id, days, notice_datetime) VALUES (:user_id, :item_id, :days,:notice_datetime) ON DUPLICATE KEY UPDATE days = :days2, notice_datetime = :notice_datetime2";
+    $sql = "INSERT INTO user_item(user_id, item_id, days, notice_datetime)
+    VALUES (:user_id, :item_id, :days,:notice_datetime)
+    ON DUPLICATE KEY UPDATE days = :days2, notice_datetime = :notice_datetime2";
 
     $stm = $pdo->prepare($sql);
     $stm->bindValue(':user_id', $user_id, PDO::PARAM_INT);
