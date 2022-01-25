@@ -1,7 +1,6 @@
 <?php session_start(); ?>
 
 <?php
-
 require 'dbconnect.php';
 require 'DBController.php';
 $DBControl = new DBController();
