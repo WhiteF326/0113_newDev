@@ -1600,20 +1600,22 @@ class DBController
         int $user_id,
         string $name_in_family
     ) {
-        $sql = "INSERT INTO family_user(family_id, user_id)
-            VALUES (:family_id, :user_id)";
+        $sql = "INSERT INTO family_user(family_id, user_id, user_name)
+            VALUES (:family_id, :user_id: :user_name)";
         $stm = $this->pdo->prepare($sql);
         $stm->bindValue(":family_id", $family_id, PDO::PARAM_INT);
         $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+        $stm->bindValue(":user_name", $name_in_family, PDO::PARAM_STR);
 
         $stm->execute();
 
-        $sql = "UPDATE user SET name = :name WHERE user_id = :user_id";
-        $stm = $this->pdo->prepare($sql);
-        $stm->bindValue(":name", $name_in_family, PDO::PARAM_STR);
-        $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+        // DO NOT enable this.
+        // $sql = "UPDATE user SET name = :name WHERE user_id = :user_id";
+        // $stm = $this->pdo->prepare($sql);
+        // $stm->bindValue(":name", $name_in_family, PDO::PARAM_STR);
+        // $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
 
-        $stm->execute();
+        // $stm->execute();
     }
 
     /**
