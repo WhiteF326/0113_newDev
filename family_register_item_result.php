@@ -35,6 +35,8 @@ if (!count($res["errors"])) {
         $res["errors"][] = "持ち物の名前が指定されていません。";
     }
     $is_update = intval($_REQUEST["is_update"]);
+} else {
+    $is_update = 0;
 }
 
 if (!isset($_REQUEST["days"]) && !strlen($_REQUEST["datetime"])) {
@@ -119,7 +121,9 @@ if (!count($res["errors"])) {
         <h2><span>持ち物<?= $is_update ? "更新" : "登録" ?></span></h2>
         <?php if ($res["succeed"]) : ?>
             <p>持ち物の<?= $is_update ? "更新" : "登録" ?>が完了しました。</p>
-            <form action="registration_items.php">
+            <form action="family_confirm.php" method="post">
+                <input hidden name="family_id" value="<?= $_SESSION["family_id"] ?>">
+                <input hidden name="target_user_id" value="<?= $_SESSION["target_user_id"] ?>">
                 <input type="submit" value="戻る" class="button1">
             </form>
             <?php else :
@@ -132,8 +136,8 @@ if (!count($res["errors"])) {
             <?php endif; ?>
             <hr>
             <p>お手数ですが再度お試しください。</p>
-            <form action="registration_items.php">
-                <?php if(isset($_SESSION["to_item_id"])) : ?>
+            <form action="family_registration_items.php">
+                <?php if (isset($_SESSION["to_item_id"])) : ?>
                     <input type="text" hidden name="item_id" value="<?= $_SESSION["to_item_id"] ?>">
                 <?php endif; ?>
                 <input type="submit" value="戻る" class="button1">

@@ -136,11 +136,10 @@ if (!count($error)) {
 </script>
 
 <section>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-
+    <form action="family_register_item_result.php" method="post">
         <div class="cp_iptxt">
             <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-            <input type="text" name="contents" value="<?php echo $value; ?>" placeholder="登録内容"><br>
+            <input type="text" name="item_name" value="<?php echo $value; ?>" placeholder="登録内容"><br>
         </div>
         <div class="cp_iptxt">
             <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
@@ -158,6 +157,8 @@ if (!count($error)) {
             <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
         </div>
         <div><button type="submit" name="send" class="button1">登録</button></div>
+        <input hidden name="user_id" value="<?= $_SESSION["target_user_id"] ?>">
+        <input hidden name="is_update" value="<?= strlen($item_name) ? 1 : 0?>">
     </form>
 
     <div>
