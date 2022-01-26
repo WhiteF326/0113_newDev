@@ -1514,12 +1514,13 @@ class DBController
         $sql = "INSERT INTO user_item(user_id, item_id, days, notice_time)
             VALUES (:user_id, :item_id, :weekday, :notice_datetime)
             ON DUPLICATE KEY
-                UPDATE days = :weekday, notice_datetime = :notice_time";
+                UPDATE days = :weekday, notice_datetime = :notice_time2";
         $stm = $this->pdo->prepare($sql);
         $stm->bindValue(":user_id", $user_id);
         $stm->bindValue(":item_id", $item_id);
         $stm->bindValue(":weekday", $weekday);
         $stm->bindValue(":notice_time", $notify_time);
+        $stm->bindValue(":notice_time2", $notify_time);
 
         $result = $result & $stm->execute();
 

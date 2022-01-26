@@ -1,4 +1,3 @@
-
 <?php
 require 'dbconnect.php';
 require 'DBController.php';
