@@ -55,7 +55,6 @@ $time_names = array(
                         </div>
 
                         <h2 class="underline">通知時刻確認 / 変更</h2>
-
                         <h5>現在設定されている時間</h5>
 
                         <?php
