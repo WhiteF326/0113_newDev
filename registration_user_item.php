@@ -31,5 +31,5 @@ try {
         echo "登録できませんでした。もう一度お試しください。";
     };
 } catch (Exception $e) {
-    echo "エラーが発生しました。";
+    echo $e;
 }
