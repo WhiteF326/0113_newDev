@@ -40,7 +40,14 @@ if ($_POST["days"][0] == "ALL") {
 if (empty($_POST['contents'])) {
     $error[] = "持ち物が入力されていません。";
 } else {
-    $contents = $_POST["contents"];
+    require "check_error.php";
+    if(check_error($_POST["contents"])){
+        $contents = $_POST["contents"];
+    }
+    else{
+        $error[] = "特殊な文字や文字コードを入力しないでください。";
+    }
+    
 }
 
 if (empty($_POST['days']) && empty($_POST['datetime'])) {
