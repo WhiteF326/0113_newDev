@@ -1,12 +1,12 @@
 <?php
+
+require 'dbconnect.php';
+require 'DBController.php';
+$DBControl = new DBController();
+
 try {
     //名前を検索する
-    $sql = "SELECT name FROM user WHERE id = :id";
-    
-    $stm = $pdo->prepare($sql);
-    $stm->bindValue(':id', $_SESSION['user_id'], PDO::PARAM_INT);
-    $stm->execute();
-    $result = $stm->fetch(PDO::FETCH_COLUMN);
+    $result = $DBControl->getUserNameFromId($_SESSION["user_id"]);
     if (empty($result)) {
         $list = "あなたの登録物一覧";
     } else {
