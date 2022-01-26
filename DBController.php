@@ -1737,6 +1737,32 @@ class DBController
     }
 
     /**
+     * グループの名前を ID で検索します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - family
+     * 
+     * ### 参照先フィールド
+     * 
+     * - family_id
+     * 
+     * ---
+     * 
+     * @param int $family_id グループ ID を指定します。
+     * @return bool
+     */
+    function searchFamilyName(int $family_id)
+    {
+        $sql = "SELECT name FROM family WHERE id = :family_id";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":family_id", $family_id, PDO::PARAM_INT);
+        $stm->execute();
+
+        return $stm->fetch(PDO::FETCH_COLUMN);
+    }
+
+    /**
      * ユーザ ID を指定して、当該ユーザが所属するグループをすべて取得します。
      * 
      * ### 参照先テーブル
