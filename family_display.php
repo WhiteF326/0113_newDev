@@ -1,15 +1,11 @@
 <?php
+require 'dbconnect.php';
+require 'DBController.php';
+$DBControl = new DBController();
+
 try {
   //所属しているグループのIDと名前を検索する
-  $sql = "SELECT DISTINCT a.family_id, b.name 
-    FROM family_user a, family b
-    WHERE a.user_id = :user_id
-    AND a.family_id = b.id";
-
-  $stm = $pdo->prepare($sql);
-  $stm->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-  $stm->execute();
-  $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+  $result = $DBControl->getAllFamilyFromUserId($_SESSION["user_id"]);
 
   //取得できたなら、グループの情報を表示する
   if (isset($result[0]['family_id'])) : ?>
@@ -28,15 +24,7 @@ try {
 
     foreach ($result as $row1) :
       //グループに所属しているユーザーのIDと名前を検索する
-      $sql = "SELECT user.id,family_user.user_name
-            FROM user,family_user
-            WHERE family_user.family_id = :family_id
-            AND user.id = family_user.user_id";
-
-      $stm = $pdo->prepare($sql);
-      $stm->bindValue(':family_id', $row1['family_id'], PDO::PARAM_INT);
-      $stm->execute();
-      $result1 = $stm->fetchAll(PDO::FETCH_ASSOC);
+      $result1 = $DBControl->getAllUserFromFamilyId($row1["family_id"]);
 
       $f_name = $row1["name"];
 
@@ -74,17 +62,11 @@ try {
                 <?php
                 try {
                   //メッセージと通知の設定を検索
-                  $sql = "SELECT comment, alert FROM comment
-                                    WHERE family_id = :family_id
-                                    AND from_id = :from_id
-                                    AND to_id = :to_id";
-
-                  $stm = $pdo->prepare($sql);
-                  $stm->bindValue(':family_id', $row1['family_id'], PDO::PARAM_INT);
-                  $stm->bindValue(':from_id', $_SESSION["user_id"], PDO::PARAM_INT);
-                  $stm->bindValue(':to_id', $row2['id'], PDO::PARAM_INT);
-                  $stm->execute();
-                  $value = $stm->fetch(PDO::FETCH_ASSOC);
+                  $value = $DBControl->getMessageOnFamily(
+                    $row1['family_id'],
+                    $_SESSION["user_id"],
+                    $row2['id']
+                  );
                 } catch (Exception $e) {
                   echo "メッセージの取得でエラーが発生しました。";
                 }
@@ -145,7 +127,7 @@ try {
   </div>
   <div>
     <button type="submit" name="send" class="button1">
-      <a href="confirm.php?id=<?php echo $_SESSION['user_id'] ?>">登録物一覧に戻る</a>
+      <a href="confirm.php?id=<?= $_SESSION['user_id']; ?>">登録物一覧に戻る</a>
     </button>
   </div>
 <?php
