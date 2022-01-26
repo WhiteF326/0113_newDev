@@ -42,31 +42,7 @@ if (isset($_POST["f_id"])) {
 	<hr>
 	<?php
 	require 'family_time_display.php';
-	/*
-try{
-	//SQL文を作る（プレースホルダを使った式）
-	$sql ="SELECT notice_time, return_time, check_time FROM user WHERE id = :user_id";
-	//プリペアードステートメントを作る
-	$stm = $pdo->prepare($sql);
-	//プリペアードステートメントに値をバインドする
-	$stm->bindValue(':user_id',$_SESSION['user_id'],PDO::PARAM_INT);
-	//SQL文を実行する
-	$stm->execute();
-	//結果の取得（連想配列で受け取る）
-	$time = $stm->fetch(PDO::FETCH_ASSOC);
-	if(!empty($time["notice_time"] && !empty($time["check_time"]))){
-		echo "現在設定されている時間<br>";
-		echo "その日の持ち物を通知する時間 : ", $time["notice_time"], "<br>";
-		echo "帰りだす時間 　　　　　　　　: ", $time["return_time"], "<br>";
-		echo "次の日の持ち物を確認する時間 : ", $time["check_time"], "<br>";
-	}else{
-		echo "時間を登録してください。", "<br>";
-	}
 
-}catch(Exception $e){
-    echo "エラーが発生しました。";
-}
-*/
 
 	?>
 	<hr>"

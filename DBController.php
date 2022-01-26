@@ -1849,10 +1849,11 @@ class DBController
     {
         $sql = "DELETE FROM comment
             WHERE family_id = :family_id
-            AND (to_id = :user_id OR from_id = :user_id)";
+            AND (to_id = :user_id OR from_id = :user_id2)";
         $stm = $this->pdo->prepare($sql);
         $stm->bindValue(":family_id", $family_id, PDO::PARAM_INT);
         $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+        $stm->bindValue(":user_id2", $user_id, PDO::PARAM_INT);
 
         $stm->execute();
 
