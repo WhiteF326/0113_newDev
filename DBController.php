@@ -1750,13 +1750,39 @@ class DBController
      * ---
      * 
      * @param int $family_id グループ ID を指定します。
-     * @return bool
+     * @return string
      */
     function searchFamilyName(int $family_id)
     {
         $sql = "SELECT name FROM family WHERE id = :family_id";
         $stm = $this->pdo->prepare($sql);
         $stm->bindValue(":family_id", $family_id, PDO::PARAM_INT);
+        $stm->execute();
+
+        return $stm->fetch(PDO::FETCH_COLUMN);
+    }
+
+    /**
+     * 持ち物の名前を ID で検索します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - item
+     * 
+     * ### 参照先フィールド
+     * 
+     * - item_id
+     * 
+     * ---
+     * 
+     * @param int $item_id 持ち物 ID を指定します。
+     * @return string
+     */
+    function searchItemName(int $item_id)
+    {
+        $sql = "SELECT name FROM item WHERE id = :item_id";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":item_id", $item_id, PDO::PARAM_INT);
         $stm->execute();
 
         return $stm->fetch(PDO::FETCH_COLUMN);
