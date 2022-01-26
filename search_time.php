@@ -1,14 +1,11 @@
 <?php
+require 'dbconnect.php';
+require 'DBController.php';
+$DBControl = new DBController();
+
 try {
     //登録されている時間を検索
-    $sql = "SELECT notice_time, return_time, check_time
-    FROM user
-    WHERE id = :id";
-
-    $stm = $pdo->prepare($sql);
-    $stm->bindValue(':id', $_SESSION['user_id'], PDO::PARAM_INT);
-    $stm->execute();
-    $result = $stm->fetch(PDO::FETCH_ASSOC);
+    $result = $DBControl->getAllTimeByUserId($_SESSION['user_id']);
 
     $mtime = $result['notice_time'];
     $etime = $result['check_time'];
