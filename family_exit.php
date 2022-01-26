@@ -32,7 +32,7 @@ require 'search_family_name.php';
 
             <br>
             <button type="submit" name="send" class="button3">
-                <a href="family_top.php" class="a">グループトップに戻る</a><br>
+                <a href="family_top.php" class="a">グループ機能に戻る</a><br>
             </button>
             <br>
         </div>

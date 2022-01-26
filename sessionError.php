@@ -35,8 +35,8 @@
 							<ul>
 								<li><a href="index.php">ホーム</a></li>
 								<li><a href="confrim.php?id=<?php echo $_SESSION['user_id']; ?>">登録物一覧</a></li>
-								<li><a href="time_top.php">時間登録</a></li>
-								<li><a href="family_top.php">グループトップ</a></li>
+								<li><a href="time_top.php">通知時刻確認 / 変更</a></li>
+								<li><a href="family_top.php">グループ機能</a></li>
 								<li><a href="alexa_cooperation.php">Alexaと連携</a></li>
 								<li><a href="maker.php">製作者情報</a></li>
 							</ul>
@@ -74,11 +74,11 @@
 					<p>登録物の確認、登録、変更、削除ができます</p>
 				</div>
 				<div class="col span-4">
-					<h5>時間登録</h5>
+					<h5>通知時刻確認 / 変更</h5>
 					<p>時間を登録することで、設定された曜日の指定された時間に通知が来るようになります</p>
 				</div>
 				<div class="col span-4">
-					<h5>グループトップ</h5>
+					<h5>グループ機能</h5>
 					<p>同グループのメンバーの忘れたくないもの登録、変更、削除、メッセージの送信ができます</p>
 				</div>
 			</div>

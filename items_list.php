@@ -29,8 +29,26 @@ function get_weekdays_str(int $weekday_integer)
         }
     }
     return implode(", ", $weekdays) . "曜日";
-}
-
+} ?>
+<script>
+    // 持ち物の削除を実行する
+    async function remove(userId, itemId) {
+        await fetch("delete_items.php", {
+            "method": "post",
+            "mode": "cors",
+            "cache": "no-cache",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": JSON.stringify({
+                "item_id": itemId,
+                "user_id": userId,
+            }),
+        });
+        window.location.reload();
+    }
+</script>
+<?php
 try {
     // ユーザが登録している持ち物の情報をすべて取得
     $sql = "SELECT a.name, b.item_id, b.weekdays, b.notice_datetime 
@@ -69,10 +87,9 @@ try {
                                 <input type="hidden" name="item_id" value="<?= $row['item_id'] ?>">
                                 <input type="submit" value="変更" class="con">
                             </form>
-                            <form action="delete_items.php" method="post">
-                                <input type="hidden" name="item_id" value="<?= $row['item_id'] ?>">
-                                <input type="submit" value="削除" class="con">
-                            </form>
+                            <button class="button1" onclick="remove(<?= $_SESSION["user_id"] ?>, <?= $row['item_id']; ?>)">
+                                削除
+                            </button>
                         </td>
                     </tr>
                     <tr>

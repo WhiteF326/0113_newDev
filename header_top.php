@@ -27,8 +27,8 @@ if (empty($_SESSION['user_id'])) {
             <ul>
               <li><a href="index.php">ホーム</a></li>
               <li><a href="confirm.php?id=<?php echo $_SESSION['user_id']; ?>">登録物一覧</a></li>
-              <li><a href="time_top.php">時間登録</a></li>
-              <li><a href="family_top.php">グループトップ</a></li>
+              <li><a href="time_top.php">通知時刻確認 / 変更</a></li>
+              <li><a href="family_top.php">グループ機能</a></li>
               <li><a href="Alexa_cooperation.php">Alexaと連携</a></li>
               <li><a href="maker.php">製作者情報</a></li>
             </ul>

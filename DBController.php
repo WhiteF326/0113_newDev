@@ -109,7 +109,7 @@ class DBController
     {
         // dsn, user name, password
         $this->pdo = new PDO(
-            "mysql:host=mysql640.db.sakura.ne.jp;dbname=fukuiohr2_wasurenai;charset=utf8",
+            "mysql:host=127.0.0.1;dbname=fukuiohr2_wasurenai;charset=utf8",
             "fukuiohr2",
             "Fukui2021d"
         );

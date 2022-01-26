@@ -48,7 +48,7 @@ include 'header_form.php';
 
   </form><br>
   <button type="submit" name="send" class="button3">
-    <a href="family_top.php" class="a">グループトップに戻る</a>
+    <a href="family_top.php" class="a">グループ機能に戻る</a>
   </button>
   </div>
 

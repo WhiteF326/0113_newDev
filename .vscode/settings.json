@@ -1,5 +1,14 @@
 {
     "[html]": {
         "editor.tabSize": 2
+    },
+    "[json]": {
+        "editor.tabSize": 4
+    },
+    "[php]": {
+        "editor.tabSize": 4
+    },
+    "[css]": {
+        "editor.tabSize": 4
     }
 }

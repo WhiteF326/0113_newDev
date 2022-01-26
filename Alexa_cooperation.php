@@ -27,7 +27,7 @@
                 <div class="col span-8">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="index.php">ホーム</a> > <a href="confirm.php?id=<?php echo $_SESSION['now_user']; ?>">登録物一覧</a> > <a href="time_top.php">時間登録</a> > <a href="family_top.php">グループトップ</a> > Alexaと連携</li>
+                            <li><a href="index.php">ホーム</a> > <a href="confirm.php?id=<?php echo $_SESSION['now_user']; ?>">登録物一覧</a> > <a href="time_top.php">通知時刻確認 / 変更</a> > <a href="family_top.php">グループ機能</a> > Alexaと連携</li>
                         </ul>
                     </div>
                     <div class="news">
@@ -57,11 +57,11 @@
 
                 </div>
                 <div class="col span-4">
-                    <h5>時間登録</h5>
+                    <h5>通知時刻確認 / 変更</h5>
                     <p>時間を登録することで、設定された曜日の指定された時間に通知が来るようになります</p>
                 </div>
                 <div class="col span-4">
-                    <h5>グループトップ</h5>
+                    <h5>グループ機能</h5>
                     <p>同グループのメンバーの忘れたくないもの登録、変更、削除、メッセージの送信ができます</p>
                 </div>
             </div>
