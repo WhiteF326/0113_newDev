@@ -1,32 +1,11 @@
 <?php session_start(); ?>
 <?php
 
-//$_POST['family_id']が入っている
+//$_POST['family_id']が存在する
 
 require 'dbconnect.php';
 require 'search_family_name.php';
-/*
-try{
-    //SQL文を作る（プレースホルダを使った式）
-    $sql = "SELECT name FROM family WHERE id = :id";
-    //プリペアードステートメントを作る
-    $stm = $pdo->prepare($sql);
-    //プリペアードステートメントに値をバインドする
-    $stm->bindValue(':id',$_POST['family_id'],PDO::PARAM_INT);
-    //SQL文を実行する
-    $stm->execute();
-    //結果の取得（連想配列で受け取る）
-    $result = $stm->fetch(PDO::FETCH_COLUMN);
-    if(empty($result)){
 
-        }else{
-        $family_name = "[".$result."]";
-
-    }
-}catch(Exception $e){
-    $st = "error!";
-}
-*/
 ?>
 <!DOCTYPE html>
 <html>

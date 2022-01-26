@@ -22,26 +22,7 @@ require 'dbconnect.php';
 date_default_timezone_set('Asia/Tokyo');
 
 if (!empty($_POST['item_id'])) {
-    // require_once("dbconnect.php");
-    //ここポストされる情報が持ち物の名前なら省略できると思います。
     require 'search_item_name.php';
-    /*
-    try{
-        //現在登録されている名前を検索
-        $sql = "SELECT name FROM item WHERE id = :id";
-        //プリペアドステートメントを作る
-        $stm = $pdo->prepare($sql);
-        //プレースホルダに値をバインドする
-        $stm->bindValue(':id', $_POST['item_id'], PDO::PARAM_INT);
-        //SQL文を実行する
-        $stm->execute();
-        //結果を連想配列で取得
-        $value = $stm->fetch(PDO::FETCH_COLUMN);
-    }
-    catch(Exception $e){
-        
-    }
-    */
 } else {
     $value = null;
 }
@@ -67,76 +48,11 @@ if (empty($_POST['days']) && empty($_POST['datetime'])) {
 } else if (!empty($_POST['days']) && !empty($_POST['datetime'])) {
     $error[] = "設定できるのは曜日か日付のどちらか片方だけです。";
 }
-// else {
+
 if (!count($error)) {
-    //DBの変更との兼ね合いで少し変形するかもしれない
+    //持ち物登録
     require 'registration_items_db.php';
     require 'registration_user_item.php';
-    /*
-    try {
-        //現在登録されている名前を検索
-        $sql = "SELECT id FROM item WHERE name = :name";
-        //プリペアドステートメントを作る
-        $stm = $pdo->prepare($sql);
-        //プレースホルダに値をバインドする
-        $stm->bindValue(':name', $contents, PDO::PARAM_STR);
-        //SQL文を実行する
-        $stm->execute();
-        //結果を連想配列で取得
-        $result = $stm->fetch(PDO::FETCH_COLUMN);
-        if (empty($result)) {
-            //未登録の場合
-            $sql = "SELECT MAX(id) FROM item";
-            //プリペアドステートメントを作る
-            $stm = $pdo->prepare($sql);
-            //SQL文を実行する
-            $stm->execute();
-            //結果を連想配列で取得
-            $result = $stm->fetch(PDO::FETCH_COLUMN);
-            //新規id番号
-            if (isset($result)) {
-                $result += 1;
-            } else {
-                $result = 1;
-            }
-
-            //SQL文を作る
-            $sql = "INSERT INTO item(id,name) VALUES (:id,:name)";
-            //プリペアドステートメントを作る
-            $stm = $pdo->prepare($sql);
-            //プレースホルダに値をバインドする
-            $stm->bindValue(':id', $result, PDO::PARAM_INT);
-            $stm->bindValue(':name', $contents, PDO::PARAM_STR);
-            if ($stm->execute()) {
-            } else {
-                $error[] =  "エラーが発生しました。";
-            }
-        }
-
-        $sql = "INSERT INTO user_item(user_id, item_id, days, notice_datetime) VALUES (:user_id, :item_id, :days,:notice_datetime) ON DUPLICATE KEY UPDATE days = :days2, notice_datetime = :notice_datetime2";
-        //プリペアドステートメントを作る
-        $stm = $pdo->prepare($sql);
-        //プレースホルダに値をバインドする
-        $stm->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-        $stm->bindValue(':item_id', $result, PDO::PARAM_INT);
-        if (!empty($_POST['days'])) {
-            $stm->bindValue(':days', $days, PDO::PARAM_STR);
-            $stm->bindValue(':days2', $days, PDO::PARAM_STR);
-        } else {
-            $stm->bindValue(':days', NULL, PDO::PARAM_NULL);
-            $stm->bindValue(':days2', NULL, PDO::PARAM_NULL);
-        }
-        if (!empty($_POST['datetime'])) {
-            $stm->bindValue(':notice_datetime', $_POST['datetime'], PDO::PARAM_STR);
-            $stm->bindValue(':notice_datetime2', $_POST['datetime'], PDO::PARAM_STR);
-        } else {
-            $stm->bindValue(':notice_datetime', NULL, PDO::PARAM_NULL);
-            $stm->bindValue(':notice_datetime2', NULL, PDO::PARAM_NULL);
-        }
-        $stm->execute();
-    } catch (Exception $e) {
-    }
-    */
 }
 
 ?>
