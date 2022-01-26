@@ -1,7 +1,6 @@
 <?php
 $week = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 $week_jp = ["日", "月", "火", "水", "木", "金", "土"];
-date_default_timezone_set('Asia/Tokyo');
 
 require 'dbconnect.php';
 require 'DBController.php';

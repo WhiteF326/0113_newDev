@@ -1,12 +1,13 @@
 <?php
+
+require 'dbconnect.php';
+require 'DBController.php';
+$DBControl = new DBController();
+
 try {
     //グループに所属している人の名前を検索する
-    $sql = "SELECT name FROM user WHERE id = :id";
+    $result = $DBControl->getUserNameFromId($_SESSION["f_id"]);
     
-    $stm = $pdo->prepare($sql);
-    $stm->bindValue(':id', $_SESSION['f_id'], PDO::PARAM_INT);
-    $stm->execute();
-    $result = $stm->fetch(PDO::FETCH_COLUMN);
     if (empty($result)) {
         $list = "あなたの登録物一覧";
     } else {

@@ -1,13 +1,12 @@
 <?php
+
+require 'dbconnect.php';
+require 'DBController.php';
+$DBControl = new DBController();
+
 try{
 	//選択したグループメンバーの登録している時間を取得する
-	$sql ="SELECT notice_time, return_time, check_time
-    FROM user WHERE id = :family_id";
-	
-	$stm = $pdo->prepare($sql);
-	$stm->bindValue(':family_id',$_SESSION['f_id'],PDO::PARAM_INT);
-	$stm->execute();
-	$time = $stm->fetch(PDO::FETCH_ASSOC);
+	$time = $DBControl->getAllTimeByUserId($_POST["f_id"]);
 	if(!empty($time["notice_time"]) && !empty($time["check_time"])) : ?>
 		<p>現在設定されている時間</p>
 		<p>その日の持ち物を通知する時間 : <?= $time["notice_time"]; ?></p>

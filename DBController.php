@@ -574,6 +574,37 @@ class DBController
     }
 
     /**
+     * ユーザ ID を指定して、登録されている時間情報を取得します。
+     * 
+     * ### 参照先テーブル
+     * 
+     * - user
+     * 
+     * ### 参照先フィールド
+     * 
+     * - notice_time
+     * - return_time
+     * - check_time
+     * - id
+     * 
+     * ---
+     * 
+     * @param int user_id ユーザ ID を指定します。
+     * @param array
+     */
+    function getAllTimeByUserId(int $user_id)
+    {
+        $sql = "SELECT notice_time, return_time, check_time
+        FROM user WHERE id = :user_id";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+
+        $stm->execute();
+
+        return $stm->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
      * LINE ID を指定して、登録されている位置情報を取得します。
      * 
      * ### 参照先テーブル
