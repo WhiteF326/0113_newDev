@@ -1721,7 +1721,7 @@ class DBController
      * 
      * @param string $name グループ名を指定します。
      * @param string $pass パスワードを指定します。
-     * @return array
+     * @return int
      */
     function searchFamily(string $name, string $pass)
     {
