@@ -5,7 +5,7 @@ try {
 
     $stm = $pdo->prepare($sql);
     $stm->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-    $stm->bindValue(':item_id', $contents/*$result*/, PDO::PARAM_INT);
+    $stm->bindValue(':item_id', $result, PDO::PARAM_INT);
     if (!empty($_POST['days'])) {
         $stm->bindValue(':days', $days, PDO::PARAM_STR);
         $stm->bindValue(':days2', $days, PDO::PARAM_STR);
@@ -31,5 +31,5 @@ try {
         echo "登録できませんでした。もう一度お試しください。";
     };
 } catch (Exception $e) {
-    echo "エラーが発生しました。";
+    echo $e;
 }

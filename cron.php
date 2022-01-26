@@ -1,3 +1,11 @@
+<script>
+    window.onload = () => {
+        if (window.location.href.endsWith("cron.php")) {
+            window.location.href = "LINE_registration.php";
+        }
+    };
+</script>
+
 <?php
 $week_name = ["%sun%", "%mon%", "%tue%", "%wed%", "%thu%", "%fri%", "%sat%"];//date("w")でとったときの0-6の対応配列
 date_default_timezone_set('Asia/Tokyo');

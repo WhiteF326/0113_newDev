@@ -27,7 +27,7 @@ try {
 
     //SQL文を実行する
     if ($stm->execute()) {
-        echo '<META http-equiv="Refresh" content="3;URL=family_top.php"><p>グループから退会しました。<br>グループトップに戻ります。</p>';
+        require 'family_exit_end.php';
     }
 } catch (Exception $e) {
     echo "エラーが発生しました。";

@@ -1,3 +1,10 @@
+<script>
+    window.onload = () => {
+        if (window.location.href.endsWith("delete_items.php")) {
+            window.location.href = "LINE_registration.php";
+        }
+    };
+</script>
 <?php session_start(); ?>
 
 <?php
@@ -24,7 +31,6 @@ try{
     }
 
 }catch(Exception $e){
-    echo "エラーが発生しました
-    。";
+    echo "エラーが発生しました。";
 }
 ?>

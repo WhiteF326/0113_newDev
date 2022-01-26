@@ -19,8 +19,11 @@ require 'search_family_name.php';
 <body>
     <?php ?>
     <h2>
-        <span>グループ退会<br>グループ<?php echo $family_name; ?>から退会しますか？</span>
+        <span>グループ退会</span>
+        <br>
+        グループ<?php echo $family_name; ?>から退会しますか？
     </h2>
+    <br>
     <form action="family_exit_db.php" method="post">
 
         <div>

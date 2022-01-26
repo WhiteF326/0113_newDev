@@ -132,11 +132,8 @@ require 'header_form.php';
 
 	</ol>
 	<h3>
-		<div>
-			<button type="submit" name="send" class="button1">
-				<a href="family_registration_items.php">持ち物登録</a>
-			</button>
-		</div>
+	<div><button type="submit" name="send" class="button1"><a href="family_registration_items.php">持ち物登録</a></button></div>
+		
 	</h3>
 	<hr>
 	<?php
@@ -168,12 +165,10 @@ try{
 */
 
 	?>
-	<hr>
-	<div>
-		<button type="submit" name="send" class="button3">
-			<a href="family_top.php" class="a">グループトップに戻る</a>
-		</button>
-	</div>
+	<hr><div>
+	<button type="submit" name="send" class="button3">
+	<a href="family_top.php"class="a">グループトップに戻る</a></button>
+    </div>
 	<br>
 </body>
 

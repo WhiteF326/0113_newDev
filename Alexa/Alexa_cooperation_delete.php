@@ -8,7 +8,7 @@ $json = file_get_contents("php://input");
 $contents = json_decode($json, true);
 
 
-$Alexa_id=$contents["name"];
+$alexa_id=$contents["name"];
 
 require 'dbconnect.php';
 try{
@@ -19,7 +19,7 @@ try{
     //プリペアードステートメントを作る
     $stm = $pdo->prepare($sql);
     //プリペアードステートメントに値をバインドする
-    $stm->bindValue(':Alexa_id',$Alexa_id,PDO::PARAM_STR);
+    $stm->bindValue(':Alexa_id',$alexa_id,PDO::PARAM_STR);
 
     //SQL文を実行する
     $stm->execute();

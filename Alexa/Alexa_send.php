@@ -20,8 +20,8 @@ $json = file_get_contents("php://input");
 $contents = json_decode($json, true);
 
 
-$Alexa_id=$contents["name"];
-//$Alexa_id="amzn1.ask.person.AKJSQKKTKSR2ACJPQM4YQ7IT7GIH2VANC5HXSYKUAZ6ACLSW37WT7E34DDGD3GKJD6VNQBJHWBY4QBMKASVJN2OMIB2UG2EMQ3FY64JC";
+$alexa_id=$contents["name"];
+//$alexa_id="amzn1.ask.person.AKJSQKKTKSR2ACJPQM4YQ7IT7GIH2VANC5HXSYKUAZ6ACLSW37WT7E34DDGD3GKJD6VNQBJHWBY4QBMKASVJN2OMIB2UG2EMQ3FY64JC";
 
 
 try{
@@ -29,7 +29,7 @@ try{
     //プリペアドステートメントを作る
     $stm = $pdo->prepare($sql);
     //プレースホルダに値をバインドする
-    $stm->bindValue(':Alexa_id', $Alexa_id, PDO::PARAM_STR);
+    $stm->bindValue(':Alexa_id', $alexa_id, PDO::PARAM_STR);
     //SQL文を実行する
     $stm->execute();
 
@@ -44,7 +44,7 @@ try{
         //SQL文を実行する
         $stm->execute();
 
-        $sql = "INSERT INTO send_log(to_id, message, datetime,confirm_check) VALUES (:id, :message, :datetime, true)";
+        $sql = "INSERT INTO send_log(to_id, message, datetime,confrim_check) VALUES (:id, :message, :datetime, true)";
         //プリペアドステートメントを作る
         $stm = $pdo->prepare($sql);
         //プレースホルダに値をバインドする

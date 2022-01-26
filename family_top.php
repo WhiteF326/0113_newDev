@@ -2,8 +2,10 @@
 
 <?php
 require 'dbconnect.php';
+require "DBController.php";
+$dbController = new DBController();
 if (isset($_POST['make_pass'])) {
-  require 'family_make.php';
+  require 'make_family.php';
 } else if (isset($_POST["entry_pass"])) {
   require 'join_family.php';
 }

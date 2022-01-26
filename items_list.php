@@ -21,40 +21,35 @@ try {
         <?php
         foreach ($result as $row) : ?>
           <tr>
-            <td><?= $row['name'] ?></td>
             <td>
-              <form action="registration_items.php" method="post">
-                <input type="hidden" name="item_id" value="<?= $row['item_id'] ?>">
-                <input type="submit" value="変更" class="con">
-              </form>
-            </td>
-          </tr>
-          <?php
-          if (preg_match('/ALL/u', $row["days"])) {
-            $days = "毎日";
-          } else {
-            $days = "";
-            for ($i = 0; $i < count($week); $i++) {
-              //文字列が含まれるなら
-              if (preg_match('/' . $week[$i] . '/u', $row["days"])) {
-                $days .= $week_jp[$i];
-              }
-            }
-          }
-          ?>
-          <tr>
-            <td>
+              <?= $row['name'] ?>
+              <br>
               <?php
+              if (preg_match('/ALL/u', $row["days"])) {
+                $days = "毎日";
+              } else {
+                $days = "";
+                for ($i = 0; $i < count($week); $i++) {
+                  //文字列が含まれるなら
+                  if (preg_match('/' . $week[$i] . '/u', $row["days"])) {
+                    $days .= $week_jp[$i];
+                  }
+                }
+              }
               if (isset($row['notice_datetime'])) : ?>
                 <?= date("Y年m月d日 H時i分", strtotime($row['notice_datetime'])) ?>
               <?php
               else : ?>
                 <?= $days ?>
-
               <?php
               endif; ?>
             </td>
             <td>
+              <form action="registration_items.php" method="post">
+                <input type="hidden" name="item_id" value="<?= $row['item_id'] ?>">
+                <input type="submit" value="変更" class="con">
+              </form>
+             
               <form action="delete_items.php" method="post">
                 <input type="hidden" name="item_id" value="<?= $row['item_id'] ?>">
                 <input type="submit" value="削除" class="con">

@@ -1,3 +1,10 @@
+<script>
+    window.onload = () => {
+        if (window.location.href.endsWith("Alexa_cooperation_db.php")) {
+            window.location.href = "LINE_registration.php";
+        }
+    };
+</script>
 <?php
 try {
     //ユーザーがAlexaと連携しているかどうか検索する

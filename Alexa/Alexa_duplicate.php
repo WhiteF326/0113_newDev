@@ -19,24 +19,24 @@ $json = file_get_contents("php://input");
 $contents = json_decode($json, true);
 
 
-$Alexa_id=$contents["name"];
-//$Alexa_id="ask.person.ALVQI5F6NHYHCSPHCGSGZIMK2WY2PRSR4G6NVYYEKF7DXKPJDBVWH2JBHYMWLACJCQDCIO5JBURNUTBPYJTBA536DL6XEJP4BYQBAOCK";
+$alexa_id=$contents["name"];
+//$alexa_id="ask.person.ALVQI5F6NHYHCSPHCGSGZIMK2WY2PRSR4G6NVYYEKF7DXKPJDBVWH2JBHYMWLACJCQDCIO5JBURNUTBPYJTBA536DL6XEJP4BYQBAOCK";
 
 
 
-write($Alexa_id);
+write($alexa_id);
 
 
 
 try{
     //SQL文を作る（プレースホルダを使った式）
-    $sql = "SELECT count(*) FROM user WHERE Alexa_id = :Alexa_id";
+    $sql = "SELECT count(*) FROM user WHERE Alexa_id = :alexa_id";
    
 
     //プリペアードステートメントを作る
     $stm = $pdo->prepare($sql);
     //プリペアードステートメントに値をバインドする
-    $stm->bindValue(':Alexa_id',$Alexa_id,PDO::PARAM_STR);
+    $stm->bindValue(':alexa_id',$alexa_id,PDO::PARAM_STR);
     //SQL文を実行する
     $stm->execute();
     //結果の取得（連想配列で受け取る）

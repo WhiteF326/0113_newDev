@@ -18,23 +18,23 @@ $json = file_get_contents("php://input");
 $contents = json_decode($json, true);
 
 // デバッグ用にダンプ
-$Alexa_id=$contents["name"];
+$alexa_id=$contents["name"];
 $id=$contents["id"];
 //書き込み
-$str="Alexa=".$Alexa_id;
+$str="alexa=".$alexa_id;
 write($str);
 
 
 
 try{
-    //$Alexa_id=$_POST;
+    //$alexa_id=$_POST;
     //SQL文を作る（プレースホルダを使った式）
     //$sql = "UPDATE user SET Alexa_id=:Alexa_id WHERE Alexa_coop.pass_id = :id AND ";
     $sql="UPDATE user,Alexa_coop SET Alexa_id = :Alexa_id WHERE Alexa_coop.pass_id = :id AND Alexa_coop.user_id = user.id";
     //プリペアードステートメントを作る
     $stm = $pdo->prepare($sql);
     //プリペアードステートメントに値をバインドする
-    $stm->bindValue(':Alexa_id',$Alexa_id,PDO::PARAM_STR);
+    $stm->bindValue(':Alexa_id',$alexa_id,PDO::PARAM_STR);
     $stm->bindValue(':id',$id,PDO::PARAM_INT);
     //SQL文を実行する
     $stm->execute();

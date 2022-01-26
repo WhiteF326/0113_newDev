@@ -1,0 +1,39 @@
+
+/* 四角に下線を付けたリスト */
+ol.sample{
+    counter-reset:list;
+    list-style-type:none;
+    font: 14px/1.6 'arial narrow', sans-serif;
+    padding: 0;
+  }
+  ol.sample li{
+    position:relative;
+    line-height: 30px;
+    margin: 7px 0 10px 40px;
+    padding-left:10px;
+    font-weight: bold;
+    font-size:14px;
+    border-bottom:solid 1px #557057;
+  }
+  ol.sample li:before{
+    counter-increment: list;
+    content: counter(list);
+    position: absolute;
+    left: -30px;
+    width: 30px;
+    height: 32px;
+    background: #5a8f5f;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  ol.sample {font-family: 'Yu Mincho Light','YuMincho','Yu Mincho','游明朝体', 
+    sans-serif;
+     }
+
+     /* ol.sample{font-family: 'ヒラギノ明朝 ProN','Hiragino Mincho ProN','Baskerville',sans-serif;} */

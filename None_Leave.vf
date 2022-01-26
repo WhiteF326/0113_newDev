@@ -5,7 +5,7 @@
     "name": "None Leave",
     "teamID": "rxERdZGjRN",
     "devVersion": "615f966c5783560006f6a18a",
-    "platform": "Alexa",
+    "platform": "alexa",
     "platformData": {
       "products": []
     },
@@ -1157,7 +1157,7 @@
         ]
       },
       "settings": {},
-      "platform": "Alexa"
+      "platform": "alexa"
     }
   },
   "diagrams": {
@@ -1406,7 +1406,7 @@
             "dialogs": [
               {
                 "voice": "Alexa",
-                "content": "<Alexa:name type = \"first\" personId = \"{{[personId].personId}}\" ></Alexa:name> さんの今日の持ち物は{{[items].items}} です。"
+                "content": "<alexa:name type = \"first\" personId = \"{{[personId].personId}}\" ></alexa:name> さんの今日の持ち物は{{[items].items}} です。"
               }
             ],
             "ports": [
@@ -1672,7 +1672,7 @@
           "data": {
             "infos": [
               {
-                "type": "Alexa::person_id:read",
+                "type": "alexa::person_id:read",
                 "mapTo": "personId",
                 "product": null
               }
@@ -1764,7 +1764,7 @@
           "nodeID": "615fb20d299a74ec519a8ff2",
           "type": "api",
           "data": {
-            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/Alexa_check.php",
+            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/alexa_check.php",
             "body": [
               {
                 "key": "",
@@ -2559,7 +2559,7 @@
           "nodeID": "615fe8e7299a74ec519a91b9",
           "type": "api",
           "data": {
-            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/Alexa_confirm_false.php",
+            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/alexa_confrim_false.php",
             "body": [
               {
                 "key": "",
@@ -2735,7 +2735,7 @@
             "dialogs": [
               {
                 "voice": "Alexa",
-                "content": "<Alexa:name type = \"first\" personId = \"{{[personId].personId}}\" ></Alexa:name> さんの持ち物リストに登録されているものはありません。行ってらっしゃい"
+                "content": "<alexa:name type = \"first\" personId = \"{{[personId].personId}}\" ></alexa:name> さんの持ち物リストに登録されているものはありません。行ってらっしゃい"
               }
             ],
             "ports": [
@@ -2783,7 +2783,7 @@
           "type": "permission",
           "data": {
             "permissions": [
-              "Alexa::person_id:read"
+              "alexa::person_id:read"
             ],
             "ports": [
               {
@@ -2881,7 +2881,7 @@
           "nodeID": "6163f036b62a325c671002ce",
           "type": "api",
           "data": {
-            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/Alexa_confirm_true.php",
+            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/alexa_confrim_true.php",
             "body": [
               {
                 "key": "",
@@ -3161,7 +3161,7 @@
           "nodeID": "61838e63f163b84db09cae12",
           "type": "api",
           "data": {
-            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/Alexa_duplicate.php",
+            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/alexa_duplicate.php",
             "body": [
               {
                 "key": "",
@@ -3230,7 +3230,7 @@
             -565.0444557258181
           ],
           "data": {
-            "name": "Alexa_duplicate",
+            "name": "alexa_duplicate",
             "color": "standard",
             "steps": [
               "61838e63f163b84db09cae12"
@@ -3692,7 +3692,7 @@
             "dialogs": [
               {
                 "voice": "Alexa",
-                "content": "-ユーザー登録を行います。<Alexa:name type = \"first\" personId = \"{{[personId].personId}}\" ></Alexa:name> さん、あなたの6桁のidを言ってください。"
+                "content": "-ユーザー登録を行います。<alexa:name type = \"first\" personId = \"{{[personId].personId}}\" ></alexa:name> さん、あなたの6桁のidを言ってください。"
               }
             ],
             "ports": [
@@ -4327,7 +4327,7 @@
           "nodeID": "61833f3eadd1aca0484f8158",
           "type": "api",
           "data": {
-            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/Alexa_code_d.php",
+            "url": "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/alexa_code_d.php",
             "body": [
               {
                 "key": "",

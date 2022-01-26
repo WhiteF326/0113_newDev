@@ -1,3 +1,10 @@
+<script>
+    window.onload = () => {
+        if (window.location.href.endsWith("dbconnect.php")) {
+            window.location.href = "LINE_registration.php";
+        }
+    };
+</script>
 <?php
   // データベースユーザ
   $user = 'fukuiohr2';

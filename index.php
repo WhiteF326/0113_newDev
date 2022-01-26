@@ -52,9 +52,9 @@
                 </a>
               </li>
               <li>
-                <span>↓　LINEBot　QRコード　　友達追加はここから</span>
+                <span>↓↓友達追加はここから↓↓</span>
                 <br>
-                <img src="img/LineQR1.png" alt="LineのQR">
+                　<img src="img/LineQR1.png" alt="LineのQR">
               </li>
             </ul>
           </div>
