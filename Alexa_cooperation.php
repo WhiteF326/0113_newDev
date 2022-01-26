@@ -27,7 +27,7 @@
                 <div class="col span-8">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="index.php">ホーム</a> > <a href="confirm.php?id=<?php echo $_SESSION['now_user']; ?>">登録物一覧</a> > <a href="time_top.php">通知時刻確認 / 変更</a> > <a href="family_top.php">グループ機能</a> > Alexaと連携</li>
+                            <li><a href="index.php">ホーム</a> > Alexaと連携</li>
                         </ul>
                     </div>
                     <div class="news">

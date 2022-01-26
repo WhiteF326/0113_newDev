@@ -33,8 +33,8 @@ try {
             <hr>
             <?php
             //グループに所属しているユーザーのIDと名前を検索する
-            $sql = "SELECT user.id,user.name
-            FROM user,family_user
+            $sql = "SELECT user.id, family_user.user_name
+            FROM user, family_user
             WHERE family_user.family_id = :family_id
             AND user.id = family_user.user_id";
 
@@ -61,12 +61,12 @@ try {
 
                             $keyword = "/$k/u";
 
-                            if (!preg_match($keyword, $row2['name'])) :
+                            if (!preg_match($keyword, $row2['user_name'])) :
                                 continue;
                             endif;
                         endif; ?>
                         <tr>
-                            <td><?= $row2['name']; ?>
+                            <td><?= $row2['user_name']; ?>
 
                                 <?php
                                 if ($row2['id'] == $_SESSION['user_id']) : ?>
@@ -121,7 +121,7 @@ try {
                                 <form action="family_confirm.php?id=<?= $row2['id']; ?>" method="post">
                                     <input type="hidden" name="family_id" value="<?= $row1["family_id"] ?>">
                                     <input type="hidden" name="target_user_id" value="<?= $row2['id']; ?>">
-                                    <input type="submit" value="<?= $row2['name']; ?>さんの持ち物を登録">
+                                    <input type="submit" value="<?= $row2['user_name']; ?>さんの持ち物を登録">
                                 </form>
                             </td>
                         </tr>

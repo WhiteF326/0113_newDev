@@ -3,7 +3,6 @@
 //MySQLデータベースに接続する
 include 'header_form.php';
 require 'dbconnect.php';
-require 'search_family_name.php';
 ?>
 <!DOCTYPE html>
 <html>
