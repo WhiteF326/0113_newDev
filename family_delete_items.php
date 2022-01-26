@@ -1,4 +1,11 @@
 <?php session_start(); ?>
+<script>
+    window.onload = () => {
+        if (window.location.href.endsWith("family_delete_items.php")) {
+            window.location.href = "LINE_registration.php";
+        }
+    };
+</script>
 
 <?php
 //MySQLデータベースに接続する

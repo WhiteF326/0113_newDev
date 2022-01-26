@@ -1,3 +1,9 @@
+<?php
+if (empty($_SESSION['user_id'])) {
+  require "LINE_registration.php";
+  exit;
+}
+?>
 <header>
   <div class="container">
     <div class="row">

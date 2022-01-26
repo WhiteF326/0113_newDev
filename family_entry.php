@@ -37,12 +37,19 @@ include 'header_form.php';
       <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
       <input type="text" name="name" placeholder="あなたの名前" required><br>
     </div>
+    <?php
+    if ($error) : ?>
+      <p><?= $error ?></p>
+    <?php
+    endif; ?>
     <div>
       <input type="submit" value="グループに参加" class="button1">
       <br>
 
   </form><br>
-  <a href="family_top.php">グループトップに戻る</a>
+  <button type="submit" name="send" class="button3">
+    <a href="family_top.php" class="a">グループトップに戻る</a>
+  </button>
   </div>
 
 </body>

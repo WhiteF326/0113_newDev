@@ -10,7 +10,7 @@ try {
     $stm->execute();
     $result = $stm->fetch(PDO::FETCH_COLUMN);
     if (empty($result)) {
-        echo "グループ名またはパスワードが間違っています。";
+        $error = "グループ名またはパスワードが間違っています。";
     } else {
 
         //グループに加入する
@@ -30,12 +30,18 @@ try {
             $stm->bindValue(':id', $_SESSION['user_id'], PDO::PARAM_INT);
             if ($stm->execute()) {
             } else {
-                echo "ユーザーの名前が正常に登録されませんでした。";
+                $error = "ユーザーの名前が正常に登録されませんでした。";
             }
         } else {
-            echo "グループ登録時にエラーが発生しました。";
+            $error = "グループ参加時にエラーが発生しました。";
         }
     }
 } catch (Exception $e) {
-    echo "グループ登録時にエラーが発生しました。";
+    $error = "グループ参加時にエラーが発生しました。\n
+    そのグループに既に参加している可能性があります。";
+} finally {
+    if ($error) {
+        require "family_entry.php";
+        exit;
+    }
 }

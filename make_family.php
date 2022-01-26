@@ -15,13 +15,13 @@ try {
     }
 
     //グループを作成する
-    $sql = "INSERT INTO family(id,name,pass)
-    VALUES (:id,:name,:pass)";
+    $sql = "INSERT INTO family(id,name,pass,salt)
+    VALUES (:id,:name,:pass,'')";
 
     $stm = $pdo->prepare($sql);
     $stm->bindValue(':id', $result, PDO::PARAM_INT);
     $stm->bindValue(':name', $_POST['make_name'], PDO::PARAM_STR);
-    $stm->bindValue(':pass', $_POST['make_pass'], PDO::PARAM_STR);
+    $stm->bindValue(':pass', $_POST["make_pass"], PDO::PARAM_STR);
 
     if ($stm->execute()) {
         //グループに加入する
@@ -34,7 +34,7 @@ try {
 
         if ($stm->execute()) {
         } else {
-            echo "グループが正常に作成できませんでした。";
+            $error = "グループが正常に作成できませんでした。";
         }
 
         //ユーザー情報に名前を登録する
@@ -46,11 +46,16 @@ try {
         $stm->bindValue(':id', $_SESSION['user_id'], PDO::PARAM_INT);
         if ($stm->execute()) {
         } else {
-            echo "ユーザーの名前が正常に登録されませんでした。";
+            $error = "ユーザーの名前が正常に登録されませんでした。";
         }
     } else {
-        echo "グループ作成時にエラーが発生しました。";
+        $error = "グループ作成時にエラーが発生しました。";
     }
 } catch (Exception $e) {
-    echo "そのパスワードは使用できません。別のパスワードで登録してください。";
+    $error = "そのパスワードは使用できません。別のパスワードで登録してください。";
+} finally {
+    if ($error) {
+        require "family_make_form.php";
+        exit;
+    }
 }

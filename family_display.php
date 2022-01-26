@@ -135,17 +135,12 @@ try {
 
   <div>
     <button type="submit" name="send" class="button1">
-      <a href="family_make.php">グループを作成する</a>
+      <a href="family_make_form.php">グループを作成する</a>
     </button>
   </div>
   <div>
     <button type="submit" name="send" class="button1">
       <a href="family_entry.php">グループに参加する</a>
-    </button>
-  </div>
-  <div>
-    <button type="submit" name="send" class="button1">
-      <a href="confirm.php?id=<?php echo $_SESSION['user_id'] ?>">登録物一覧に戻る</a>
     </button>
   </div>
 <?php

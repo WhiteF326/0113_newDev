@@ -1,15 +1,5 @@
 <?php session_start(); ?>
 
-<?php
-if (isset($_REQUEST['id'])) {
-  $_SESSION['user_id'] = $_REQUEST['id'];
-} else {
-  //ここ変わってます。
-  echo "LINEで友達登録を行い、LINEで表示されるURLからご利用ください。";
-  return;
-}
-?>
-
 <!doctype html>
 <html lang="ja">
 
@@ -29,6 +19,7 @@ if (isset($_REQUEST['id'])) {
 <body>
   <?php
   //ヘッダ表示
+  $_SESSION['user_id'] = $_REQUEST['id'];
   include 'header_top.php';
   ?>
 
@@ -50,7 +41,7 @@ if (isset($_REQUEST['id'])) {
             require 'dbconnect.php';
             require 'search_user_name.php';
             ?>
-            <h2 class="underline"><?php echo $list; ?></h2>
+            <h2 class="underline"><?=$list; ?></h2>
             <div>
               <button type="submit" name="send" class="button1">
                 <a href="registration_items.php">持ち物登録</a>
@@ -62,7 +53,7 @@ if (isset($_REQUEST['id'])) {
 
           </div>
           <div class="col span-4">
-            <a href="confirm.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="img/15.png" alt="バナー画像"></a>
+            <a href="confirm.php?id=<?=$_SESSION['user_id']; ?>"><img src="img/15.png" alt="バナー画像"></a>
             <a href="time_top.php"><img src="img/14.png" alt="バナー画像"></a>
             <a href="family_top.php"><img src="img/16.png" alt="バナー画像"></a>
           </div>

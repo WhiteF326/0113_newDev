@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="en" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="viewport" content="user-scalable=no">
+    <meta name="robots" content="noindex, nofollow">
+	<title>SITE123 Map Display</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        /* map box marker design */
+        .map-box-marker {
+          background-image: url('/files/vendor/mapBox/images/mapbox-icon.png');
+          background-size: cover;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          cursor: pointer;
+        }
+        .embedModeHidden {
+            display: none !important;
+        }
+        .embedMode {
+            cursor: pointer;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 3px;
+            background-color: #fff;
+            display: flex;
+        }
+        html[dir="rtl"] .embedMode {
+            left: auto;
+            right: 10px;
+        }
+        .embedMode:hover {
+            background-color: #f3f3f3;
+        }
+        .static-map {
+           width:100%;
+           height:100%;
+           background-position:center;
+           background-size:cover;
+        }
+
+
+        /*
+        Google map skeleton loader - Show skeleton before the google map is loaded
+        source: https://web-crunch.com/how-to-create-skeleton-screen-loading-effect/
+        --------------------*/
+        @keyframes gmapSkeletonloading {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        .gmap-skeleton:after {
+            position: absolute;
+            z-index: 1;
+            display: block;
+            content: '';
+            width: 100%;
+            height: 100%;
+            transform: translateX(-100%);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent);
+            animation: gmapSkeletonloading 1.5s infinite;
+        }
+        .gmap-skeleton {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            background-color: #c4c9cc;
+            overflow: hidden;
+        }
+        .gmap-skeleton .fake-item {
+            position: absolute;
+            z-index: 2;
+            background-color: white;
+            padding: 1px;
+            margin: 10px;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+            border-radius: 2px;
+        }
+        .gmap-skeleton .fake-info-bar {
+            left: 0;
+            top: 0;
+            width: 244px;
+            height: 52px;
+        }
+        .gmap-skeleton .fake-map-btn {
+            bottom: 18px;
+            left: 10px;
+            height: 38px;
+            width: 38px;
+        }
+        .gmap-skeleton .fake-zoom-btns {
+            bottom: 18px;
+            right: 10px;
+            width: 40px;
+            height: 81px;
+        }
+    </style>
+        <!-- jquery -->
+    <script src="./jquery.js.ダウンロード" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- content -->
+    <div style="width:100%;height:100vh;overflow: hidden;">
+        <!-- get skeleton template -->
+        
+
+                        <!-- Map -->
+            <iframe class="map-frame" src="./place.html" style="width:100%;height:100%;margin:0;padding:0;border:none;" scrolling="no" allowfullscreen=""></iframe>
+                
+            <!-- Script -->
+            <script type="text/javascript">
+                jQuery(function($) {
+                    // on iframe load remove the skeleton
+                    $('.map-frame').on('load', function() {
+                        $('.gmap-skeleton').remove();
+                    });
+                });
+            </script>
+        </div>
+
+
+</body></html>

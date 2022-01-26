@@ -1,3 +1,9 @@
+<?php
+if (empty($_SESSION['user_id'])) {
+  require "LINE_registration.php";
+  exit;
+}
+?>
 <header>
   <h1>
     <a href="index.php">
