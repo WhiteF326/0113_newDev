@@ -14,8 +14,8 @@ try {
     } else {
 
         //グループに加入する
-        $sql = "INSERT INTO family_user(family_id, user_id)
-        VALUES (:family_id,:user_id)";
+        $sql = "INSERT INTO family_user(family_id, user_id, user_name)
+        VALUES (:family_id, :user_id, :user_name)";
 
         $stm = $pdo->prepare($sql);
         $stm->bindValue(':family_id', $result, PDO::PARAM_INT);
@@ -28,6 +28,7 @@ try {
             $stm = $pdo->prepare($sql);
             $stm->bindValue(':name', $_POST['name'], PDO::PARAM_STR);
             $stm->bindValue(':id', $_SESSION['user_id'], PDO::PARAM_INT);
+            $stm->bindValue(":user_name", $_POST["user_name"], PDO::PARAM_STR);
             if ($stm->execute()) {
             } else {
                 $error = "ユーザーの名前が正常に登録されませんでした。";

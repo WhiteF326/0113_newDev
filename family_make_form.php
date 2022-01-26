@@ -34,7 +34,7 @@ include 'header_form.php';
 
         <div class="cp_iptxt">
             <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-            <input type="text" name="name" placeholder="あなたの名前" required><br>
+            <input type="text" name="user_name" placeholder="あなたの名前" required><br>
         </div>
         <?php
         if ($error) : ?>
