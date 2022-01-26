@@ -31,6 +31,21 @@ $time_names = array(
     "return_time" => "帰りだす時間",
     "check_time" => "次の日の持ち物を確認する時間"
 );
+
+// make string for time output
+function make_time_str($value)
+{
+    if(!$value){
+        return "登録されていません";
+    }
+
+    $time = strtotime($value);
+    $h = substr(" ". date("G", $time), -2);
+    $m = substr(" ". date("i", $time), -2);
+    $s = substr(" ". date("s", $time), -2);
+
+    return $h. "時 ". $m. "分 ". $s. "秒";
+}
 ?>
 
 <body>
@@ -70,29 +85,34 @@ $time_names = array(
                         }
                         */
                         // 通知時間を表示するテーブルを表示
-                        ?>
-                        <table>
-                            <?php
-                            foreach ($result as $key => $value) : ?>
-                                <tr>
-                                    <td><?= $time_names[$key] ?></td>
-                                    <td>/</td>
-                                    <td>
-                                        <?= $value ? date(
-                                            "H時 i分 s秒",
-                                            strtotime($value)
-                                        ) : "登録されていません" ?>
-                                    </td>
-                                </tr>
-                            <?php endforeach;
-                            ?>
-                        </table>
+                        if ($result["notice_time"] == null) : ?>
+                            <p>時刻が全く登録されていません。</p>
+                            <div>
+                                <button id="modifyTimeSettings" class="button1">
+                                    時刻を登録
+                                </button>
+                            </div>
+                        <?php else : ?>
+                            <table>
+                                <?php
+                                foreach ($result as $key => $value) : ?>
+                                    <tr>
+                                        <td><?= $time_names[$key] ?></td>
+                                        <td>/</td>
+                                        <td style="text-align: right; padding-right: 20px">
+                                            <?= make_time_str($value) ?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach;
+                                ?>
+                            </table>
 
-                        <div>
-                            <button id="modifyTimeSettings" class="button1">
-                                時刻を変更
-                            </button>
-                        </div>
+                            <div>
+                                <button id="modifyTimeSettings" class="button1">
+                                    時刻を変更
+                                </button>
+                            </div>
+                        <?php endif; ?>
                     </div>
 
                     <div class="col span-4">
