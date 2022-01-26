@@ -1,3 +1,10 @@
+<script>
+    window.onload = () => {
+        if (window.location.href.endsWith("DBController.php")) {
+            window.location.href = "LINE_registration.php";
+        }
+    };
+</script>
 <?php
 
 require "WrappedDBError.php";
@@ -338,13 +345,12 @@ class DBController
      */
 
     function setComment(
-    int $family_id,
-    int $from_id,
-    int $to_id,
-    string $comment,
-    bool $alert_value
-    )
-    {
+        int $family_id,
+        int $from_id,
+        int $to_id,
+        string $comment,
+        bool $alert_value
+    ) {
         $sql = "INSERT INTO comment(family_id,from_id,to_id,comment)
         VALUES (:family_id,:from_id,:to_id,:comment)
         ON DUPLICATE KEY UPDATE comment = :comment2, alert = :alert";
