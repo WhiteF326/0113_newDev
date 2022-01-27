@@ -112,9 +112,15 @@ if (isset($_POST['make_pass'])) {
 
                     </div>
                     <div class="col span-4">
-                        <a href="confirm.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="img/15.png" alt="バナー画像"></a>
-                        <a href="time_top.php"><img src="img/14.png" alt="バナー画像"></a>
-                        <a href="family_top.php"><img src="img/16.png" alt="バナー画像"></a>
+                        <a href="confirm.php?id=<?= $_SESSION['user_id']; ?>">
+                            <img src="img/15.png" alt="バナー画像">
+                        </a>
+                        <a href="time_top.php">
+                            <img src="img/14.png" alt="バナー画像">
+                        </a>
+                        <a href="family_top.php">
+                            <img src="img/16.png" alt="バナー画像">
+                        </a>
                     </div>
                 </div>
             </div>
