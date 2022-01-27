@@ -1,5 +1,15 @@
 <?php session_start(); ?>
 <?php
+// sanitizing and cut for output
+function output_adjust(string $output)
+{
+    if (strlen($output) > 40) {
+        return substr(htmlspecialchars($output), 0, 40) . "...";
+    } else {
+        return htmlspecialchars($output);
+    }
+}
+
 //MySQLデータベースに接続する
 include 'header_form.php';
 require 'dbconnect.php';
@@ -18,7 +28,7 @@ require 'dbconnect.php';
 <body>
     <?php ?>
     <h2>
-        グループ<?php echo $family_name; ?>から退会しました。
+        グループ<?php echo output_adjust($family_name); ?>から退会しました。
         <br>
         グループ機能に戻ってください。
     </h2>

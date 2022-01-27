@@ -81,25 +81,34 @@ if ($_POST['m_time'] == 000000 or $_POST['e_time'] == 000000) {
 
         if (empty($error)) : ?>
             <HR>
-            <h3>その日の持ち物を通知する時間<br>[<?= $notice_time; ?>] <br>次の日の持ち物を確認する時間<br>[<?= $check_time; ?>]<br>で登録しました。<br>
-                <h3>
+            <h3>その日の持ち物を通知する時間<br>
+                [<?= $notice_time; ?>] <br>
                 <?php
-            elseif (isset($_POST['send'])) : ?>
-                    <HR>
-                    <?php
-                    foreach ($error as $value) : ?>
-                        <?= $value; ?><br>
+                if (!empty($return_time)) : ?>
+                    家に帰り出す時間<br>
+                    [<?= $return_time; ?>] <br>
+                <?php endif; ?>
+                次の日の持ち物を確認する時間<br>
+                [<?= $check_time; ?>]<br>
+                で登録しました。<br>
+            </h3>
+        <?php
+        elseif (isset($_POST['send'])) : ?>
+            <HR>
+            <?php
+            foreach ($error as $value) : ?>
+                <?= $value; ?><br>
 
-                <?php
-                    endforeach;
-                endif;
-                ?>
+        <?php
+            endforeach;
+        endif;
+        ?>
 
-                <br>
-                <div>
-                    <button type="submit" name="send" class="button3">
-                        <a href='time_top.php' title='通知時刻確認 / 変更ページへ' class="a">戻る</a></button>
-                </div><br>
+        <br>
+        <div>
+            <button type="submit" name="send" class="button3">
+                <a href='time_top.php' title='通知時刻確認 / 変更ページへ' class="a">戻る</a></button>
+        </div><br>
 
     </div>
 </section>

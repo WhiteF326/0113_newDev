@@ -1,7 +1,22 @@
 <?php session_start(); ?>
 <?php
+// sanitizing and cut for output
+function output_adjust(string $output)
+{
+    if (strlen($output) > 40) {
+        return substr(htmlspecialchars($output), 0, 40) . "...";
+    } else {
+        return htmlspecialchars($output);
+    }
+}
+
 //MySQLデータベースに接続する
 include 'header_form.php';
+include "dbconnect.php";
+
+$family_id = $_POST["family_id"];
+$family_name = $pdo->query("SELECT name FROM family WHERE id = $family_id")
+    ->fetch(PDO::FETCH_ASSOC)["name"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,7 +34,7 @@ include 'header_form.php';
     <h2>
         <span>グループ退会</span>
         <br>
-        グループ<?php echo $family_name; ?>から退会しますか？
+        グループ<?php echo output_adjust($family_name); ?>から退会しますか？
     </h2>
     <br>
     <form action="family_exit_db.php" method="post">

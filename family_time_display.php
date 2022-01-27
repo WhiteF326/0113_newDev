@@ -1,9 +1,9 @@
 <?php
 // strings declaration
 $time_names = array(
-    "notice_time" => "その日の持ち物を通知する時間",
+    "notice_time" => "当日の持ち物の通知時刻",
     "return_time" => "帰りだす時間",
-    "check_time" => "次の日の持ち物を確認する時間"
+    "check_time" => "翌日の持ち物の確認時刻"
 );
 
 try {
@@ -12,7 +12,7 @@ try {
     FROM user WHERE id = :family_id";
 
     $stm = $pdo->prepare($sql);
-    $stm->bindValue(':family_id', $_SESSION['f_id'], PDO::PARAM_INT);
+    $stm->bindValue(':family_id', $_SESSION['target_user_id'], PDO::PARAM_INT);
     $stm->execute();
     $time = $stm->fetch(PDO::FETCH_ASSOC);
     if (!empty($time["notice_time"]) && !empty($time["check_time"])) : ?>

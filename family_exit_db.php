@@ -2,6 +2,10 @@
 
 <?php
 require 'dbconnect.php';
+$family_id = $_POST["family_id"];
+$family_name = $pdo->query("SELECT name FROM family WHERE id = $family_id")
+    ->fetch(PDO::FETCH_ASSOC)["name"];
+    
 try {
     //SQL文を作る（プレースホルダを使った式）
     $sql = "DELETE FROM comment WHERE family_id = :family_id AND (to_id = :to_id OR from_id = :from_id)";

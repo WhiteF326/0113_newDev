@@ -1,17 +1,5 @@
 <?php session_start(); ?>
 
-<?php
-require 'dbconnect.php';
-require "DBController.php";
-$dbController = new DBController();
-if (isset($_POST['make_pass'])) {
-    require 'make_family.php';
-} else if (isset($_POST["entry_pass"])) {
-    require 'join_family.php';
-}
-
-?>
-
 <!doctype html>
 <html lang="ja">
 
@@ -69,6 +57,19 @@ if (isset($_POST['make_pass'])) {
     }
 </style>
 
+<?php
+require 'dbconnect.php';
+require "DBController.php";
+$dbController = new DBController();
+if (isset($_POST['make_pass'])) {
+    require 'make_family.php';
+} else if (isset($_POST["entry_pass"])) {
+    require 'join_family.php';
+}
+//ヘッダ表示
+include 'header_top.php';
+?>
+
 <script>
     let helpFlg = false;
     window.onload = () => {
@@ -84,11 +85,6 @@ if (isset($_POST['make_pass'])) {
 </script>
 
 <body>
-
-    <?php
-    //ヘッダ表示
-    include 'header_top.php';
-    ?>
 
     <div class="mainimg">
         <img src="img/26.jpg" alt="サブページ画像">

@@ -1,4 +1,18 @@
 <?php
+
+// sanitizing and cut for output
+function output_adjust($output)
+{
+    if(is_null($output)){
+        return "";
+    }
+    if (strlen($output) > 40) {
+        return substr(htmlspecialchars($output), 0, 40) . "...";
+    } else {
+        return htmlspecialchars($output);
+    }
+}
+
 try {
     //所属しているグループのIDと名前を検索する
     $sql = "SELECT DISTINCT a.family_id, b.name 
@@ -46,7 +60,7 @@ try {
             $f_name = $row1["name"];
 
             if (isset($result1)) : ?>
-                <h5>グループ : <?= $f_name; ?></h5>
+                <h5>グループ : <?= output_adjust($f_name); ?></h5>
                 <table>
 
                     <th>名前</th>
@@ -66,7 +80,7 @@ try {
                             endif;
                         endif; ?>
                         <tr>
-                            <td><?= $row2['user_name']; ?>
+                            <td><?= output_adjust($row2['user_name']); ?>
 
                                 <?php
                                 if ($row2['id'] == $_SESSION['user_id']) : ?>
@@ -121,7 +135,7 @@ try {
                                 <form action="family_confirm.php?id=<?= $row2['id']; ?>" method="post">
                                     <input type="hidden" name="family_id" value="<?= $row1["family_id"] ?>">
                                     <input type="hidden" name="target_user_id" value="<?= $row2['id']; ?>">
-                                    <input type="submit" value="<?= $row2['user_name']; ?>さんの持ち物を登録">
+                                    <input type="submit" value="<?= output_adjust($row2['user_name']); ?>さんの持ち物を登録">
                                 </form>
                             </td>
                         </tr>

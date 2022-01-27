@@ -37,18 +37,6 @@ try {
         } else {
             $error = "グループが正常に作成できませんでした。";
         }
-
-        //ユーザー情報に名前を登録する
-        $sql = "UPDATE user SET name = :name
-        WHERE id = :id";
-
-        $stm = $pdo->prepare($sql);
-        $stm->bindValue(':name', $_POST['name'], PDO::PARAM_STR);
-        $stm->bindValue(':id', $_SESSION['user_id'], PDO::PARAM_INT);
-        if ($stm->execute()) {
-        } else {
-            $error = "ユーザーの名前が正常に登録されませんでした。";
-        }
     } else {
         $error = "グループ作成時にエラーが発生しました。";
     }
