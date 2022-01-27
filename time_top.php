@@ -9,11 +9,30 @@
     <title>通知時刻確認 / 変更</title>
     <link rel="stylesheet" media="all" href="css/ress.min.css" />
     <link rel="stylesheet" media="all" href="css/style.css" />
-    <!-- <script src="js/jquery-2.1.4.min.js"></script> -->
+    <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/style.js"></script>
 
     <link rel="icon" type="image/png" href="img/abcd2.png" />
 </head>
+
+<style>
+    .notice_time {
+        padding: 10px 0px;
+        text-indent: 5px;
+    }
+
+    .return_time {
+        padding: 0px 10px;
+        text-indent: 5px;
+    }
+
+    .check_time {
+        padding-left: 0px;
+        text-indent: 5px;
+        /* text-align: right;
+        padding-right: 20px */
+    }
+</style>
 
 <script type="text/javascript">
     window.addEventListener("load", () => {
@@ -27,24 +46,24 @@
 <?php
 // strings declaration
 $time_names = array(
-    "notice_time" => "その日の持ち物を通知する時間",
+    "notice_time" => "当日の持ち物の通知",
     "return_time" => "帰りだす時間",
-    "check_time" => "次の日の持ち物を確認する時間"
+    "check_time" => "翌日の持ち物の確認"
 );
 
 // make string for time output
 function make_time_str($value)
 {
-    if(!$value){
+    if (!$value) {
         return "登録されていません";
     }
 
     $time = strtotime($value);
-    $h = substr(" ". date("G", $time), -2);
-    $m = substr(" ". date("i", $time), -2);
-    $s = substr(" ". date("s", $time), -2);
+    $h = substr(" " . date("G", $time), -2);
+    $m = substr(" " . date("i", $time), -2);
+    $s = substr(" " . date("s", $time), -2);
 
-    return $h. "時 ". $m. "分 ". $s. "秒";
+    return $h . "時 " . $m . "分 " . $s . "秒";
 }
 ?>
 
@@ -93,19 +112,21 @@ function make_time_str($value)
                                 </button>
                             </div>
                         <?php else : ?>
-                            <table>
-                                <?php
-                                foreach ($result as $key => $value) : ?>
-                                    <tr>
-                                        <td><?= $time_names[$key] ?></td>
-                                        <td>/</td>
-                                        <td style="text-align: right; padding-right: 20px">
-                                            <?= make_time_str($value) ?>
-                                        </td>
-                                    </tr>
-                                <?php endforeach;
-                                ?>
-                            </table>
+                            <div class="table">
+                                <table class="full-width">
+                                    <?php
+                                    foreach ($result as $key => $value) : ?>
+                                        <tr>
+                                            <td class="notice_time"><?= $time_names[$key] ?></td>
+                                            <td class="return_time">/</td>
+                                            <td class="check_time">
+                                                <?= make_time_str($value) ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach;
+                                    ?>
+                                </table>
+                            </div>
 
                             <div>
                                 <button id="modifyTimeSettings" class="button1">
