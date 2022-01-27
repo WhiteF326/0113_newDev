@@ -16,7 +16,7 @@ try {
     $stm->bindValue(':check_time', $check_time, PDO::PARAM_INT);
     if ($stm->execute()) {
     } else {
-        echo "時間登録でエラーが発生しました。";
+        echo "通知時刻確認 / 変更でエラーが発生しました。";
     }
 } catch (Exception $e) {
     $error[] =  "エラーが発生しました。";

@@ -25,8 +25,10 @@ if (!empty($_POST['item_id'])) {
 } else {
     $value = null;
 }
+
+$week = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 $error = [];
-$user_id = $_SESSION['f_id'];
+$user_id = $_SESSION['user_id'];
 $days = "";
 if ($_POST["days"][0] == "ALL") {
     $days = "ALL";
@@ -49,29 +51,19 @@ if (empty($_POST['days']) && empty($_POST['datetime'])) {
 }
 
 if (!count($error)) {
-    /*
     try {
-
         //現在登録されている名前を検索
         $sql = "SELECT id FROM item WHERE name = :name";
-        //プリペアドステートメントを作る
         $stm = $pdo->prepare($sql);
-        //プレースホルダに値をバインドする
         $stm->bindValue(':name', $contents, PDO::PARAM_STR);
-        //SQL文を実行する
         $stm->execute();
-        //結果を連想配列で取得
         $result = $stm->fetch(PDO::FETCH_COLUMN);
         if (empty($result)) {
             //未登録の場合
             $sql = "SELECT MAX(id) FROM item";
-            //プリペアドステートメントを作る
             $stm = $pdo->prepare($sql);
-            //SQL文を実行する
             $stm->execute();
-            //結果を連想配列で取得
             $result = $stm->fetch(PDO::FETCH_COLUMN);
-            //新規id番号
             if (isset($result)) {
                 $result += 1;
             } else {
@@ -91,15 +83,25 @@ if (!count($error)) {
             }
         }
 
-        $sql = "INSERT INTO user_item(user_id, item_id, days, notice_datetime) VALUES (:user_id, :item_id, :days,:notice_datetime) ON DUPLICATE KEY UPDATE days = :days2, notice_datetime = :notice_datetime2";
+        $sql = "INSERT INTO user_item(user_id, item_id, weekdays, notice_datetime)
+        VALUES (:user_id, :item_id, :days, :notice_datetime)
+        ON DUPLICATE KEY UPDATE days = :days2, notice_datetime = :notice_datetime2";
         //プリペアドステートメントを作る
         $stm = $pdo->prepare($sql);
         //プレースホルダに値をバインドする
         $stm->bindValue(':user_id', $user_id, PDO::PARAM_INT);
         $stm->bindValue(':item_id', $result, PDO::PARAM_INT);
         if (!empty($_POST['days'])) {
-            $stm->bindValue(':days', $days, PDO::PARAM_STR);
-            $stm->bindValue(':days2', $days, PDO::PARAM_STR);
+            // 曜日を数値化する
+            $weekday_integer = 0;
+            for($i = 0; $i < 7; $i++){
+                if(gettype(strpos($days, $week[$i])) != "boolean"){
+                    $weekday_integer += 1 << $i;
+                }
+            }
+
+            $stm->bindValue(':days', $weekday_integer, PDO::PARAM_INT);
+            $stm->bindValue(':days2', $weekday_integer, PDO::PARAM_INT);
         } else {
             $stm->bindValue(':days', NULL, PDO::PARAM_NULL);
             $stm->bindValue(':days2', NULL, PDO::PARAM_NULL);
@@ -113,28 +115,41 @@ if (!count($error)) {
         }
         $stm->execute();
     } catch (Exception $e) {
-    }*/
+        echo $e;
+    }
 }
 
 ?>
 
+<style>
+    #back {
+        color: #FFF
+    }
+</style>
+
+<script>
+    window.onload = () => {
+        document.getElementById("back").onclick = () => {
+            window.history.back();
+        }
+    }
+</script>
 
 <section>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-
+    <form action="family_register_item_result.php" method="post">
         <div class="cp_iptxt">
             <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-            <input type="text" name="contents" value="<?php echo $value; ?>" placeholder="登録内容"><br>
+            <input type="text" name="item_name" value="<?php echo $value; ?>" placeholder="登録内容"><br>
         </div>
         <div class="cp_iptxt">
             <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-            <label><input type="checkbox" name="days[]" value="sun"><span>月</span></label>
-            <label><input type="checkbox" name="days[]" value="mon"><span>火</span></label>
-            <label><input type="checkbox" name="days[]" value="tue"><span>水</span></label>
-            <label><input type="checkbox" name="days[]" value="wed"><span>木</span></label>
-            <label><input type="checkbox" name="days[]" value="thu"><span>金</span></label>
-            <label><input type="checkbox" name="days[]" value="fri"><span>土</span></label>
-            <label><input type="checkbox" name="days[]" value="sat"><span>日</span></label>
+            <label><input type="checkbox" name="days[]" value="sun"><span>日</span></label>
+            <label><input type="checkbox" name="days[]" value="mon"><span>月</span></label>
+            <label><input type="checkbox" name="days[]" value="tue"><span>火</span></label>
+            <label><input type="checkbox" name="days[]" value="wed"><span>水</span></label>
+            <label><input type="checkbox" name="days[]" value="thu"><span>木</span></label>
+            <label><input type="checkbox" name="days[]" value="fri"><span>金</span></label>
+            <label><input type="checkbox" name="days[]" value="sat"><span>土</span></label>
         </div>
         <div class="cp_iptxt">
             <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
@@ -142,27 +157,30 @@ if (!count($error)) {
             <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
         </div>
         <div><button type="submit" name="send" class="button1">登録</button></div>
+        <input hidden name="user_id" value="<?= $_SESSION["target_user_id"] ?>">
+        <input hidden name="is_update" value="<?= strlen($item_name) ? 1 : 0?>">
     </form>
 
     <div>
         <?php
         if (empty($error)) : ?>
             <HR>
-            <h3>[<?= $contents ?>]をリストに登録しました。<br>
-                <h3>
-                <?php
-            elseif (isset($_POST['send'])) : ?>
-                    <HR>
-                    <?php
-                    foreach ($error as $value) : ?>
-                        <?= $value ?><br>
-                <?php
-                    endforeach;
-                endif ?>
-                <br>
-                <button type="submit" name="send" class="button3">
-                    <a href="family_top.php" class="a">戻る</a>
-                </button>
-                <br>
+            <h3>[<?= $contents ?>]をリストに登録しました。<br></h3>
+        <?php
+        elseif (isset($_POST['send'])) : ?>
+            <HR>
+            <?php
+            foreach ($error as $value) : ?>
+                <?= $value ?><br>
+        <?php
+            endforeach;
+        endif ?>
+        <br>
+        <form action="./family_confirm.php" method="post">
+            <input type="submit" value="戻る" class="button1">
+            <input hidden name="family_id" value="<?= $_SESSION["family_id"] ?>">
+            <input hidden name="target_user_id" value="<?= $_SESSION["target_user_id"] ?>">
+        </form>
+        <br>
     </div>
 </section>
