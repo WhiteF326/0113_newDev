@@ -49,7 +49,7 @@ if ($_POST['m_time'] == 000000 or $_POST['e_time'] == 000000) {
 
         <div class="cp_iptxt">
             <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-            その日の持ち物を通知する時間<br>
+            当日の持ち物の通知時刻<font color="#FF3300">【必須】</font><br>
             (ex.通勤等で家を出る時間、持ち物を通知してほしい時間)<br>
             <date><input type="time" name="m_time" value="<?= $mtime; ?>" required></date><br>
         </div>
@@ -66,7 +66,7 @@ if ($_POST['m_time'] == 000000 or $_POST['e_time'] == 000000) {
 
         <div class="cp_iptxt">
             <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-            次の日の持ち物を確認する時間<br>
+            翌日の持ち物の確認時刻<font color="#FF3300">【必須】</font><br>
             (ex.寝る前に持ち物の準備をする時間)<br>
             <date>
                 <input type="time" name="e_time" value="<?= $etime; ?>" required>
