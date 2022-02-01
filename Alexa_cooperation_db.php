@@ -24,7 +24,7 @@ try {
 
         <?php
         //既に設定されているパスワードがないか検索する
-        $sql = "SELECT pass_id FROM Alexa_coop
+        $sql = "SELECT pass_id FROM alexa_coop
         WHERE user_id = :user_id";
 
         $stm = $pdo->prepare($sql);
@@ -43,6 +43,6 @@ try {
 <?php
     endif;
 } catch (Exception $e) {
-    echo "エラーが発生しました。";
+    echo "エラーが発生しました。".$e;
 }
 ?>

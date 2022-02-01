@@ -177,7 +177,7 @@ if (!count($error)) {
         endif ?>
         <br>
         <form action="./family_confirm.php" method="post">
-            <input type="submit" value="戻る" class="button1">
+            <input type="submit" id="back" value="戻る" class="button3">
             <input hidden name="family_id" value="<?= $_SESSION["family_id"] ?>">
             <input hidden name="target_user_id" value="<?= $_SESSION["target_user_id"] ?>">
         </form>

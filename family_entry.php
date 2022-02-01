@@ -38,7 +38,7 @@ include 'header_form.php';
             <input type="text" name="user_name" placeholder="あなたの名前" required><br>
         </div>
         <?php
-        if ($error) : ?>
+        if (isset($error)) : ?>
             <p><?= $error ?></p>
         <?php
         endif; ?>

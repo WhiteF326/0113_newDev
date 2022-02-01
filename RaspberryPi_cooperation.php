@@ -27,23 +27,31 @@
                 <div class="col span-8">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="index.php">ホーム</a> > Alexaと連携</li>
+                            <li><a href="index.php">ホーム</a> > RaspberryPiと連携</li>
                         </ul>
                     </div>
                     <div class="news">
                         <h2>
-                            Alexaと連携
+                            RaspberryPiと連携
                         </h2>
-                        <p>Alexaと連携するための6桁のパスワードを設定して下さい</p>
-                        <?php
-                        require 'dbconnect.php';
-                        require 'Alexa_cooperation_db.php';
-                        ?>
+                        <p>RaspberryPiと連携するために携帯とRaspberryPiの13桁のMACアドレスを入力してください。</p>
+                        <form action=".php" method="post">
+                            <span>RaspberryPiのMACアドレス</span><br>
+                            <input type="text" name="" placeholder="RaspberryPiのMACアドレス" required><br>
+                            <span>携帯のMACアドレス</span><br>
+                            <input type="text" name="" placeholder="携帯のMACアドレス" required>
+                            <input type="submit" title="設定を完了します。" value="設定">
+                        </form>
+                        <?php if (false) : ?>
+                            <p>既に連携されています。</p>
+                        <?php else : ?>
+                            <p>連携されていません。</p>
+                        <?php endif; ?>
 
                     </div>
                 </div>
                 <div class="col span-4">
-                    <a href="confirm.php?id=<?php echo $_SESSION['user_id']; ?>"><img src="img/15.png" alt="バナー画像"></a>
+                    <a href="confirm.php?id=<?= $_SESSION['user_id']; ?>"><img src="img/15.png" alt="バナー画像"></a>
                     <a href="time_top.php"><img src="img/14.png" alt="バナー画像"></a>
                     <a href="family_top.php"><img src="img/16.png" alt="バナー画像"></a>
                 </div>

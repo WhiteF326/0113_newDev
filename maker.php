@@ -30,16 +30,13 @@
         <div class="col span-8">
           <div class="breadcrumb">
             <ul>
-              <li><a href="index.php">ホーム</a> > <a href="confirm.php?id=<?php echo $_SESSION['user_id']; ?>">登録物一覧</a> > <a href="time_top.php">通知時刻確認 / 変更</a> > <a href="family_top.php">グループ機能</a> > <a href="Alexa_cooperation.php">Alexaと連携</a> > 製作者情報</li>
+              <li><a href="index.php">ホーム</a> > 製作者情報</li>
             </ul>
           </div>
           <div class="news">
-            <h2>Team Wasurenai</h2>
+            <h2>None Leave Team</h2>
             <ul>
-              <li>　藤田　俊</li>
-              <li>　林　哲史</li>
-              <li>　一　春香</li>
-              <li>　竹内　友望</li>
+              <li>2022年度 大原情報ITクリエイター専門学校卒業生</li>
             </ul>
           </div>
         </div>
@@ -54,17 +51,6 @@
   <?php
   include "footer.php";
   ?>
-  <div class="copyright">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          Fukuiohr2021 © <a href="https://fukuiohr2.sakura.ne.jp/2021/wasurenai/index.php" target="_blank">Wasurenai </a>
-
-        </div>
-      </div>
-    </div>
-  </div>
-  <p id="pagetop"><a href="#">TOP</a></p>
 </body>
 
 </html>

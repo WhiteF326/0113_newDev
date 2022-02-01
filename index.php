@@ -66,16 +66,4 @@
   include "footer.php";
   ?>
 
-  <div class="copyright">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          Fukuiohr2021 © <a href="https://fukuiohr2.sakura.ne.jp/2021/wasurenai/index.php" target="_blank">Wasurenai </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <p id="pagetop"><a href="#">TOP</a></p>
-</body>
-
 </html>

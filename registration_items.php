@@ -11,6 +11,71 @@
     <link rel="icon" type="image/jpg" href="img/abcd2.png">
 </head>
 
+<style>
+    .itemHelp {
+        background-color: #aaaaaa;
+        color: #ffff;
+        border-radius: 100%;
+    }
+
+    .toolTip {
+        position: relative;
+    }
+
+    .toolTip span {
+        color: #333;
+        position: absolute;
+        padding: 8px;
+        width: 150px;
+        top: 30px;
+        left: -100px;
+        font-size: .4em;
+        line-height: 1.2em;
+        border: 3px solid #BCB;
+        border-radius: 10px;
+        background-color: #ffffff;
+        z-index: 0;
+        visibility: hidden;
+    }
+
+    .toolTip span:before {
+        position: absolute;
+        top: -8px;
+        left: 25%;
+        margin-left: -9px;
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 0 9px 9px 9px;
+        border-color: transparent transparent #efffef transparent;
+        z-index: 0;
+    }
+
+    .toolTip span:after {
+        content: "";
+        position: absolute;
+        top: -12px;
+        left: 25%;
+        margin-left: 61px;
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 0 10px 10px 10px;
+        border-color: transparent transparent #BCB;
+        z-index: -1;
+    }
+
+    .toolTip:hover {
+        cursor: help;
+    }
+
+    .toolTip:hover span {
+        visibility: visible;
+        cursor: help;
+        z-index: 20;
+    }
+</style>
+
 <?php
 ini_set("display_errors", 1);
 //ヘッダ表示
@@ -20,17 +85,33 @@ include 'header_form.php';
 <!-- get item name if item_id specified -->
 <?php
 require "dbconnect.php";
-if(isset($_REQUEST["item_id"])){
-    $item_id = $_REQUEST["item_id"];
-    $item_name = $pdo->query("SELECT name FROM item WHERE id = $item_id")
-        ->fetch(PDO::FETCH_ASSOC)["name"];
-    $_SESSION["to_item_id"] = $_REQUEST["item_id"];
-}else{
+if (isset($_REQUEST["item_id"])) {
+    try {
+        $item_id = $_REQUEST["item_id"];
+        $item_name = $pdo->query("SELECT name FROM item WHERE id = $item_id")
+            ->fetch(PDO::FETCH_ASSOC)["name"];
+        $_SESSION["to_item_id"] = $_REQUEST["item_id"];
+    } catch (Exception $e) {
+        $item_name = "";
+        $item_id = "";
+    }
+} else {
+    $item_id = "";
     $item_name = "";
 }
 ?>
 
-<h2><span>持ち物<?= strlen($item_name) ? "更新" : "登録" ?></span></h2>
+<h2>
+    <span>持ち物<?= strlen($item_name) ? "更新" : "登録" ?>
+        <a class="toolTip">
+            <input class="itemHelp" type="button" name="" value="？">
+            <span>
+                登録内容に、登録する<br>持ち物を入力して下さい<br>
+                曜日と日付はどちらか一つしか<br>選択できません
+            </span>
+        </a>
+    </span>
+</h2>
 
 <body>
     <section>
@@ -60,7 +141,7 @@ if(isset($_REQUEST["item_id"])){
                 </button>
             </div>
             <input hidden name="user_id" value="<?= $_SESSION['user_id']; ?>">
-            <input hidden name="is_update" value="<?= strlen($item_name) ? 1 : 0?>">
+            <input hidden name="is_update" value="<?= strlen($item_name) ? 1 : 0 ?>">
         </form><br>
 
         <div>
