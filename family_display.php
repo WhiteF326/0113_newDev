@@ -3,7 +3,7 @@
 // sanitizing and cut for output
 function output_adjust($output)
 {
-    if(is_null($output)){
+    if (is_null($output)) {
         return "";
     }
     if (strlen($output) > 40) {
@@ -35,7 +35,7 @@ try {
             <input id="helpButton" type="button" name="" value="？">
         </form>
         <span id="helpMessage">
-        グループ内のメンバーのうち、入力内容を名前に含むユーザのみを表示するようにします。何も入力せず検索すると全員が表示されます。
+            グループ内のメンバーのうち、入力内容を名前に含むユーザのみを表示するようにします。何も入力せず検索すると全員が表示されます。
         </span>
         <?php
         if (!empty($_POST['keyword'])) : ?>
@@ -63,8 +63,8 @@ try {
                 <h5>グループ : <?= output_adjust($f_name); ?></h5>
                 <table>
 
-                    <th>名前</th>
-                    <th>メッセージの設定</th>
+                    <!-- <th>名前</th>
+                    <th>メッセージの設定</th> -->
                     <?php
                     // if (isset($_POST['keyword'])):
 
@@ -80,16 +80,19 @@ try {
                             endif;
                         endif; ?>
                         <tr>
-                            <td><?= output_adjust($row2['user_name']); ?>
-
-                                <?php
-                                if ($row2['id'] == $_SESSION['user_id']) : ?>
-                                    <br>(あなた)
-                                <?php
-                                endif; ?>
-                            </td>
                             <td>
+                                <h5>
+                                    <p>
+                                        <?= output_adjust($row2['user_name']); ?>
 
+                                        <?php
+                                        if ($row2['id'] == $_SESSION['user_id']) : ?>
+                                            (あなた)
+                                        <?php
+                                        endif; ?>
+                                    </p>
+                                </h5>
+                                <span>メッセージの設定</span>
                                 <?php
                                 try {
                                     //メッセージと通知の設定を検索

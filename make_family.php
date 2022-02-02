@@ -15,13 +15,16 @@ try {
     }
 
     //グループを作成する
-    $sql = "INSERT INTO family(id,name,pass,salt)
-    VALUES (:id,:name,:pass,'')";
+    $sql = "INSERT INTO family(id,name,pass)
+    VALUES (:id,:name,:pass)";
 
     $stm = $pdo->prepare($sql);
     $stm->bindValue(':id', $result, PDO::PARAM_INT);
     $stm->bindValue(':name', $_POST['make_name'], PDO::PARAM_STR);
-    $stm->bindValue(':pass', $_POST["make_pass"], PDO::PARAM_STR);
+    $hashed_pass = hash(
+        "SHA256", $_POST["make_pass"]
+    );
+    $stm->bindValue(':pass', $hashed_pass, PDO::PARAM_STR);
 
     if ($stm->execute()) {
         //グループに加入する

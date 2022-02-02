@@ -119,9 +119,9 @@ if (!count($res["errors"])) {
         <h2><span>持ち物<?= $is_update ? "更新" : "登録" ?></span></h2>
         <?php if ($res["succeed"]) : ?>
             <p>持ち物の<?= $is_update ? "更新" : "登録" ?>が完了しました。</p>
-            <form action="registration_items.php">
-                <input type="submit" value="戻る" class="button1">
-            </form>
+            <button type="submit" name="send" class="button3">
+                <a href="confirm.php?id=<?= $_SESSION['user_id']; ?>" class="a">戻る</a>
+            </button>
             <?php else :
             if (count($res["errors"])) :
                 foreach ($res["errors"] as $err) : ?>
@@ -133,10 +133,12 @@ if (!count($res["errors"])) {
             <hr>
             <p>お手数ですが再度お試しください。</p>
             <form action="registration_items.php">
-                <?php if(isset($_SESSION["to_item_id"])) : ?>
+                <?php if (isset($_SESSION["to_item_id"])) : ?>
                     <input type="text" hidden name="item_id" value="<?= $_SESSION["to_item_id"] ?>">
+                <?php else : ?>
+                    <input type="text" hidden name="item_id" value="">
                 <?php endif; ?>
-                <input type="submit" value="戻る" class="button1">
+                <input type="submit" value="戻る" class="button3">
             </form>
         <?php endif; ?>
     </section>

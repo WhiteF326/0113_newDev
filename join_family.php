@@ -6,7 +6,10 @@ try {
 
     $stm = $pdo->prepare($sql);
     $stm->bindValue(':name', $_POST['entry_name'], PDO::PARAM_STR);
-    $stm->bindValue(':pass', $_POST['entry_pass'], PDO::PARAM_STR);
+    $hashed_pass = hash(
+        "SHA256", $_POST['entry_pass']
+    );
+    $stm->bindValue(':pass', $hashed_pass, PDO::PARAM_STR);
     $stm->execute();
     $result = $stm->fetch(PDO::FETCH_COLUMN);
     if (empty($result)) {
@@ -21,13 +24,10 @@ try {
         $stm->bindValue(':family_id', $result, PDO::PARAM_INT);
         $stm->bindValue(':user_id', $_SESSION["user_id"], PDO::PARAM_INT);
         $stm->bindValue(":user_name", $_POST["user_name"], PDO::PARAM_STR);
-
         $stm->execute();
     }
 } catch (Exception $e) {
-    echo $e;
-    $error = "グループ参加時にエラーが発生しました。\n
-    そのグループに既に参加している可能性があります。";
+    $error = "既にグループに参加している可能性があります。";
 } finally {
     if ($error) {
         require "family_entry.php";

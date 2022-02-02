@@ -27,10 +27,8 @@ write($str);
 
 
 try{
-    //$alexa_id=$_POST;
-    //SQL文を作る（プレースホルダを使った式）
-    //$sql = "UPDATE user SET Alexa_id=:Alexa_id WHERE Alexa_coop.pass_id = :id AND ";
-    $sql="UPDATE user,Alexa_coop SET Alexa_id = :Alexa_id WHERE Alexa_coop.pass_id = :id AND Alexa_coop.user_id = user.id";
+    
+    $sql="UPDATE user,alexa_coop SET Alexa_id = :Alexa_id WHERE alexa_coop.pass_id = :id AND alexa_coop.user_id = user.id";
     //プリペアードステートメントを作る
     $stm = $pdo->prepare($sql);
     //プリペアードステートメントに値をバインドする
@@ -38,13 +36,16 @@ try{
     $stm->bindValue(':id',$id,PDO::PARAM_INT);
     //SQL文を実行する
     $stm->execute();
-    //結果の取得（連想配列で受け取る）
-    // $result = $stm->fetchAll(PDO::FETCH_ASSOC);
-    // if($result){
-    //     foreach($result as $row){
-    //         echo $row['name'];
-    //     }
-    // }
+
+    $sql="UPDATE alexa_control,alexa_coop SET Alexa_id = :Alexa_id WHERE alexa_coop.pass_id = :id AND alexa_coop.user_id = alexa_control.user_id";
+    //プリペアードステートメントを作る
+    $stm = $pdo->prepare($sql);
+    //プリペアードステートメントに値をバインドする
+    $stm->bindValue(':Alexa_id',$alexa_id,PDO::PARAM_STR);
+    $stm->bindValue(':id',$id,PDO::PARAM_INT);
+    //SQL文を実行する
+    $stm->execute();
+
     if($stm->execute()){
         write("ok");
     }

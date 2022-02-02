@@ -27,7 +27,7 @@ write($id);
 
 try{
     //SQL文を作る（プレースホルダを使った式）
-    $sql = "SELECT count(*) FROM Alexa_coop WHERE pass_id = :id";
+    $sql = "SELECT count(*) FROM alexa_coop WHERE pass_id = :id";
    
 
     //プリペアードステートメントを作る

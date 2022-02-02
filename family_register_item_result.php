@@ -124,7 +124,7 @@ if (!count($res["errors"])) {
             <form action="family_confirm.php" method="post">
                 <input hidden name="family_id" value="<?= $_SESSION["family_id"] ?>">
                 <input hidden name="target_user_id" value="<?= $_SESSION["target_user_id"] ?>">
-                <input type="submit" value="戻る" class="button1">
+                <input type="submit" value="戻る" class="button3">
             </form>
             <?php else :
             if (count($res["errors"])) :
@@ -138,9 +138,9 @@ if (!count($res["errors"])) {
             <p>お手数ですが再度お試しください。</p>
             <form action="family_registration_items.php">
                 <?php if (isset($_SESSION["to_item_id"])) : ?>
-                    <input type="text" hidden name="item_id" value="<?= $_SESSION["to_item_id"] ?>">
+                    <input type="hidden" name="item_id" value="<?= $_SESSION["to_item_id"] ?>">
                 <?php endif; ?>
-                <input type="submit" value="戻る" class="button1">
+                <input type="submit" value="戻る" class="button3">
             </form>
         <?php endif; ?>
     </section>

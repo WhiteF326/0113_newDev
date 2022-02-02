@@ -26,7 +26,7 @@ try{
     $result = $stm->fetch(PDO::FETCH_COLUMN);
 
     //SQL文を作る（プレースホルダを使った式）
-    $sql ="DELETE FROM Alexa_coop WHERE user_id = :user_id";
+    $sql ="DELETE FROM alexa_coop WHERE user_id = :user_id";
 
     //プリペアードステートメントを作る
     $stm = $pdo->prepare($sql);

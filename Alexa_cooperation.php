@@ -31,8 +31,10 @@
                         </ul>
                     </div>
                     <div class="news">
-                        <h2>Alexaと連携</h2>
-
+                        <h2>
+                            Alexaと連携
+                        </h2>
+                        <p>Alexaと連携するための6桁のパスワードを設定して下さい</p>
                         <?php
                         require 'dbconnect.php';
                         require 'Alexa_cooperation_db.php';
@@ -49,17 +51,6 @@
         </div>
     </main>
     <?php require "footer.php"; ?>
-    <div class="copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    Fukuiohr2021 © <a href="https://fukuiohr2.sakura.ne.jp/2021/wasurenai/index.php" target="_blank">Wasurenai </a>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <p id="pagetop"><a href="#">TOP</a></p>
 </body>
 
 </html>

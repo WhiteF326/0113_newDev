@@ -1,12 +1,4 @@
 <?php session_start(); ?>
-<?php
-
-require 'dbconnect.php';
-date_default_timezone_set('Asia/Tokyo');
-
-require 'search_time.php';
-
-?>
 
 <!DOCTYPE html>
 
@@ -22,12 +14,9 @@ require 'search_time.php';
 <?php
 //ヘッダ表示
 require 'header_form.php';
-?>
+require 'dbconnect.php';
+date_default_timezone_set('Asia/Tokyo');
 
-
-<h2><span>通知時刻確認 / 変更</span></h2>
-
-<?php
 $error = [];
 
 $user_id = $_SESSION['user_id'];
@@ -42,7 +31,11 @@ if ($_POST['m_time'] == 000000 or $_POST['e_time'] == 000000) {
 
     require 'update_time.php';
 }
+
+require 'search_time.php';
 ?>
+
+<h2><span>通知時刻確認 / 変更</span></h2>
 
 <section>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
