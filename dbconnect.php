@@ -7,12 +7,12 @@
 </script>
 <?php
   // データベースユーザ
-  $user = 'fukuiohr2';
-  $password = 'Fukui2021d';
+  $user = 'LAA1356450';
+  $password = 'noneleave';
   // 利用するデータベース
-  $dbName = 'fukuiohr2_wasurenai';
+  $dbName = 'LAA1356450-noneleave';
   // MySQLサーバ
-  $host = 'mysql640.db.sakura.ne.jp';
+  $host = 'mysql154.phy.lolipop.lan';
   // MySQLのDSN文字列
   $dsn = "mysql:host={$host};dbname={$dbName};charset=utf8";
   //MySQLデータベースに接続する

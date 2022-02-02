@@ -109,9 +109,9 @@ class DBController
     {
         // dsn, user name, password
         $this->pdo = new PDO(
-            "mysql:host=mysql640.db.sakura.ne.jp;dbname=fukuiohr2_wasurenai;charset=utf8",
-            "fukuiohr2",
-            "Fukui2021d"
+            "mysql:host=mysql154.phy.lolipop.lan;charset=utf8",
+            "LAA1356450",
+            "noneleave"
         );
         $this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
