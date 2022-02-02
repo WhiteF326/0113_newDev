@@ -1,6 +1,6 @@
 <?php
  
-$accessToken = 'xNI28KLon+2C6/22M/f7EDOITUVAWdtVt+eKuhyYd21nO3Ie1FuCLVExVJd/7poTgU2Rjfo+NXoKkGI6944McsS+m6hw5kdj3i5kzDlUt0IxVAK3mWafdDP+R+lfpUMHDGmkbmp0xwLwRjWR1emeNgdB04t89/1O/w1cDnyilFU=';
+$accessToken = 'Fu2ADZlT3cYd5rmjx+JUa4AmA2ciy+SyfD2KllzfJLiaKWyFD9GfHKqS9oQUEdqwEWdnzQHpr3r/5FZINy3Ks+VY3Y7Z0jjNPd1MXctoUj6qyKtw0b86zO61gBJVlDhFHAwpso8e5LLUn/tSE6sxowdB04t89/1O/w1cDnyilFU=';
 date_default_timezone_set('Asia/Tokyo');
 
 //ユーザーからのメッセージ取得
@@ -52,7 +52,7 @@ if($type == "follow"){
         $stm->bindValue(':user_id', $user_id, PDO::PARAM_STR);
         //SQL文を実行する
         if($stm->execute()){
-            sending_messages($accessToken, $replyToken, "text", "ユーザーを登録しました。以下のURLから忘れ物を登録できます。\nhttps://fukuiohr2.sakura.ne.jp/2021/wasurenai/confirm.php?id=$id");
+            sending_messages($accessToken, $replyToken, "text", "ユーザーを登録しました。以下のURLから忘れ物を登録できます。\nhttps://zazethcare.cloud/NoneLeave/confirm.php?id=$id");
             exit;
         }
         else{
@@ -62,7 +62,7 @@ if($type == "follow"){
     }
     else{
         //登録済みの場合
-        sending_messages($accessToken, $replyToken, "text", "以下のURLから忘れ物を登録できます。\nhttps://fukuiohr2.sakura.ne.jp/2021/wasurenai/confirm.php?id=$id");
+        sending_messages($accessToken, $replyToken, "text", "以下のURLから忘れ物を登録できます。\nhttps://zazethcare.cloud/NoneLeave/confirm.php?id=$id");
         exit;
     }
 }
@@ -140,7 +140,7 @@ else if($message_text == "登録"|| $message_text == "とうろく"){
         //結果を連想配列で取得
         $id = $stm->fetch(PDO::FETCH_COLUMN);
         if(!empty($id)){
-            sending_messages($accessToken, $replyToken, "text", "以下のURLから忘れ物を確認できます。\nhttps://fukuiohr2.sakura.ne.jp/2021/wasurenai/confirm.php?id=$id");
+            sending_messages($accessToken, $replyToken, "text", "以下のURLから忘れ物を確認できます。\nhttps://zazethcare.cloud/NoneLeave/confirm.php?id=$id");
             exit;
         }
         else{
