@@ -94,10 +94,12 @@ if (isset($_REQUEST["item_id"])) {
     } catch (Exception $e) {
         $item_name = "";
         $item_id = "";
+        unset($_SESSION["to_item_id"]);
     }
 } else {
     $item_id = "";
     $item_name = "";
+    unset($_SESSION["to_item_id"]);
 }
 ?>
 
