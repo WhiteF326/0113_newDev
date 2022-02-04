@@ -20,8 +20,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        Fukuiohr2021 © <a href="https://fukuiohr2.sakura.ne.jp/2021/wasurenai/index.php" target="_blank">Wasurenai </a>
-
+        Fukuiohr2021 © <a href="https://zazethcare.cloud/NoneLeave/index.php" target="_blank">NoneLeave </a>
       </div>
     </div>
   </div>
