@@ -21,7 +21,7 @@ $error = [];
 
 $user_id = $_SESSION['user_id'];
 
-if ($_POST['m_time'] == 000000 or $_POST['e_time'] == 000000) {
+if (!isset($_POST['m_time']) or !isset($_POST['e_time'])) {
 
     $error[] = "出発時と更新時の時間は必ず入力してください。";
 } else {
