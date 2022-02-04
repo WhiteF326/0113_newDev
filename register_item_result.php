@@ -65,26 +65,29 @@ if (!count($res["errors"])) {
     // check if already the item has same name exists
     $chk = $pdo->query(
         "SELECT count(*) as ct FROM item, user_item
-        WHERE name = '$item_name' AND item.id = user_item.item_id"
+        WHERE item.name = '$item_name' AND item.id = user_item.item_id"
     )->fetch(PDO::FETCH_ASSOC)["ct"] ? true : false;
     if ($chk) {
         $item_id = $pdo->query("SELECT id FROM item WHERE name = '$item_name'")
             ->fetch(PDO::FETCH_ASSOC)["id"];
-        $sql = "UPDATE user_item SET
-            weekdays = :weekdays, notice_datetime = :datetime
-            WHERE user_id = :user_id AND item_id = :item_id";
+        $sql = "INSERT INTO user_item
+            VALUES(:user_id, :item_id, null, :datetime, :weekdays)
+            ON DUPLICATE KEY
+                UPDATE notice_datetime = :datetime2, weekdays = :weekdays2";
         $stm = $pdo->prepare($sql);
         $stm->bindValue(":weekdays", $weekdays, getPDOtype($weekdays));
         $stm->bindValue(":datetime", $datetime, getPDOtype($datetime));
+        $stm->bindValue(":weekdays2", $weekdays, getPDOtype($weekdays));
+        $stm->bindValue(":datetime2", $datetime, getPDOtype($datetime));
         $stm->bindValue(":user_id", $user_id, getPDOtype($user_id));
         $stm->bindValue(":item_id", $item_id, getPDOtype($item_id));
 
         $res["succeed"] = $stm->execute();
     } else {
-        $item_id = $pdo->query("SELECT max(id) + 1 as next_id FROM item")
+        $item_id = $pdo->query("SELECT COALESCE(max(id), 0) + 1 as next_id FROM item")
             ->fetch(PDO::FETCH_ASSOC)["next_id"];
         $pdo->query(
-            "INSERT IGNORE INTO item VALUES($item_id, '$item_name')"
+            "INSERT INTO item VALUES($item_id, '$item_name')"
         );
         $sql = "INSERT INTO user_item
             VALUES(:user_id, :item_id, null, :datetime, :weekdays)";
