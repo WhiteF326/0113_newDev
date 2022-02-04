@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>制作者について</title>
+  <title>製作者情報</title>
   <link rel="stylesheet" media="all" href="css/ress.min.css" />
   <link rel="stylesheet" media="all" href="css/style.css" />
   <script src="js/jquery-2.1.4.min.js"></script>

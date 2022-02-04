@@ -584,7 +584,7 @@ function confirm_button($user_id, $item){
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode( $post_data, JSON_UNESCAPED_UNICODE ));
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         'Content-Type: application/json; charser=UTF-8',
-        'Authorization: Bearer ' . 'xNI28KLon+2C6/22M/f7EDOITUVAWdtVt+eKuhyYd21nO3Ie1FuCLVExVJd/7poTgU2Rjfo+NXoKkGI6944McsS+m6hw5kdj3i5kzDlUt0IxVAK3mWafdDP+R+lfpUMHDGmkbmp0xwLwRjWR1emeNgdB04t89/1O/w1cDnyilFU='
+        'Authorization: Bearer ' . 'Fu2ADZlT3cYd5rmjx+JUa4AmA2ciy+SyfD2KllzfJLiaKWyFD9GfHKqS9oQUEdqwEWdnzQHpr3r/5FZINy3Ks+VY3Y7Z0jjNPd1MXctoUj6qyKtw0b86zO61gBJVlDhFHAwpso8e5LLUn/tSE6sxowdB04t89/1O/w1cDnyilFU='
     ));
     $result = curl_exec($ch);
     $result = json_decode($result);
@@ -614,7 +614,7 @@ function check_button($user_id, $id){
                 array(
                     "type" => "uri",
                     "label" => "更新する",
-                    "uri" => "https://fukuiohr2.sakura.ne.jp/2021/wasurenai/confirm.php?id=$id"
+                    "uri" => "https://zazethcare.cloud/NoneLeave/confirm.php?id=$id"
                 )
             ]
         )
@@ -634,7 +634,7 @@ function check_button($user_id, $id){
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode( $post_data, JSON_UNESCAPED_UNICODE ));
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         'Content-Type: application/json; charser=UTF-8',
-        'Authorization: Bearer ' . 'xNI28KLon+2C6/22M/f7EDOITUVAWdtVt+eKuhyYd21nO3Ie1FuCLVExVJd/7poTgU2Rjfo+NXoKkGI6944McsS+m6hw5kdj3i5kzDlUt0IxVAK3mWafdDP+R+lfpUMHDGmkbmp0xwLwRjWR1emeNgdB04t89/1O/w1cDnyilFU='
+        'Authorization: Bearer ' . 'Fu2ADZlT3cYd5rmjx+JUa4AmA2ciy+SyfD2KllzfJLiaKWyFD9GfHKqS9oQUEdqwEWdnzQHpr3r/5FZINy3Ks+VY3Y7Z0jjNPd1MXctoUj6qyKtw0b86zO61gBJVlDhFHAwpso8e5LLUn/tSE6sxowdB04t89/1O/w1cDnyilFU='
     ));
     $result = curl_exec($ch);
     $result = json_decode($result);
